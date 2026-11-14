@@ -158,10 +158,11 @@ function onMsg(ev) {
   if (m.t === "question") {
     answered = false;
     show("play");
-    $("qnum").textContent = `${m.clues ? "Personagem" : "Pergunta"} ${m.i} de ${m.total}`;
+    $("qnum").textContent = `${m.clues ? "DESAFIO DE PISTAS" : (m.level || "QUIZ")} · ${m.i} de ${m.total}`;
     $("qtext").textContent = m.q;
     $("typedanswer").style.display = m.typed ? "block" : "none";
     $("guess").value = "";
+    $("sendguess").disabled = false;
     $("clues").textContent = "";
     if (m.clues) m.clues.forEach(addClue);
     $("locked").style.display = "none";
