@@ -121,7 +121,7 @@ function reveal(room) {
   room.state = "reveal";
   const q = room.questions[room.index];
   const counts = [0, 0, 0, 0];
-  for (const p of room.players.values()) if (p.choice !== null) counts[p.choice]++;
+  for (const p of room.players.values()) if (p.choice !== null && p.choice >= 0) counts[p.choice]++;
   const rank = ranking(room);
   const last = room.index + 1 >= room.questions.length;
   send(room.host, { t: "reveal", correct: q.clues ? null : q.a, counts, top: rank.slice(0, 5), last, name: q.clues ? q.name : null, ref: q.ref || null, explain: q.explain || null });
@@ -366,7 +366,7 @@ wss.on("connection", (ws) => {
         const q = room.questions[room.index];
         let right = false;
         if (q.clues) {
-          const norm = v => String(v || "").normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLowerCase().replace(/[^a-z0-9 ]/g, "").trim().replace(/\\s+/g, " ");
+          const norm = v => String(v || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9 ]/g, "").trim().replace(/\s+/g, " ");
           const guess = norm(m.text), answer = norm(q.name);
           right = !!guess && (guess === answer || (answer.startsWith(guess) && guess.length >= 5));
           p.choice = -1; p.right = right;
