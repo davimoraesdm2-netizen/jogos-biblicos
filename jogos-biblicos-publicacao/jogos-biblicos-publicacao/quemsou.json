@@ -1,37 +1,502 @@
 [
-  {"n": "Noé", "c": ["Vivi numa época em que a maldade tomou conta da terra.", "Deus me avisou de um dilúvio que estava por vir.", "Construí uma enorme embarcação de madeira.", "Levei minha família e muitos animais comigo.", "Soltei uma pomba para saber se as águas tinham baixado."]},
-  {"n": "Moisés", "c": ["Quando bebê, fui colocado num cesto no rio.", "Cresci no palácio do faraó.", "Deus falou comigo numa sarça que queimava sem se consumir.", "Liderei meu povo para fora do Egito.", "Recebi os Dez Mandamentos no monte Sinai."]},
-  {"n": "Davi", "c": ["Fui o mais novo dos filhos de Jessé e cuidava das ovelhas.", "Fui ungido por Samuel quando ainda era jovem.", "Toquei harpa para acalmar o rei Saul.", "Derrubei um gigante com uma pedra e uma funda.", "Fui rei de Israel e escrevi muitos salmos."]},
-  {"n": "Daniel", "c": ["Fui levado cativo para a Babilônia ainda jovem.", "Recusei a comida do rei para não me contaminar.", "Interpretei sonhos do rei Nabucodonosor.", "Li a escrita misteriosa que apareceu numa parede.", "Passei uma noite numa cova com leões e nada me aconteceu."]},
-  {"n": "Ester", "c": ["Sou judia e fui criada por meu primo Mardoqueu.", "Fui escolhida para ser rainha da Pérsia.", "Meu povo estava ameaçado por um plano do malvado Hamã.", "Apresentei-me ao rei sem ser chamada, arriscando a vida.", "Graças à minha coragem, meu povo foi salvo."]},
-  {"n": "Pedro", "c": ["Eu era pescador na Galileia.", "Meu irmão André me levou até Jesus.", "Andei sobre as águas por alguns instantes.", "Neguei Jesus três vezes antes de o galo cantar.", "Preguei o sermão no dia de Pentecostes."]},
-  {"n": "Paulo", "c": ["Estudei aos pés de Gamaliel.", "No começo, eu perseguia os cristãos.", "Uma luz do céu me cegou no caminho de Damasco.", "Fiz várias viagens missionárias.", "Escrevi muitas cartas, como a que foi enviada aos romanos."]},
-  {"n": "José do Egito", "c": ["Meu pai me deu uma túnica especial.", "Sonhei que meus irmãos se curvavam diante de mim.", "Fui vendido como escravo e levado ao Egito.", "Passei um tempo na prisão por uma falsa acusação.", "Tornei-me governador do Egito e perdoei meus irmãos."]},
-  {"n": "Sansão", "c": ["Meu nascimento foi anunciado por um anjo.", "Fui consagrado a Deus desde o ventre da minha mãe.", "Matei um leão com as próprias mãos.", "Fui traído por Dalila.", "Derrubei as colunas do templo dos filisteus."]},
-  {"n": "Jonas", "c": ["Deus me mandou pregar numa grande cidade inimiga.", "Tentei fugir de navio para Társis.", "Uma tempestade ameaçou o barco e fui lançado ao mar.", "Passei três dias dentro de um grande peixe.", "Preguei em Nínive e o povo se arrependeu."]},
-  {"n": "Abraão", "c": ["Deus me mandou sair da minha terra para um lugar que me mostraria.", "Meu nome original era Abrão.", "Minha esposa Sara riu quando soube que teria um filho na velhice.", "Deus prometeu que meus descendentes seriam como as estrelas do céu.", "Fui testado quando Deus pediu que eu oferecesse Isaque."]},
-  {"n": "Rute", "c": ["Nasci em Moabe.", "Perdi meu marido e minha sogra decidiu voltar para Belém.", "Disse à minha sogra: o teu povo será o meu povo.", "Fui colher espigas no campo de Boaz.", "Casei-me com Boaz e fui bisavó do rei Davi."]},
-  {"n": "Maria, mãe de Jesus", "c": ["Eu era noiva de um carpinteiro chamado José.", "Um anjo me visitou em Nazaré.", "Cantei um cântico de louvor a Deus na casa de minha prima Isabel.", "Dei à luz em Belém e coloquei meu filho numa manjedoura.", "Estive ao pé da cruz."]},
-  {"n": "João Batista", "c": ["Meu nascimento foi anunciado ao meu pai Zacarias.", "Vivi no deserto e me vestia com pelo de camelo.", "Comia gafanhotos e mel silvestre.", "Preguei arrependimento às margens do rio Jordão.", "Batizei Jesus."]},
-  {"n": "Zaqueu", "c": ["Eu era baixo de estatura.", "Trabalhava cobrando impostos em Jericó.", "Subi numa árvore para ver Jesus passar.", "Jesus disse que se hospedaria na minha casa.", "Prometi devolver quatro vezes o que tivesse tomado indevidamente."]},
-  {"n": "Elias", "c": ["Profetizei durante o reinado do rei Acabe.", "Fui alimentado por corvos junto a um ribeiro.", "Desafiei os profetas de Baal no monte Carmelo.", "Fogo desceu do céu sobre o meu sacrifício.", "Fui levado ao céu num redemoinho, num carro de fogo."]},
-  {"n": "Jó", "c": ["Eu vivia na terra de Uz.", "Era um homem íntegro, reto e temente a Deus.", "Perdi meus bens e meus filhos num só dia.", "Meus amigos tentaram explicar o meu sofrimento.", "Deus me restaurou e me deu em dobro o que eu tinha perdido."]},
-  {"n": "Salomão", "c": ["Sou filho de Davi e Bate-Seba.", "Pedi sabedoria a Deus em vez de riquezas.", "Resolvi uma disputa entre duas mulheres por um bebê.", "Construí o templo em Jerusalém.", "A rainha de Sabá veio me visitar por causa da minha fama."]},
-  {"n": "Gideão", "c": ["Eu malhava trigo num lagar para me esconder dos midianitas.", "Um anjo me chamou de homem valente.", "Pedi a Deus um sinal com um velo de lã.", "Deus reduziu meu exército de 32 mil para 300 homens.", "Venci os midianitas usando trombetas e jarros."]},
-  {"n": "Josué", "c": ["Fui ajudante de Moisés.", "Fui um dos doze espias enviados a Canaã.", "Eu e Calebe trouxemos um relatório de fé.", "Liderei Israel na travessia do rio Jordão.", "As muralhas de Jericó caíram diante de mim."]},
-  {"n": "Tomé", "c": ["Fui um dos doze apóstolos.", "Eu também era chamado de Dídimo.", "Disse que só creria se visse as marcas dos cravos.", "Jesus me convidou a tocar suas mãos e seu lado.", "Fiquei conhecido como o apóstolo que duvidou."]},
-  {"n": "Mateus", "c": ["Eu trabalhava numa coletoria de impostos em Cafarnaum.", "Jesus me chamou dizendo: Segue-me.", "Dei um banquete com publicanos e pecadores.", "Fui um dos doze apóstolos.", "Escrevi o primeiro evangelho do Novo Testamento."]},
-  {"n": "Lázaro", "c": ["Eu era irmão de Marta e Maria.", "Morava em Betânia.", "Fiquei doente e morri.", "Jesus chorou diante do meu túmulo.", "Fui ressuscitado depois de quatro dias."]},
-  {"n": "Estêvão", "c": ["Fui escolhido como um dos sete para servir às mesas.", "Era cheio de fé e do Espírito Santo.", "Falei diante do conselho dos judeus.", "Vi os céus abertos e Jesus à direita de Deus.", "Fui o primeiro mártir cristão."]},
-  {"n": "Nicodemos", "c": ["Eu era fariseu e membro do conselho dos judeus.", "Procurei Jesus de noite.", "Perguntei como alguém pode nascer de novo.", "Ouvi o famoso versículo sobre Deus amar o mundo.", "Ajudei a sepultar Jesus, trazendo mirra e aloés."]},
-  {"n": "Débora", "c": ["Fui profetisa em Israel.", "Julgava o povo debaixo de uma palmeira.", "Chamei Baraque para liderar o exército.", "Fui com ele para a batalha contra Sísera.", "Cantei um cântico depois da vitória."]},
-  {"n": "Timóteo", "c": ["Minha mãe Eunice e minha avó Lóide tinham fé sincera.", "Conheci Paulo em Listra.", "Acompanhei Paulo em viagens missionárias.", "Paulo me chamou de filho amado na fé.", "Duas cartas do Novo Testamento foram escritas para mim."]},
-  {"n": "Isaque", "c": ["Nasci quando meus pais já eram idosos.", "Meu nome lembra o riso da minha mãe.", "Quase fui oferecido em sacrifício, mas um carneiro ocupou o meu lugar.", "Casei-me com Rebeca.", "Fui pai de Esaú e Jacó."]},
-  {"n": "Jacó", "c": ["Nasci agarrado ao calcanhar do meu irmão gêmeo.", "Comprei a primogenitura dele por um prato de lentilhas.", "Sonhei com uma escada que chegava ao céu.", "Trabalhei muitos anos para casar com Raquel.", "Recebi o nome Israel depois de lutar com Deus."]},
-  {"n": "Adão", "c": ["Fui o primeiro homem.", "Deus me formou do pó da terra.", "Dei nome a todos os animais.", "Vivi no jardim do Éden.", "Comi do fruto proibido junto com minha esposa."]},
-  {"n": "Eva", "c": ["Fui a primeira mulher.", "Fui formada a partir de uma costela do meu marido.", "Vivi no jardim do Éden.", "Uma serpente me enganou.", "Sou mãe de Caim e Abel."]},
-  {"n": "Judas Iscariotes", "c": ["Fui um dos doze apóstolos.", "Eu guardava a bolsa de dinheiro do grupo.", "Reclamei do perfume caro derramado sobre Jesus.", "Entreguei Jesus por trinta moedas de prata.", "Identifiquei Jesus com um beijo."]},
-  {"n": "Maria Madalena", "c": ["Jesus me libertou de sete demônios.", "Segui Jesus e o servi com meus bens.", "Estive junto à cruz.", "Fui ao sepulcro bem cedo, no primeiro dia da semana.", "Fui a primeira a ver Jesus ressuscitado."]},
-  {"n": "Neemias", "c": ["Eu era copeiro do rei Artaxerxes.", "Chorei ao saber das ruínas de Jerusalém.", "Pedi permissão ao rei para ir reconstruir a cidade.", "Enfrentei zombarias de Sambalate e Tobias.", "Terminei os muros em 52 dias."]},
-  {"n": "Samuel", "c": ["Minha mãe Ana orou muito para me ter.", "Fui levado ainda criança para servir no templo, com o sacerdote Eli.", "Ouvi Deus me chamar durante a noite.", "Fui o último juiz de Israel.", "Ungi Saul e depois Davi como reis."]}
+  {
+    "n": "Noé",
+    "c": [
+      "Vivi numa época em que a maldade tomou conta da terra.",
+      "Deus me avisou de um dilúvio que estava por vir.",
+      "Construí uma enorme embarcação de madeira.",
+      "Levei minha família e muitos animais comigo.",
+      "Soltei uma pomba para saber se as águas tinham baixado."
+    ]
+  },
+  {
+    "n": "Moisés",
+    "c": [
+      "Quando bebê, fui colocado num cesto no rio.",
+      "Cresci no palácio do faraó.",
+      "Deus falou comigo numa sarça que queimava sem se consumir.",
+      "Liderei meu povo para fora do Egito.",
+      "Recebi os Dez Mandamentos no monte Sinai."
+    ]
+  },
+  {
+    "n": "Davi",
+    "c": [
+      "Fui o mais novo dos filhos de Jessé e cuidava das ovelhas.",
+      "Fui ungido por Samuel quando ainda era jovem.",
+      "Toquei harpa para acalmar o rei Saul.",
+      "Derrubei um gigante com uma pedra e uma funda.",
+      "Fui rei de Israel e escrevi muitos salmos."
+    ]
+  },
+  {
+    "n": "Daniel",
+    "c": [
+      "Fui levado cativo para a Babilônia ainda jovem.",
+      "Recusei a comida do rei para não me contaminar.",
+      "Interpretei sonhos do rei Nabucodonosor.",
+      "Li a escrita misteriosa que apareceu numa parede.",
+      "Passei uma noite numa cova com leões e nada me aconteceu."
+    ]
+  },
+  {
+    "n": "Ester",
+    "c": [
+      "Sou judia e fui criada por meu primo Mardoqueu.",
+      "Fui escolhida para ser rainha da Pérsia.",
+      "Meu povo estava ameaçado por um plano do malvado Hamã.",
+      "Apresentei-me ao rei sem ser chamada, arriscando a vida.",
+      "Graças à minha coragem, meu povo foi salvo."
+    ]
+  },
+  {
+    "n": "Pedro",
+    "c": [
+      "Eu era pescador na Galileia.",
+      "Meu irmão André me levou até Jesus.",
+      "Andei sobre as águas por alguns instantes.",
+      "Neguei Jesus três vezes antes de o galo cantar.",
+      "Preguei o sermão no dia de Pentecostes."
+    ]
+  },
+  {
+    "n": "Paulo",
+    "c": [
+      "Estudei aos pés de Gamaliel.",
+      "No começo, eu perseguia os cristãos.",
+      "Uma luz do céu me cegou no caminho de Damasco.",
+      "Fiz várias viagens missionárias.",
+      "Escrevi muitas cartas, como a que foi enviada aos romanos."
+    ]
+  },
+  {
+    "n": "José do Egito",
+    "c": [
+      "Meu pai me deu uma túnica especial.",
+      "Sonhei que meus irmãos se curvavam diante de mim.",
+      "Fui vendido como escravo e levado ao Egito.",
+      "Passei um tempo na prisão por uma falsa acusação.",
+      "Tornei-me governador do Egito e perdoei meus irmãos."
+    ]
+  },
+  {
+    "n": "Sansão",
+    "c": [
+      "Meu nascimento foi anunciado por um anjo.",
+      "Fui consagrado a Deus desde o ventre da minha mãe.",
+      "Matei um leão com as próprias mãos.",
+      "Fui traído por Dalila.",
+      "Derrubei as colunas do templo dos filisteus."
+    ]
+  },
+  {
+    "n": "Jonas",
+    "c": [
+      "Deus me mandou pregar numa grande cidade inimiga.",
+      "Tentei fugir de navio para Társis.",
+      "Uma tempestade ameaçou o barco e fui lançado ao mar.",
+      "Passei três dias dentro de um grande peixe.",
+      "Preguei em Nínive e o povo se arrependeu."
+    ]
+  },
+  {
+    "n": "Abraão",
+    "c": [
+      "Deus me mandou sair da minha terra para um lugar que me mostraria.",
+      "Meu nome original era Abrão.",
+      "Minha esposa Sara riu quando soube que teria um filho na velhice.",
+      "Deus prometeu que meus descendentes seriam como as estrelas do céu.",
+      "Fui testado quando Deus pediu que eu oferecesse Isaque."
+    ]
+  },
+  {
+    "n": "Rute",
+    "c": [
+      "Nasci em Moabe.",
+      "Perdi meu marido e minha sogra decidiu voltar para Belém.",
+      "Disse à minha sogra: o teu povo será o meu povo.",
+      "Fui colher espigas no campo de Boaz.",
+      "Casei-me com Boaz e fui bisavó do rei Davi."
+    ]
+  },
+  {
+    "n": "Maria, mãe de Jesus",
+    "c": [
+      "Eu era noiva de um carpinteiro chamado José.",
+      "Um anjo me visitou em Nazaré.",
+      "Cantei um cântico de louvor a Deus na casa de minha prima Isabel.",
+      "Dei à luz em Belém e coloquei meu filho numa manjedoura.",
+      "Estive ao pé da cruz."
+    ]
+  },
+  {
+    "n": "João Batista",
+    "c": [
+      "Meu nascimento foi anunciado ao meu pai Zacarias.",
+      "Vivi no deserto e me vestia com pelo de camelo.",
+      "Comia gafanhotos e mel silvestre.",
+      "Preguei arrependimento às margens do rio Jordão.",
+      "Batizei Jesus."
+    ]
+  },
+  {
+    "n": "Zaqueu",
+    "c": [
+      "Eu era baixo de estatura.",
+      "Trabalhava cobrando impostos em Jericó.",
+      "Subi numa árvore para ver Jesus passar.",
+      "Jesus disse que se hospedaria na minha casa.",
+      "Prometi devolver quatro vezes o que tivesse tomado indevidamente."
+    ]
+  },
+  {
+    "n": "Elias",
+    "c": [
+      "Profetizei durante o reinado do rei Acabe.",
+      "Fui alimentado por corvos junto a um ribeiro.",
+      "Desafiei os profetas de Baal no monte Carmelo.",
+      "Fogo desceu do céu sobre o meu sacrifício.",
+      "Fui levado ao céu num redemoinho, num carro de fogo."
+    ]
+  },
+  {
+    "n": "Jó",
+    "c": [
+      "Eu vivia na terra de Uz.",
+      "Era um homem íntegro, reto e temente a Deus.",
+      "Perdi meus bens e meus filhos num só dia.",
+      "Meus amigos tentaram explicar o meu sofrimento.",
+      "Deus me restaurou e me deu em dobro o que eu tinha perdido."
+    ]
+  },
+  {
+    "n": "Salomão",
+    "c": [
+      "Sou filho de Davi e Bate-Seba.",
+      "Pedi sabedoria a Deus em vez de riquezas.",
+      "Resolvi uma disputa entre duas mulheres por um bebê.",
+      "Construí o templo em Jerusalém.",
+      "A rainha de Sabá veio me visitar por causa da minha fama."
+    ]
+  },
+  {
+    "n": "Gideão",
+    "c": [
+      "Eu malhava trigo num lagar para me esconder dos midianitas.",
+      "Um anjo me chamou de homem valente.",
+      "Pedi a Deus um sinal com um velo de lã.",
+      "Deus reduziu meu exército de 32 mil para 300 homens.",
+      "Venci os midianitas usando trombetas e jarros."
+    ]
+  },
+  {
+    "n": "Josué",
+    "c": [
+      "Fui ajudante de Moisés.",
+      "Fui um dos doze espias enviados a Canaã.",
+      "Eu e Calebe trouxemos um relatório de fé.",
+      "Liderei Israel na travessia do rio Jordão.",
+      "As muralhas de Jericó caíram diante de mim."
+    ]
+  },
+  {
+    "n": "Tomé",
+    "c": [
+      "Fui um dos doze apóstolos.",
+      "Eu também era chamado de Dídimo.",
+      "Disse que só creria se visse as marcas dos cravos.",
+      "Jesus me convidou a tocar suas mãos e seu lado.",
+      "Fiquei conhecido como o apóstolo que duvidou."
+    ]
+  },
+  {
+    "n": "Mateus",
+    "c": [
+      "Eu trabalhava numa coletoria de impostos em Cafarnaum.",
+      "Jesus me chamou dizendo: Segue-me.",
+      "Dei um banquete com publicanos e pecadores.",
+      "Fui um dos doze apóstolos.",
+      "Escrevi o primeiro evangelho do Novo Testamento."
+    ]
+  },
+  {
+    "n": "Lázaro",
+    "c": [
+      "Eu era irmão de Marta e Maria.",
+      "Morava em Betânia.",
+      "Fiquei doente e morri.",
+      "Jesus chorou diante do meu túmulo.",
+      "Fui ressuscitado depois de quatro dias."
+    ]
+  },
+  {
+    "n": "Estêvão",
+    "c": [
+      "Fui escolhido como um dos sete para servir às mesas.",
+      "Era cheio de fé e do Espírito Santo.",
+      "Falei diante do conselho dos judeus.",
+      "Vi os céus abertos e Jesus à direita de Deus.",
+      "Fui o primeiro mártir cristão."
+    ]
+  },
+  {
+    "n": "Nicodemos",
+    "c": [
+      "Eu era fariseu e membro do conselho dos judeus.",
+      "Procurei Jesus de noite.",
+      "Perguntei como alguém pode nascer de novo.",
+      "Ouvi o famoso versículo sobre Deus amar o mundo.",
+      "Ajudei a sepultar Jesus, trazendo mirra e aloés."
+    ]
+  },
+  {
+    "n": "Débora",
+    "c": [
+      "Fui profetisa em Israel.",
+      "Julgava o povo debaixo de uma palmeira.",
+      "Chamei Baraque para liderar o exército.",
+      "Fui com ele para a batalha contra Sísera.",
+      "Cantei um cântico depois da vitória."
+    ]
+  },
+  {
+    "n": "Timóteo",
+    "c": [
+      "Minha mãe Eunice e minha avó Lóide tinham fé sincera.",
+      "Conheci Paulo em Listra.",
+      "Acompanhei Paulo em viagens missionárias.",
+      "Paulo me chamou de filho amado na fé.",
+      "Duas cartas do Novo Testamento foram escritas para mim."
+    ]
+  },
+  {
+    "n": "Isaque",
+    "c": [
+      "Nasci quando meus pais já eram idosos.",
+      "Meu nome lembra o riso da minha mãe.",
+      "Quase fui oferecido em sacrifício, mas um carneiro ocupou o meu lugar.",
+      "Casei-me com Rebeca.",
+      "Fui pai de Esaú e Jacó."
+    ]
+  },
+  {
+    "n": "Jacó",
+    "c": [
+      "Nasci agarrado ao calcanhar do meu irmão gêmeo.",
+      "Comprei a primogenitura dele por um prato de lentilhas.",
+      "Sonhei com uma escada que chegava ao céu.",
+      "Trabalhei muitos anos para casar com Raquel.",
+      "Recebi o nome Israel depois de lutar com Deus."
+    ]
+  },
+  {
+    "n": "Adão",
+    "c": [
+      "Fui o primeiro homem.",
+      "Deus me formou do pó da terra.",
+      "Dei nome a todos os animais.",
+      "Vivi no jardim do Éden.",
+      "Comi do fruto proibido junto com minha esposa."
+    ]
+  },
+  {
+    "n": "Eva",
+    "c": [
+      "Fui a primeira mulher.",
+      "Fui formada a partir de uma costela do meu marido.",
+      "Vivi no jardim do Éden.",
+      "Uma serpente me enganou.",
+      "Sou mãe de Caim e Abel."
+    ]
+  },
+  {
+    "n": "Judas Iscariotes",
+    "c": [
+      "Fui um dos doze apóstolos.",
+      "Eu guardava a bolsa de dinheiro do grupo.",
+      "Reclamei do perfume caro derramado sobre Jesus.",
+      "Entreguei Jesus por trinta moedas de prata.",
+      "Identifiquei Jesus com um beijo."
+    ]
+  },
+  {
+    "n": "Maria Madalena",
+    "c": [
+      "Jesus me libertou de sete demônios.",
+      "Segui Jesus e o servi com meus bens.",
+      "Estive junto à cruz.",
+      "Fui ao sepulcro bem cedo, no primeiro dia da semana.",
+      "Fui a primeira a ver Jesus ressuscitado."
+    ]
+  },
+  {
+    "n": "Neemias",
+    "c": [
+      "Eu era copeiro do rei Artaxerxes.",
+      "Chorei ao saber das ruínas de Jerusalém.",
+      "Pedi permissão ao rei para ir reconstruir a cidade.",
+      "Enfrentei zombarias de Sambalate e Tobias.",
+      "Terminei os muros em 52 dias."
+    ]
+  },
+  {
+    "n": "Samuel",
+    "c": [
+      "Minha mãe Ana orou muito para me ter.",
+      "Fui levado ainda criança para servir no templo, com o sacerdote Eli.",
+      "Ouvi Deus me chamar durante a noite.",
+      "Fui o último juiz de Israel.",
+      "Ungi Saul e depois Davi como reis."
+    ]
+  },
+  {
+    "n": "Arca da Aliança",
+    "c": [
+      "Fui construída por ordem divina durante a caminhada no deserto.",
+      "Meu conteúdo incluía as tábuas do testemunho.",
+      "Eu ficava no lugar santíssimo do tabernáculo.",
+      "Dois querubins de ouro ficavam sobre minha cobertura.",
+      "Fui levada pelos filisteus após uma batalha em Ebenézer."
+    ]
+  },
+  {
+    "n": "Monte Carmelo",
+    "c": [
+      "Fui cenário de um confronto público entre profetas.",
+      "O povo de Israel foi convocado para me assistir.",
+      "Um altar foi restaurado sobre mim.",
+      "Doze pedras foram usadas na construção do altar.",
+      "O fogo do Senhor caiu após a oração de Elias."
+    ]
+  },
+  {
+    "n": "Nínive",
+    "c": [
+      "Fui uma importante cidade do império assírio.",
+      "Um profeta tentou fugir da missão de anunciar juízo contra mim.",
+      "Meus habitantes ouviram uma mensagem de quarenta dias.",
+      "O rei proclamou jejum e arrependimento.",
+      "Deus poupou minha cidade quando houve arrependimento."
+    ]
+  },
+  {
+    "n": "Patmos",
+    "c": [
+      "Sou uma ilha no mar Egeu.",
+      "Um discípulo idoso estava em mim por causa da palavra de Deus.",
+      "Recebi um exilado durante o governo romano.",
+      "Ali foram registradas visões sobre sete igrejas.",
+      "Meu nome aparece no início do Apocalipse."
+    ]
+  },
+  {
+    "n": "Caminho de Emaús",
+    "c": [
+      "Dois discípulos percorriam este trajeto após a crucificação.",
+      "Um viajante se aproximou e caminhou com eles.",
+      "O desconhecido explicou as Escrituras a respeito do Messias.",
+      "Os viajantes só o reconheceram durante uma refeição.",
+      "O episódio está narrado no Evangelho de Lucas."
+    ]
+  },
+  {
+    "n": "Cenáculo",
+    "c": [
+      "Fui uma sala preparada para uma refeição importante em Jerusalém.",
+      "Jesus esteve comigo com os discípulos antes de sua prisão.",
+      "A Ceia do Senhor está associada a este ambiente.",
+      "Após a ascensão, os discípulos se reuniram em um lugar alto.",
+      "O Espírito Santo desceu sobre os discípulos reunidos em Jerusalém."
+    ]
+  },
+  {
+    "n": "Velo de Gideão",
+    "c": [
+      "Fui feito de lã e colocado no chão como pedido de confirmação.",
+      "Em uma ocasião, fiquei molhado enquanto o chão ao redor permaneceu seco.",
+      "Na ocasião seguinte, ocorreu o contrário.",
+      "Meu episódio está ligado ao chamado de um juiz de Israel.",
+      "Gideão pediu esses sinais antes de enfrentar os midianitas."
+    ]
+  },
+  {
+    "n": "Urim e Tumim",
+    "c": [
+      "Meu uso estava ligado ao sacerdócio de Israel.",
+      "Eu era associado ao peitoral do juízo.",
+      "Meu propósito envolvia buscar orientação divina.",
+      "A Bíblia menciona minha consulta em contextos de decisões nacionais.",
+      "Meu uso é citado em Êxodo e em outros livros históricos."
+    ]
+  },
+  {
+    "n": "Cântico de Débora",
+    "c": [
+      "Sou um poema registrado no livro de Juízes.",
+      "Celebro uma vitória de Israel sobre forças cananeias.",
+      "Menciono Jael e a morte de Sísera.",
+      "Também recordo tribos que atenderam ou ignoraram o chamado à batalha.",
+      "Meu texto está no capítulo 5 de Juízes."
+    ]
+  },
+  {
+    "n": "Concílio de Jerusalém",
+    "c": [
+      "Fui uma reunião de líderes da igreja primitiva.",
+      "Uma controvérsia sobre os gentios motivou minha convocação.",
+      "Pedro, Paulo, Barnabé e Tiago aparecem no relato.",
+      "A discussão envolveu circuncisão e a Lei de Moisés.",
+      "Minha decisão está registrada em Atos 15."
+    ]
+  },
+  {
+    "n": "Coluna de fogo",
+    "c": [
+      "Acompanhei Israel durante a noite no deserto.",
+      "Fazia parte de uma manifestação que guiava o povo.",
+      "Durante o dia, havia uma coluna de nuvem.",
+      "Minha presença aparece na narrativa do Êxodo.",
+      "Também servia como proteção entre Israel e o exército egípcio."
+    ]
+  },
+  {
+    "n": "Cesaréia de Filipe",
+    "c": [
+      "Fui o cenário de uma pergunta decisiva de Jesus aos discípulos.",
+      "Jesus perguntou quem as pessoas diziam que ele era.",
+      "Pedro declarou que Jesus era o Cristo, o Filho do Deus vivo.",
+      "O diálogo incluiu a promessa sobre a igreja.",
+      "O episódio está em Mateus 16."
+    ]
+  },
+  {
+    "n": "Siloé",
+    "c": [
+      "Sou associado a um tanque em Jerusalém.",
+      "Jesus enviou um homem cego para lavar-se em minhas águas.",
+      "O homem voltou enxergando após obedecer.",
+      "Meu nome é explicado como 'Enviado' no relato.",
+      "A cura está narrada em João 9."
+    ]
+  },
+  {
+    "n": "Éfeso",
+    "c": [
+      "Fui uma cidade importante da Ásia Menor.",
+      "Paulo ensinou por longo período em mim.",
+      "Um tumulto envolvendo artesãos e a deusa Ártemis ocorreu aqui.",
+      "Uma das sete igrejas do Apocalipse estava nesta cidade.",
+      "Recebi uma carta entre as epístolas do Novo Testamento."
+    ]
+  },
+  {
+    "n": "A queda de Jericó",
+    "c": [
+      "Minha narrativa envolve uma cidade fortificada em Canaã.",
+      "Israel recebeu instruções incomuns sobre como cercar a cidade.",
+      "Sacerdotes tocaram trombetas enquanto o povo marchava.",
+      "O povo gritou após a última volta no sétimo dia.",
+      "Os muros ruíram, conforme Josué 6."
+    ]
+  }
 ]
