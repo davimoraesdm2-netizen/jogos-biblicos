@@ -138,6 +138,7 @@ $("isend").onclick = () => {
   setImp({ title: "Dica enviada ✅", text: "Aguarde os outros jogadores…" });
 };
 
+$("guess").addEventListener("keydown", (e) => { if (e.key === "Enter") $("sendguess").click(); });
 $("sendguess").onclick = () => { const text = $("guess").value.trim(); if (!text || answered) return; answered = true; ws.send(JSON.stringify({ t: "answer", text })); $("locked").style.display = "block"; $("locked").textContent = "Resposta enviada! Aguarde…"; $("sendguess").disabled = true; };
 
 function onMsg(ev) {
