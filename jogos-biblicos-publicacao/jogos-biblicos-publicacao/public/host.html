@@ -27,8 +27,8 @@
   <div class="chips" id="players"></div>
   <p id="count">Aguardando jogadores…</p>
   <div class="modes" id="modes">
-    <button class="mode on" data-mode="quiz"><b>📝 Quiz Bíblico</b><small>Perguntas de múltipla escolha. Quem acerta mais rápido ganha mais.</small></button>
-    <button class="mode" data-mode="who"><b>🕵️ Quem sou eu?</b><small>Dicas aparecem aos poucos. Acertou cedo, ganhou mais.</small></button>
+    <button class="mode on" data-mode="quiz"><b>📝 Quiz Bíblico</b><small>Perguntas avançadas, com referências e dificuldade crescente.</small></button>
+    <button class="mode" data-mode="who"><b>🕵️ Quem sou eu?</b><small>Digite a resposta usando pistas liberadas aos poucos. Quanto antes acertar, mais pontos.</small></button>
     <button class="mode" data-mode="impostor"><b>🎭 Impostor</b><small>Um não sabe a palavra secreta. Descubra quem é! (mín. 3)</small></button>
   </div>
   <label><span id="nlabel">Perguntas:</span>
@@ -84,7 +84,7 @@ let playerCount = 0;
 let impAction = null;
 
 const COUNTS = {
-  quiz: { label: "Perguntas:", opts: [10, 15, 20, 30], def: 10 },
+  quiz: { label: "Perguntas:", opts: [10, 15, 20, 25], def: 10 },
   who: { label: "Personagens:", opts: [5, 8, 10, 15], def: 8 },
   impostor: { label: "Rodadas:", opts: [3, 5, 7], def: 3 },
 };
