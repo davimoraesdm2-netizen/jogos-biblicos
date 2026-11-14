@@ -6,7 +6,7 @@ const { WebSocketServer } = require("ws");
 const PORT = process.env.PORT || 3000;
 const PUBLIC = path.join(__dirname, "public");
 const readJson = (f) => JSON.parse(fs.readFileSync(path.join(__dirname, f), "utf8"));
-const QUIZ = readJson("questions.json");
+const QUIZ = readJson("questions-avancadas.json");
 const WHO = readJson("quemsou.json");
 const IMP = readJson("impostor.json").categorias;
 
@@ -79,19 +79,16 @@ function lobbyUpdate(room) {
 /* ------------------------- Quiz e Quem sou eu ------------------------- */
 
 function buildQuiz(n) {
-  return shuffle(QUIZ).slice(0, clamp(n, 3, QUIZ.length)).map((q) => {
+  const selected = shuffle(QUIZ).slice(0, clamp(n, 3, QUIZ.length));
+  return selected.map((q, index) => {
     const opts = q.o.map((text, i) => ({ text, ok: i === q.a }));
     const o = shuffle(opts);
-    return { q: q.q, o: o.map(x => x.text), a: o.findIndex(x => x.ok) };
+    return { q: q.q, o: o.map(x => x.text), a: o.findIndex(x => x.ok), level: index >= Math.ceil(selected.length * .4) ? "ESPECIALISTA" : "AVANÇADO", ref: q.ref, explain: q.explain };
   });
 }
 
 function buildWho(n) {
-  const names = WHO.map(c => c.n);
-  return shuffle(WHO).slice(0, clamp(n, 3, WHO.length)).map((c) => {
-    const o = shuffle([c.n, ...shuffle(names.filter(x => x !== c.n)).slice(0, 3)]);
-    return { clues: c.c, o, a: o.indexOf(c.n), name: c.n };
-  });
+  return shuffle(WHO).slice(0, clamp(n, 3, WHO.length)).map(c => ({ clues: c.c, name: c.n }));
 }
 
 function startQuestion(room) {
@@ -104,8 +101,8 @@ function startQuestion(room) {
   const time = q.clues ? WHO_TIME : QUESTION_TIME;
   toAll(room, {
     t: "question", i: room.index + 1, total: room.questions.length,
-    q: q.clues ? "Quem sou eu?" : q.q, o: q.o, time,
-    clues: q.clues ? [q.clues[0]] : null,
+    q: q.clues ? "Quem sou eu?" : q.q, o: q.clues ? [] : q.o, time,
+    typed: !!q.clues, level: q.level || null, clues: q.clues ? [q.clues[0]] : null,
   });
   if (q.clues) {
     for (let k = 1; k < q.clues.length; k++) {
@@ -124,15 +121,15 @@ function reveal(room) {
   room.state = "reveal";
   const q = room.questions[room.index];
   const counts = [0, 0, 0, 0];
-  for (const p of room.players.values()) if (p.choice !== null) counts[p.choice]++;
+  for (const p of room.players.values()) if (p.choice !== null && p.choice >= 0) counts[p.choice]++;
   const rank = ranking(room);
   const last = room.index + 1 >= room.questions.length;
-  send(room.host, { t: "reveal", correct: q.a, counts, top: rank.slice(0, 5), last, name: q.clues ? q.o[q.a] : null });
+  send(room.host, { t: "reveal", correct: q.clues ? null : q.a, counts, top: rank.slice(0, 5), last, name: q.clues ? q.name : null, ref: q.ref || null, explain: q.explain || null });
   for (const p of room.players.values()) {
     const me = rank.find(r => r.name === p.name);
     send(p.ws, {
-      t: "result", correct: q.a, answer: q.o[q.a], choice: p.choice, right: p.choice === q.a,
-      delta: p.delta, score: p.score, rank: me ? me.rank : null, total: rank.length,
+      t: "result", correct: q.clues ? null : q.a, answer: q.clues ? q.name : q.o[q.a], choice: p.choice, right: q.clues ? !!p.right : p.choice === q.a,
+      delta: p.delta, score: p.score, rank: me ? me.rank : null, total: rank.length, ref: q.ref || null, explain: q.explain || null,
     });
   }
 }
@@ -239,7 +236,7 @@ function tally(room) {
     .sort((a, b) => b.count - a.count);
   room.delta = new Map();
   for (const [voter, target] of room.votes) {
-    if (target === room.impostor) room.delta.set(voter, (room.delta.get(voter) || 0) + 100);
+    if (target === room.impostor) room.delta.set(voter, (room.delta.get(voter) || 0) + 300);
   }
   if (room.caught) {
     room.state = "iguess";
@@ -260,8 +257,8 @@ function roundResult(room, guess) {
   clearTimeout(room.timer);
   room.state = "iresult";
   const guessedRight = guess !== null && guess === room.word;
-  if (!room.caught) room.delta.set(room.impostor, (room.delta.get(room.impostor) || 0) + 300);
-  else if (guessedRight) room.delta.set(room.impostor, (room.delta.get(room.impostor) || 0) + 200);
+  if (!room.caught) room.delta.set(room.impostor, (room.delta.get(room.impostor) || 0) + 700);
+  else if (guessedRight) room.delta.set(room.impostor, (room.delta.get(room.impostor) || 0) + 500);
   for (const [k, d] of room.delta) room.players.get(k).score += d;
   const rank = ranking(room);
   const last = room.round >= room.rounds;
@@ -366,15 +363,23 @@ wss.on("connection", (ws) => {
 
       if (m.t === "answer" && room.state === "question") {
         if (!p || p.choice !== null) return;
-        const choice = parseInt(m.choice, 10);
-        if (!(choice >= 0 && choice <= 3)) return;
-        p.choice = choice;
         const q = room.questions[room.index];
-        if (choice === q.a) {
-          if (q.clues) p.delta = Math.max(300, 1000 - 150 * (room.cluesShown - 1));
+        let right = false;
+        if (q.clues) {
+          const norm = v => String(v || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9 ]/g, "").trim().replace(/\s+/g, " ");
+          const guess = norm(m.text), answer = norm(q.name);
+          right = !!guess && (guess === answer || (answer.startsWith(guess) && guess.length >= 5));
+          p.choice = -1; p.right = right;
+        } else {
+          const choice = parseInt(m.choice, 10);
+          if (!(choice >= 0 && choice <= 3)) return;
+          p.choice = choice; right = choice === q.a;
+        }
+        if (right) {
+          if (q.clues) p.delta = Math.max(200, 1200 - 200 * (room.cluesShown - 1));
           else {
             const elapsed = Math.min(QUESTION_TIME, (Date.now() - room.startedAt) / 1000);
-            p.delta = Math.round(1000 - 500 * (elapsed / QUESTION_TIME));
+            p.delta = Math.round(1200 - 600 * (elapsed / QUESTION_TIME));
           }
           p.score += p.delta;
         }

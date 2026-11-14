@@ -94,3 +94,16 @@ button.main:disabled { opacity: .42; cursor: not-allowed; box-shadow: none; }
   .pad { min-height: 125px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+
+/* experiência de resposta digitada e conteúdo avançado */
+#typedanswer { margin: 8px auto 18px; }
+#typedanswer input { font-size: 1.2rem; padding: 18px; }
+#typedanswer button { max-width: 100%; }
+#locked { font-weight: 800; color: var(--gold); padding: 12px; }
+#rinfo { max-width: 850px; font-size: 1.1rem; }
+#reveal #rtitle { max-width: 1000px; line-height: 1.35; }
+#question, #play { max-width: 1100px; margin: 0 auto; }
+@media (max-width: 650px) {
+  #typedanswer { width: 100%; }
+  #typedanswer input { font-size: 1rem; }
+}

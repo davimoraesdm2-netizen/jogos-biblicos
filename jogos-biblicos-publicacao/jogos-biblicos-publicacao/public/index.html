@@ -38,7 +38,7 @@
   <div class="timerbar"><div id="bar"></div></div>
   <div class="sub" id="qtext" style="color:#fff;font-size:1.1rem;margin-bottom:8px"></div>
   <div id="clues" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
-  <div class="pads" id="pads"></div>
+  <div class="pads" id="pads"></div><div id="typedanswer" style="display:none;width:100%;max-width:560px"><input id="guess" maxlength="60" placeholder="Digite sua resposta"><button class="main" id="sendguess">Enviar resposta</button></div>
   <p id="locked" style="display:none">Resposta enviada! Aguarde…</p>
 </section>
 
@@ -138,6 +138,9 @@ $("isend").onclick = () => {
   setImp({ title: "Dica enviada ✅", text: "Aguarde os outros jogadores…" });
 };
 
+$("guess").addEventListener("keydown", (e) => { if (e.key === "Enter") $("sendguess").click(); });
+$("sendguess").onclick = () => { const text = $("guess").value.trim(); if (!text || answered) return; answered = true; ws.send(JSON.stringify({ t: "answer", text })); $("locked").style.display = "block"; $("locked").textContent = "Resposta enviada! Aguarde…"; $("sendguess").disabled = true; };
+
 function onMsg(ev) {
   const m = JSON.parse(ev.data);
   if (m.t === "error") {
@@ -156,13 +159,16 @@ function onMsg(ev) {
   if (m.t === "question") {
     answered = false;
     show("play");
-    $("qnum").textContent = `${m.clues ? "Personagem" : "Pergunta"} ${m.i} de ${m.total}`;
+    $("qnum").textContent = `${m.clues ? "DESAFIO DE PISTAS" : (m.level || "QUIZ")} · ${m.i} de ${m.total}`;
     $("qtext").textContent = m.q;
+    $("typedanswer").style.display = m.typed ? "block" : "none";
+    $("guess").value = "";
+    $("sendguess").disabled = false;
     $("clues").textContent = "";
     if (m.clues) m.clues.forEach(addClue);
     $("locked").style.display = "none";
     const pads = $("pads"); pads.textContent = "";
-    m.o.forEach((txt, i) => {
+    if (!m.typed) m.o.forEach((txt, i) => {
       const b = document.createElement("button");
       b.className = "pad c" + i;
       const s = document.createElement("b"); s.textContent = SHAPES[i];
@@ -186,6 +192,9 @@ function onMsg(ev) {
     if (m.choice === null) { $("rtitle").textContent = "⏰ Tempo esgotado"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer}`; }
     else if (m.right) { $("rtitle").textContent = "✅ Acertou!"; $("rtitle").className = "good"; $("rinfo").textContent = `+${m.delta} pontos`; }
     else { $("rtitle").textContent = "❌ Errou"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer}`; }
+    if (m.ref) $("rinfo").textContent += " · " + m.ref;
+    if (m.explain) $("rinfo").textContent += "\n" + m.explain;
+    $("rinfo").style.whiteSpace = "pre-line";
     $("rscore").textContent = `${m.score} pontos`;
     $("rrank").textContent = `Você está em ${m.rank}º de ${m.total}`;
   }
