@@ -83,17 +83,12 @@ function buildQuiz(n) {
   return selected.map((q, index) => {
     const opts = q.o.map((text, i) => ({ text, ok: i === q.a }));
     const o = shuffle(opts);
-    const expert = index >= Math.ceil(selected.length * 0.4);
-    return { q: q.q, o: o.map(x => x.text), a: o.findIndex(x => x.ok), level: expert ? 'ESPECIALISTA' : 'AVANÇADO', ref: q.ref, explain: q.explain };
+    return { q: q.q, o: o.map(x => x.text), a: o.findIndex(x => x.ok), level: index >= Math.ceil(selected.length * .4) ? "ESPECIALISTA" : "AVANÇADO", ref: q.ref, explain: q.explain };
   });
 }
 
 function buildWho(n) {
-  const names = WHO.map(c => c.n);
-  return shuffle(WHO).slice(0, clamp(n, 3, WHO.length)).map((c) => {
-    const o = shuffle([c.n, ...shuffle(names.filter(x => x !== c.n)).slice(0, 3)]);
-    return { clues: c.c, o, a: o.indexOf(c.n), name: c.n };
-  });
+  return shuffle(WHO).slice(0, clamp(n, 3, WHO.length)).map(c => ({ clues: c.c, name: c.n }));
 }
 
 function startQuestion(room) {
@@ -371,17 +366,14 @@ wss.on("connection", (ws) => {
         const q = room.questions[room.index];
         let right = false;
         if (q.clues) {
-          const normalize = (v) => String(v || "").normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLowerCase().replace(/[^a-z0-9 ]/g, "").trim().replace(/\\s+/g, " ");
-          const guess = normalize(m.text);
-          const answer = normalize(q.name);
+          const norm = v => String(v || "").normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLowerCase().replace(/[^a-z0-9 ]/g, "").trim().replace(/\\s+/g, " ");
+          const guess = norm(m.text), answer = norm(q.name);
           right = !!guess && (guess === answer || (answer.startsWith(guess) && guess.length >= 5));
-          p.choice = -1;
-          p.right = right;
+          p.choice = -1; p.right = right;
         } else {
           const choice = parseInt(m.choice, 10);
           if (!(choice >= 0 && choice <= 3)) return;
-          p.choice = choice;
-          right = choice === q.a;
+          p.choice = choice; right = choice === q.a;
         }
         if (right) {
           if (q.clues) p.delta = Math.max(200, 1200 - 200 * (room.cluesShown - 1));
