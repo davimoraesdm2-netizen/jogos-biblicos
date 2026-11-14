@@ -190,12 +190,12 @@ ws.onmessage = (ev) => {
   /* Quiz e Quem sou eu */
   if (m.t === "question") {
     show("question");
-    $("qnum").textContent = `${m.clues ? "Personagem" : "Pergunta"} ${m.i} de ${m.total}`;
+    $("qnum").textContent = `${m.clues ? "DESAFIO DE PISTAS" : (m.level || "QUIZ")} · ${m.i} de ${m.total}`;
     $("qtext").textContent = m.q;
     $("clues").textContent = "";
     if (m.clues) m.clues.forEach(addClue);
     const box = $("opts"); box.textContent = "";
-    m.o.forEach((o, i) => { const d = document.createElement("div"); d.className = "opt c" + i; d.textContent = `${SHAPES[i]}  ${o}`; box.append(d); });
+    if (!m.typed) m.o.forEach((o, i) => { const d = document.createElement("div"); d.className = "opt c" + i; d.textContent = `${SHAPES[i]}  ${o}`; box.append(d); });
     $("progress").textContent = "";
     runBar($("bar"), m.time);
   }
@@ -203,9 +203,11 @@ ws.onmessage = (ev) => {
   if (m.t === "progress") $("progress").textContent = `${m.answered} de ${m.total} responderam`;
   if (m.t === "reveal") {
     show("reveal");
-    $("rtitle").textContent = m.name ? `Eu sou: ${m.name}` : "Resposta certa";
+    $("rtitle").textContent = m.name ? `Resposta: ${m.name}` : "Resposta certa";
+    if (m.ref) $("rtitle").textContent += " · " + m.ref;
+    if (m.explain) $("rtitle").textContent += " — " + m.explain;
     const box = $("ropts"); box.textContent = "";
-    [...$("opts").children].forEach((o, i) => {
+    if (!m.name) [...$("opts").children].forEach((o, i) => {
       const d = o.cloneNode(true);
       if (i !== m.correct) d.classList.add("dim");
       d.textContent = `${d.textContent}  (${m.counts[i]})`;
