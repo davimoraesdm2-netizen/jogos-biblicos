@@ -1,0 +1,9 @@
+{
+  "categorias": [
+    {"nome": "Personagem da Bíblia", "itens": ["Noé", "Moisés", "Davi", "Golias", "Sansão", "Ester", "Pedro", "Paulo", "José do Egito", "Jonas", "Daniel", "Maria", "João Batista", "Zaqueu", "Judas Iscariotes", "Abraão", "Eva", "Elias", "Salomão", "Rute"]},
+    {"nome": "Lugar da Bíblia", "itens": ["Jardim do Éden", "Monte Sinai", "Belém", "Nazaré", "Jerusalém", "Jericó", "Mar Vermelho", "Rio Jordão", "Torre de Babel", "Getsêmani", "Gólgota", "Egito", "Babilônia", "Nínive", "Damasco", "Ilha de Patmos", "Monte Carmelo", "Sodoma", "Mar da Galileia", "Cafarnaum"]},
+    {"nome": "Objeto ou coisa da Bíblia", "itens": ["Arca de Noé", "Arca da Aliança", "Cajado de Moisés", "Funda de Davi", "Maná", "Sarça ardente", "Túnica colorida", "Harpa", "Coroa de espinhos", "Cruz", "Pomba", "Trombeta", "Espada", "Cinco pães e dois peixes", "Óleo de unção", "Manjedoura", "Cesto no rio", "Trinta moedas de prata", "Escada de Jacó", "Fornalha ardente"]},
+    {"nome": "Livro da Bíblia", "itens": ["Gênesis", "Êxodo", "Salmos", "Provérbios", "Isaías", "Daniel", "Mateus", "João", "Atos", "Romanos", "Hebreus", "Apocalipse", "Rute", "Ester", "Jonas", "Jó", "Tiago", "Filipenses", "Gálatas", "Neemias"]},
+    {"nome": "História da Bíblia", "itens": ["O dilúvio", "A travessia do Mar Vermelho", "Davi e Golias", "Daniel na cova dos leões", "A queda dos muros de Jericó", "A multiplicação dos pães", "O filho pródigo", "O bom samaritano", "A ressurreição de Lázaro", "A conversão de Paulo", "A torre de Babel", "As dez pragas do Egito", "Jonas e o grande peixe", "O nascimento de Jesus", "A última ceia", "A transformação da água em vinho", "A queda de Adão e Eva", "O sacrifício de Isaque", "A sarça ardente", "O dia de Pentecostes"]}
+  ]
+}

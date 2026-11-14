@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jogos Bíblicos</title>
+<link rel="stylesheet" href="/style.css">
+<style>
+  section { width: 100%; flex-direction: column; align-items: center; }
+  .pad { font-size: 1.3rem; padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+  .pad b { font-size: 2.2rem; }
+  .pads { height: auto; min-height: 50vh; }
+  .clue { background: var(--bg2); border-radius: 10px; padding: 8px 12px; margin: 4px 0; font-size: 1rem; text-align: left; width: 100%; max-width: 500px; }
+  .listbtn { width: 100%; max-width: 440px; font-size: 1.2rem; font-weight: bold; padding: 14px; margin: 6px 0; border: 0; border-radius: 12px; background: var(--bg2); color: #fff; cursor: pointer; }
+  .listbtn.gold { background: var(--gold); color: #2a1f00; }
+  .hint { display: inline-block; background: var(--bg2); border-radius: 8px; padding: 6px 10px; margin: 3px; }
+  .secret { font-size: 2.2rem; font-weight: bold; color: var(--gold); margin: 12px 0; }
+</style>
+</head>
+<body>
+
+<section id="join" class="card">
+  <h1>📖 Jogos Bíblicos</h1>
+  <p>Entre na sala com o código que está na tela</p>
+  <input id="code" inputmode="numeric" maxlength="4" placeholder="Código da sala">
+  <input id="name" maxlength="14" placeholder="Seu nome">
+  <div class="err" id="err"></div>
+  <button class="main" id="go">Entrar</button>
+</section>
+
+<section id="wait" class="card">
+  <h2 id="hello"></h2>
+  <p id="waitmsg">Você está dentro! Aguarde o anfitrião começar o jogo.</p>
+</section>
+
+<section id="play">
+  <div class="sub" id="qnum"></div>
+  <div class="timerbar"><div id="bar"></div></div>
+  <div class="sub" id="qtext" style="color:#fff;font-size:1.1rem;margin-bottom:8px"></div>
+  <div id="clues" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
+  <div class="pads" id="pads"></div>
+  <p id="locked" style="display:none">Resposta enviada! Aguarde…</p>
+</section>
+
+<section id="result" class="card">
+  <h1 id="rtitle"></h1>
+  <p id="rinfo"></p>
+  <h2 id="rscore"></h2>
+  <p id="rrank"></p>
+</section>
+
+<section id="imp" class="card">
+  <div class="sub" id="itag"></div>
+  <div class="timerbar" id="ibarwrap"><div id="ibar"></div></div>
+  <h1 id="ititle"></h1>
+  <div id="isecret" class="secret"></div>
+  <p id="itext"></p>
+  <div id="ihints"></div>
+  <div id="iform" style="width:100%">
+    <input id="itxt" placeholder="Sua dica (uma palavra)" maxlength="20">
+    <button class="main" id="isend">Enviar dica</button>
+  </div>
+  <div id="ilist" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
+</section>
+
+<section id="end" class="card">
+  <h1>🏆 Fim de jogo!</h1>
+  <h2 id="erank"></h2>
+  <p id="escore"></p>
+  <p>Aguarde: o anfitrião pode começar outro jogo.</p>
+</section>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const SHAPES = ["▲", "◆", "●", "■"];
+const SECTIONS = ["join", "wait", "play", "result", "imp", "end"];
+let ws, answered = false;
+
+function show(id) {
+  SECTIONS.forEach((s) => { $(s).style.display = s === id ? "flex" : "none"; });
+}
+show("join");
+
+try { $("name").value = localStorage.getItem("qb-name") || ""; } catch (e) {}
+
+function connect() {
+  const proto = location.protocol === "https:" ? "wss" : "ws";
+  ws = new WebSocket(`${proto}://${location.host}`);
+  ws.onopen = () => ws.send(JSON.stringify({ t: "join", code: $("code").value, name: $("name").value }));
+  ws.onmessage = onMsg;
+  ws.onclose = () => { $("go").disabled = false; if ($("join").style.display === "none") { show("join"); $("err").textContent = "Conexão perdida. Entre de novo com o mesmo nome para voltar."; } };
+}
+
+$("go").onclick = () => {
+  $("err").textContent = "";
+  $("go").disabled = true;
+  try { localStorage.setItem("qb-name", $("name").value); } catch (e) {}
+  connect();
+};
+
+function runBar(barEl, seconds) {
+  barEl.style.transition = "none"; barEl.style.width = "100%";
+  requestAnimationFrame(() => requestAnimationFrame(() => { barEl.style.transition = `width ${seconds}s linear`; barEl.style.width = "0%"; }));
+}
+
+function addClue(text) {
+  const d = document.createElement("div");
+  d.className = "clue";
+  d.textContent = `💡 ${text}`;
+  $("clues").append(d);
+}
+
+/* tela genérica do Impostor */
+function setImp(o) {
+  show("imp");
+  $("itag").textContent = o.tag || "";
+  $("ititle").textContent = o.title || "";
+  $("isecret").textContent = o.secret || "";
+  $("itext").textContent = o.text || "";
+  $("ibarwrap").style.display = o.time ? "block" : "none";
+  if (o.time) runBar($("ibar"), o.time);
+  const h = $("ihints"); h.textContent = "";
+  (o.hints || []).forEach((x) => { const s = document.createElement("span"); s.className = "hint"; s.textContent = `${x.name}: ${x.text}`; h.append(s); });
+  $("iform").style.display = o.input ? "block" : "none";
+  if (o.input) { $("itxt").value = ""; }
+  const l = $("ilist"); l.textContent = "";
+  (o.list || []).forEach((x) => {
+    const b = document.createElement("button");
+    b.className = "listbtn" + (x.gold ? " gold" : "");
+    b.textContent = x.label;
+    b.onclick = () => x.onclick(b);
+    l.append(b);
+  });
+}
+
+$("isend").onclick = () => {
+  ws.send(JSON.stringify({ t: "hint", text: $("itxt").value }));
+  setImp({ title: "Dica enviada ✅", text: "Aguarde os outros jogadores…" });
+};
+
+function onMsg(ev) {
+  const m = JSON.parse(ev.data);
+  if (m.t === "error") {
+    $("err").textContent = m.msg;
+    $("go").disabled = false;
+    if (m.fatal) show("join");
+    return;
+  }
+  if (m.t === "joined") {
+    $("hello").textContent = `Olá, ${m.name}!`;
+    $("waitmsg").textContent = m.state === "lobby" ? "Você está dentro! Aguarde o anfitrião começar o jogo." : "Você voltou ao jogo! Aguarde a próxima etapa.";
+    show("wait");
+  }
+
+  /* Quiz e Quem sou eu */
+  if (m.t === "question") {
+    answered = false;
+    show("play");
+    $("qnum").textContent = `${m.clues ? "Personagem" : "Pergunta"} ${m.i} de ${m.total}`;
+    $("qtext").textContent = m.q;
+    $("clues").textContent = "";
+    if (m.clues) m.clues.forEach(addClue);
+    $("locked").style.display = "none";
+    const pads = $("pads"); pads.textContent = "";
+    m.o.forEach((txt, i) => {
+      const b = document.createElement("button");
+      b.className = "pad c" + i;
+      const s = document.createElement("b"); s.textContent = SHAPES[i];
+      const t = document.createElement("span"); t.textContent = txt;
+      b.append(s, t);
+      b.onclick = () => {
+        if (answered) return;
+        answered = true;
+        ws.send(JSON.stringify({ t: "answer", choice: i }));
+        [...pads.children].forEach((x, k) => { if (k !== i) x.style.opacity = ".25"; x.disabled = true; });
+        $("locked").style.display = "block";
+        if (navigator.vibrate) navigator.vibrate(30);
+      };
+      pads.append(b);
+    });
+    runBar($("bar"), m.time);
+  }
+  if (m.t === "clue") addClue(m.text);
+  if (m.t === "result") {
+    show("result");
+    if (m.choice === null) { $("rtitle").textContent = "⏰ Tempo esgotado"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer}`; }
+    else if (m.right) { $("rtitle").textContent = "✅ Acertou!"; $("rtitle").className = "good"; $("rinfo").textContent = `+${m.delta} pontos`; }
+    else { $("rtitle").textContent = "❌ Errou"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer}`; }
+    $("rscore").textContent = `${m.score} pontos`;
+    $("rrank").textContent = `Você está em ${m.rank}º de ${m.total}`;
+  }
+
+  /* Impostor */
+  if (m.t === "irole") {
+    const header = `Rodada ${m.round} de ${m.rounds}`;
+    let shown = false;
+    const render = () => {
+      setImp({
+        tag: header,
+        title: shown ? (m.impostor ? "Você é o IMPOSTOR 🕵️" : "Sua palavra secreta") : "Sua carta secreta",
+        secret: shown && !m.impostor ? m.word : "",
+        text: shown
+          ? (m.impostor ? `Categoria: ${m.cat}. Você NÃO sabe a palavra. Disfarce e descubra qual é!` : `Categoria: ${m.cat}. Dê dicas sem entregar demais: um impostor está entre vocês.`)
+          : "Confira sem deixar ninguém ver a sua tela.",
+        list: [{ label: shown ? "🙈 Esconder carta" : "👁️ Ver minha carta", gold: !shown, onclick: () => { shown = !shown; render(); } }],
+      });
+    };
+    render();
+  }
+  if (m.t === "iturn") {
+    if (m.mine) setImp({ title: "🎤 Sua vez!", text: "Escreva UMA palavra de dica.", hints: m.hints, input: true, time: m.time });
+    else setImp({ title: `Vez de ${m.name}`, text: "Aguarde a dica…", hints: m.hints, time: m.time });
+  }
+  if (m.t === "idiscuss") setImp({ tag: m.cat, title: "🗣️ Discussão", text: "Conversem: quem será o impostor?", hints: m.hints, time: m.time });
+  if (m.t === "ivote") {
+    setImp({
+      title: "🗳️ Quem é o impostor?", text: "Toque no nome do seu suspeito.", time: m.time,
+      list: m.options.map((name) => ({ label: name, onclick: () => ws.send(JSON.stringify({ t: "vote", name })) })),
+    });
+  }
+  if (m.t === "iwait") setImp({ title: m.title, text: m.text });
+  if (m.t === "iguess") {
+    setImp({
+      title: "Você foi descoberto! 🎯", text: "Adivinhe a palavra secreta para ganhar pontos:", time: m.time,
+      list: m.options.map((word) => ({ label: word, onclick: () => { ws.send(JSON.stringify({ t: "guess", word })); setImp({ title: "Chute enviado", text: "Aguarde o resultado…" }); } })),
+    });
+  }
+  if (m.t === "iresult") {
+    let t1 = m.isImpostor
+      ? (m.caught ? (m.guessedRight ? "Descoberto, mas acertou a palavra! 🎉" : "Você foi descoberto 😅") : "Você enganou todo mundo! 😎")
+      : (m.caught ? "Vocês pegaram o impostor! 🎯" : "O impostor escapou 😬");
+    setImp({
+      title: t1,
+      text: `O impostor era ${m.impostor}. A palavra era "${m.word}".\n+${m.delta} pontos · Total: ${m.score} · ${m.rank}º de ${m.total}`,
+    });
+    $("itext").style.whiteSpace = "pre-line";
+  }
+
+  if (m.t === "end") {
+    show("end");
+    $("erank").textContent = m.rank === 1 ? "🥇 Você ganhou!" : `Você ficou em ${m.rank}º de ${m.total}`;
+    $("escore").textContent = `${m.score} pontos`;
+  }
+}
+</script>
+</body>
+</html>

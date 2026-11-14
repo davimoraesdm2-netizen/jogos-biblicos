@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jogos Bíblicos - Anfitrião</title>
+<link rel="stylesheet" href="/style.css">
+<style>
+  section { width: 100%; flex-direction: column; align-items: center; }
+  .modes { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 10px 0; }
+  .mode { background: var(--bg2); border: 3px solid transparent; color: #fff; border-radius: 14px; padding: 12px 16px; width: 200px; cursor: pointer; font-size: 1rem; }
+  .mode b { display: block; font-size: 1.2rem; margin-bottom: 4px; }
+  .mode small { color: var(--muted); }
+  .mode.on { border-color: var(--gold); }
+  .clue { background: var(--bg2); border-radius: 12px; padding: 12px 16px; margin: 6px 0; font-size: 1.4rem; width: 100%; max-width: 900px; text-align: left; }
+  .hintrow { background: var(--bg2); border-radius: 10px; padding: 8px 14px; margin: 4px; font-size: 1.2rem; display: inline-block; }
+  .turn { color: var(--gold); font-weight: bold; }
+</style>
+</head>
+<body>
+
+<section id="lobby">
+  <h1>📖 Jogos Bíblicos ao vivo</h1>
+  <p>Entre no endereço abaixo pelo celular e digite o código</p>
+  <p id="url" style="font-size:1.4rem;color:#fff"></p>
+  <div class="big" id="code">----</div>
+  <div class="chips" id="players"></div>
+  <p id="count">Aguardando jogadores…</p>
+  <div class="modes" id="modes">
+    <button class="mode on" data-mode="quiz"><b>📝 Quiz Bíblico</b><small>Perguntas de múltipla escolha. Quem acerta mais rápido ganha mais.</small></button>
+    <button class="mode" data-mode="who"><b>🕵️ Quem sou eu?</b><small>Dicas aparecem aos poucos. Acertou cedo, ganhou mais.</small></button>
+    <button class="mode" data-mode="impostor"><b>🎭 Impostor</b><small>Um não sabe a palavra secreta. Descubra quem é! (mín. 3)</small></button>
+  </div>
+  <label><span id="nlabel">Perguntas:</span>
+    <select id="n" style="font-size:1.1rem;padding:6px;border-radius:8px"></select>
+  </label>
+  <div class="err" id="err"></div>
+  <button class="main" id="start" style="max-width:340px" disabled>Começar o jogo</button>
+</section>
+
+<section id="question">
+  <div class="sub" id="qnum"></div>
+  <div class="timerbar"><div id="bar"></div></div>
+  <div class="q" id="qtext"></div>
+  <div id="clues" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
+  <div class="opts" id="opts"></div>
+  <p id="progress"></p>
+  <button class="main" id="skip" style="max-width:260px">Encerrar pergunta</button>
+</section>
+
+<section id="reveal">
+  <h2 id="rtitle">Resposta certa</h2>
+  <div class="opts" id="ropts"></div>
+  <h2 style="margin-top:20px">Placar</h2>
+  <div id="top" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
+  <button class="main" id="next" style="max-width:340px">Próxima</button>
+</section>
+
+<section id="imp">
+  <div class="sub" id="itag"></div>
+  <div class="timerbar" id="ibarwrap"><div id="ibar"></div></div>
+  <h1 id="ititle"></h1>
+  <div id="itext" style="font-size:1.3rem;color:var(--muted);max-width:800px"></div>
+  <div id="ihints" style="margin:12px 0;max-width:900px"></div>
+  <div id="irows" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
+  <p id="iprog"></p>
+  <button class="main" id="ibtn" style="max-width:340px"></button>
+</section>
+
+<section id="end">
+  <h1>🏆 Resultado final</h1>
+  <div id="final" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
+  <button class="main" style="max-width:340px" id="again">Jogar de novo (mesmos jogadores)</button>
+</section>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const proto = location.protocol === "https:" ? "wss" : "ws";
+const ws = new WebSocket(`${proto}://${location.host}`);
+const SHAPES = ["▲", "◆", "●", "■"];
+const SECTIONS = ["lobby", "question", "reveal", "imp", "end"];
+let mode = "quiz";
+let playerCount = 0;
+let impAction = null;
+
+const COUNTS = {
+  quiz: { label: "Perguntas:", opts: [10, 15, 20, 30], def: 10 },
+  who: { label: "Personagens:", opts: [5, 8, 10, 15], def: 8 },
+  impostor: { label: "Rodadas:", opts: [3, 5, 7], def: 3 },
+};
+
+function show(id) {
+  SECTIONS.forEach((s) => { $(s).style.display = s === id ? "flex" : "none"; });
+}
+show("lobby");
+$("url").textContent = location.host;
+
+function fillCounts() {
+  const c = COUNTS[mode];
+  $("nlabel").textContent = c.label;
+  const sel = $("n"); sel.textContent = "";
+  c.opts.forEach((v) => { const o = document.createElement("option"); o.value = v; o.textContent = v; if (v === c.def) o.selected = true; sel.append(o); });
+  updateStart();
+}
+function updateStart() {
+  const need = mode === "impostor" ? 3 : 1;
+  $("start").disabled = playerCount < need;
+  $("count").textContent = playerCount ? `${playerCount} jogador(es) na sala${mode === "impostor" && playerCount < 3 ? " (o Impostor precisa de 3 ou mais)" : ""}` : "Aguardando jogadores…";
+}
+document.querySelectorAll(".mode").forEach((b) => {
+  b.onclick = () => {
+    document.querySelectorAll(".mode").forEach((x) => x.classList.remove("on"));
+    b.classList.add("on");
+    mode = b.dataset.mode;
+    fillCounts();
+  };
+});
+fillCounts();
+
+ws.onopen = () => ws.send(JSON.stringify({ t: "create" }));
+ws.onclose = () => { alert("Conexão perdida. Recarregue a página para criar uma nova sala."); };
+
+function rows(el, list) {
+  el.textContent = "";
+  list.forEach((r) => {
+    const d = document.createElement("div");
+    d.className = "row" + (r.rank === 1 ? " first" : "");
+    const a = document.createElement("span"); a.textContent = `${r.rank}. ${r.name}`;
+    const b = document.createElement("span"); b.textContent = r.score;
+    d.append(a, b);
+    el.append(d);
+  });
+}
+
+function runBar(barEl, seconds) {
+  barEl.style.transition = "none"; barEl.style.width = "100%";
+  requestAnimationFrame(() => requestAnimationFrame(() => { barEl.style.transition = `width ${seconds}s linear`; barEl.style.width = "0%"; }));
+}
+
+function addClue(text) {
+  const d = document.createElement("div");
+  d.className = "clue";
+  d.textContent = `💡 ${text}`;
+  $("clues").append(d);
+}
+
+/* tela genérica do Impostor */
+function setImp(o) {
+  show("imp");
+  $("itag").textContent = o.tag || "";
+  $("ititle").textContent = o.title || "";
+  $("itext").textContent = o.text || "";
+  $("iprog").textContent = o.prog || "";
+  $("ibarwrap").style.display = o.time ? "block" : "none";
+  if (o.time) runBar($("ibar"), o.time);
+  const h = $("ihints"); h.textContent = "";
+  (o.hints || []).forEach((x) => {
+    const s = document.createElement("span"); s.className = "hintrow";
+    s.textContent = `${x.name}: ${x.text}`;
+    h.append(s);
+  });
+  const r = $("irows"); r.textContent = "";
+  (o.rows || []).forEach((x) => {
+    const d = document.createElement("div");
+    d.className = "row" + (x.first ? " first" : "");
+    const a = document.createElement("span"); a.textContent = x.left;
+    const b = document.createElement("span"); b.textContent = x.right;
+    d.append(a, b); r.append(d);
+  });
+  const btn = $("ibtn");
+  if (o.btn) { btn.style.display = "block"; btn.textContent = o.btn.label; impAction = o.btn.msg; }
+  else { btn.style.display = "none"; impAction = null; }
+}
+$("ibtn").onclick = () => { if (impAction) ws.send(JSON.stringify(impAction)); };
+
+ws.onmessage = (ev) => {
+  const m = JSON.parse(ev.data);
+
+  if (m.t === "error") { $("err").textContent = m.msg; if (m.fatal) alert(m.msg); return; }
+  if (m.t === "created") $("code").textContent = m.code;
+  if (m.t === "lobby") {
+    show("lobby");
+    const box = $("players"); box.textContent = "";
+    m.players.forEach((n) => { const c = document.createElement("span"); c.className = "chip"; c.textContent = n; box.append(c); });
+    playerCount = m.players.length;
+    $("err").textContent = "";
+    updateStart();
+  }
+
+  /* Quiz e Quem sou eu */
+  if (m.t === "question") {
+    show("question");
+    $("qnum").textContent = `${m.clues ? "Personagem" : "Pergunta"} ${m.i} de ${m.total}`;
+    $("qtext").textContent = m.q;
+    $("clues").textContent = "";
+    if (m.clues) m.clues.forEach(addClue);
+    const box = $("opts"); box.textContent = "";
+    m.o.forEach((o, i) => { const d = document.createElement("div"); d.className = "opt c" + i; d.textContent = `${SHAPES[i]}  ${o}`; box.append(d); });
+    $("progress").textContent = "";
+    runBar($("bar"), m.time);
+  }
+  if (m.t === "clue") addClue(m.text);
+  if (m.t === "progress") $("progress").textContent = `${m.answered} de ${m.total} responderam`;
+  if (m.t === "reveal") {
+    show("reveal");
+    $("rtitle").textContent = m.name ? `Eu sou: ${m.name}` : "Resposta certa";
+    const box = $("ropts"); box.textContent = "";
+    [...$("opts").children].forEach((o, i) => {
+      const d = o.cloneNode(true);
+      if (i !== m.correct) d.classList.add("dim");
+      d.textContent = `${d.textContent}  (${m.counts[i]})`;
+      box.append(d);
+    });
+    rows($("top"), m.top);
+    $("next").textContent = m.last ? "Ver resultado final" : "Próxima";
+    $("next").onclick = () => ws.send(JSON.stringify({ t: "next" }));
+  }
+
+  /* Impostor */
+  if (m.t === "irole") {
+    setImp({
+      tag: `Rodada ${m.round} de ${m.rounds}`,
+      title: "🎭 Olhem o celular!",
+      text: `Categoria: ${m.cat}. Todos recebem a palavra secreta, menos UM jogador: o impostor. Cada um confira sua carta sem mostrar aos outros.`,
+      rows: m.players.map((n) => ({ left: n, right: "" })),
+      btn: { label: "Todos viram? Começar as dicas", msg: { t: "startHints" } },
+    });
+  }
+  if (m.t === "iturn") {
+    setImp({
+      tag: `Dicas: ${m.turn} de ${m.total}  ·  ${m.cat}`,
+      title: `Vez de ${m.name}`,
+      text: "Diga UMA palavra que ajude quem sabe, sem entregar a palavra secreta ao impostor.",
+      hints: m.hints,
+      time: m.time,
+    });
+  }
+  if (m.t === "idiscuss") {
+    setImp({
+      tag: m.cat,
+      title: "🗣️ Hora de discutir!",
+      text: "Quem deu uma dica estranha? Quem parece estar enrolando?",
+      hints: m.hints,
+      time: m.time,
+      btn: { label: "Ir para a votação", msg: { t: "toVote" } },
+    });
+  }
+  if (m.t === "ivote") {
+    setImp({ title: "🗳️ Votação!", text: "Cada um vota no celular em quem acha que é o impostor.", time: m.time, prog: `0 de ${m.total} votaram`, btn: { label: "Encerrar votação", msg: { t: "skipVote" } } });
+  }
+  if (m.t === "iprogress") $("iprog").textContent = `${m.answered} de ${m.total} votaram`;
+  if (m.t === "iguess") {
+    setImp({ title: "🎯 Impostor descoberto!", text: "Ele tem uma chance de salvar a pele: adivinhar a palavra secreta.", time: m.time });
+  }
+  if (m.t === "iresult") {
+    const votes = m.votes.map((v) => ({ left: v.name, right: `${v.count} voto(s)`, first: v.name === m.impostor }));
+    setImp({
+      tag: m.cat,
+      title: m.caught ? `O impostor era ${m.impostor}!` : `O impostor escapou: era ${m.impostor}!`,
+      text: `A palavra era "${m.word}".` + (m.caught ? (m.guess ? (m.guessedRight ? ` ${m.impostor} acertou a palavra e ganhou pontos!` : ` ${m.impostor} chutou "${m.guess}" e errou.`) : ` ${m.impostor} não chutou a tempo.`) : ""),
+      rows: votes,
+      btn: { label: "Ver placar", msg: null },
+    });
+    $("ibtn").onclick = () => {
+      // mostra o placar e o botão seguinte
+      setImp({ title: "Placar", text: "", rows: m.top.map((r) => ({ left: `${r.rank}. ${r.name}`, right: r.score, first: r.rank === 1 })), btn: { label: m.last ? "Ver resultado final" : "Próxima rodada", msg: { t: "inext" } } });
+      $("ibtn").onclick = () => { if (impAction) ws.send(JSON.stringify(impAction)); };
+    };
+  }
+
+  if (m.t === "end") {
+    show("end");
+    rows($("final"), m.rank.slice(0, 10));
+  }
+};
+
+$("start").onclick = () => ws.send(JSON.stringify({ t: "start", mode, n: $("n").value }));
+$("skip").onclick = () => ws.send(JSON.stringify({ t: "skip" }));
+$("again").onclick = () => ws.send(JSON.stringify({ t: "again" }));
+</script>
+</body>
+</html>
