@@ -236,7 +236,7 @@ function tally(room) {
     .sort((a, b) => b.count - a.count);
   room.delta = new Map();
   for (const [voter, target] of room.votes) {
-    if (target === room.impostor) room.delta.set(voter, (room.delta.get(voter) || 0) + 100);
+    if (target === room.impostor) room.delta.set(voter, (room.delta.get(voter) || 0) + 300);
   }
   if (room.caught) {
     room.state = "iguess";
@@ -257,8 +257,8 @@ function roundResult(room, guess) {
   clearTimeout(room.timer);
   room.state = "iresult";
   const guessedRight = guess !== null && guess === room.word;
-  if (!room.caught) room.delta.set(room.impostor, (room.delta.get(room.impostor) || 0) + 300);
-  else if (guessedRight) room.delta.set(room.impostor, (room.delta.get(room.impostor) || 0) + 200);
+  if (!room.caught) room.delta.set(room.impostor, (room.delta.get(room.impostor) || 0) + 700);
+  else if (guessedRight) room.delta.set(room.impostor, (room.delta.get(room.impostor) || 0) + 500);
   for (const [k, d] of room.delta) room.players.get(k).score += d;
   const rank = ranking(room);
   const last = room.round >= room.rounds;
