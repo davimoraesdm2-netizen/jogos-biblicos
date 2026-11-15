@@ -39,6 +39,7 @@
   <div class="sub" id="qnum"></div>
   <div class="who-score-track" id="whotrack" style="display:none"><span>VALOR DA RESPOSTA</span><strong id="whopoints">10 PONTOS</strong><small id="whoattempt">1ª tentativa de 4</small></div>
   <div class="timerbar" id="playbarwrap"><div id="bar"></div></div>
+  <div id="questionArt" class="biblical-art" hidden></div>
   <div class="sub" id="qtext" style="color:#fff;font-size:1.1rem;margin-bottom:8px"></div>
   <div id="clues" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
   <div class="pads" id="pads"></div><div id="typedanswer" style="display:none;width:100%;max-width:560px"><input id="guess" maxlength="60" placeholder="Digite sua resposta"><button class="main" id="sendguess">Enviar resposta</button></div>
@@ -55,6 +56,7 @@
 <section id="imp" class="card">
   <div class="sub" id="itag"></div>
   <div class="timerbar" id="ibarwrap"><div id="ibar"></div></div>
+  <div id="impArt" class="biblical-art compact-art" hidden></div>
   <h1 id="ititle"></h1>
   <div id="isecret" class="secret"></div>
   <p id="itext"></p>
@@ -73,6 +75,7 @@
   <p>Aguarde: o anfitrião pode começar outro jogo.</p>
 </section>
 
+<script src="/art.js"></script>
 <script>
 const $ = (id) => document.getElementById(id);
 const SHAPES = ["▲", "◆", "●", "■"];
@@ -120,6 +123,7 @@ function setImp(o) {
   $("ititle").textContent = o.title || "";
   $("isecret").textContent = o.secret || "";
   $("itext").textContent = o.text || "";
+  if (o.art) showBiblicalArt("impArt", o.art, o.artCaption || o.tag || "Cena bíblica"); else hideBiblicalArt("impArt");
   $("ibarwrap").style.display = o.time ? "block" : "none";
   if (o.time) runBar($("ibar"), o.time);
   const h = $("ihints"); h.textContent = "";
@@ -165,6 +169,7 @@ function onMsg(ev) {
     $("playbarwrap").style.display = m.time ? "block" : "none";
     $("qnum").textContent = `${m.clues ? "DESAFIO DE PISTAS" : (m.level || "QUIZ")} · ${m.i} de ${m.total}`;
     $("qtext").textContent = m.q;
+    showBiblicalArt("questionArt", m.art, m.clues ? "Pista visual" : m.q);
     $("typedanswer").style.display = m.typed ? "block" : "none";
     $("whotrack").style.display = m.typed ? "flex" : "none";
     $("whopoints").textContent = "10 PONTOS"; $("whoattempt").textContent = "1ª tentativa de 4";
@@ -230,6 +235,7 @@ function onMsg(ev) {
     const render = () => {
       setImp({
         tag: header,
+        art: m.art,
         title: shown ? (m.impostor ? "Você é o IMPOSTOR 🕵️" : "Sua palavra secreta") : "Sua carta secreta",
         secret: shown && !m.impostor ? m.word : "",
         text: shown
@@ -241,10 +247,10 @@ function onMsg(ev) {
     render();
   }
   if (m.t === "iturn") {
-    if (m.mine) setImp({ title: "🎤 Sua vez!", text: "Escreva UMA palavra de dica.", hints: m.hints, input: true, time: m.time });
-    else setImp({ title: `Vez de ${m.name}`, text: "Aguarde a dica…", hints: m.hints, time: m.time });
+    if (m.mine) setImp({ title: "🎤 Sua vez!", text: "Escreva UMA palavra de dica.", hints: m.hints, input: true, time: m.time, art: m.art, tag: m.cat });
+    else setImp({ title: `Vez de ${m.name}`, text: "Aguarde a dica…", hints: m.hints, time: m.time, art: m.art, tag: m.cat });
   }
-  if (m.t === "idiscuss") setImp({ tag: m.cat, title: "🗣️ Discussão", text: "Conversem: quem será o impostor?", hints: m.hints, time: m.time });
+  if (m.t === "idiscuss") setImp({ tag: m.cat, title: "🗣️ Discussão", text: "Conversem: quem será o impostor?", hints: m.hints, time: m.time, art: m.art });
   if (m.t === "ivote") {
     setImp({
       title: "🗳️ Quem é o impostor?", text: "Toque no nome do seu suspeito.", time: m.time,
