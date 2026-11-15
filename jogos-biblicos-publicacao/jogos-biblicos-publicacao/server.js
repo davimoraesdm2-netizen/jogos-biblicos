@@ -89,7 +89,7 @@ function buildQuiz(n, difficulty = "Médio") {
 }
 
 function buildWho(n) {
-  return shuffle(WHO).slice(0, clamp(n, 3, WHO.length)).map(c => ({ clues: c.c, name: c.n, art: c.art || "person" }));
+  return shuffle(WHO).slice(0, clamp(n, 3, WHO.length)).map(c => ({ clues: c.c, name: c.n, art: c.art || (/Jericó/i.test(c.n) ? "jericho" : /Carmelo/i.test(c.n) ? "elijah" : /Patmos/i.test(c.n) ? "patmos" : "person") }));
 }
 
 function startQuestion(room) {
@@ -351,7 +351,7 @@ wss.on("connection", (ws) => {
           return startRound(room);
         }
         room.mode = mode;
-        room.questions = mode === "who" ? buildWho(n) : buildQuiz(n, ["Fácil", "Médio", "Difícil"].includes(m.difficulty) ? m.difficulty : "Médio");
+        room.questions = mode === "who" ? buildWho(n) : buildQuiz(n, ["Fácil", "Médio", "Difícil", "Misto"].includes(m.difficulty) ? m.difficulty : "Médio");
         room.index = 0;
         return startQuestion(room);
       }
