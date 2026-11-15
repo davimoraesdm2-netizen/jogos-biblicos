@@ -30,7 +30,7 @@
   <p id="count">Aguardando jogadores…</p>
   <div class="section-kicker">ESCOLHA SUA MODALIDADE</div><div class="modes" id="modes">
     <button class="mode on" data-mode="quiz"><b>📝 Quiz Bíblico</b><small>Escolha entre Fácil, Médio e Difícil. Todos recebem o mesmo desafio.</small></button>
-    <button class="mode" data-mode="who"><b>🕵️ Quem sou eu?</b><small>Digite a resposta usando pistas liberadas aos poucos. Quanto antes acertar, mais pontos.</small></button>
+    <button class="mode" data-mode="who"><b>🕵️ Quem sou eu?</b><small>Quatro tentativas com dicas progressivas. Vale 10, 7, 5 ou 3 pontos.</small></button>
     <button class="mode" data-mode="impostor"><b>🎭 Impostor</b><small>Um não sabe a palavra secreta. Descubra quem é! (mín. 3)</small></button>
   </div>
   <div class="section-kicker settings-kicker">CONFIGURE A PARTIDA</div><label id="difficultyWrap" style="width:min(100%,340px);display:block;text-align:left;margin:8px auto"><span>Nível do Quiz:</span><select id="difficulty"><option>Fácil</option><option selected>Médio</option><option>Difícil</option></select></label>
@@ -198,8 +198,8 @@ ws.onmessage = (ev) => {
   if (m.t === "question") {
     show("question");
     $("qbarwrap").style.display = m.time ? "block" : "none";
-    $("skip").disabled = mode === "quiz";
-    $("skip").textContent = mode === "quiz" ? "Aguardando respostas…" : "Encerrar pergunta";
+    $("skip").disabled = true;
+    $("skip").textContent = "Aguardando respostas…";
     $("qnum").textContent = `${m.clues ? "DESAFIO DE PISTAS" : (m.level || "QUIZ")} · ${m.i} de ${m.total}`;
     $("qtext").textContent = m.q;
     $("clues").textContent = "";
@@ -211,7 +211,7 @@ ws.onmessage = (ev) => {
   }
   if (m.t === "clue") addClue(m.text);
   if (m.t === "progress") {
-    $("progress").textContent = m.expired ? `Tempo encerrado: ${m.answered} de ${m.total} responderam. Quem não respondeu perde o ponto da rodada.` : `${m.answered} de ${m.total} responderam`;
+    $("progress").textContent = m.expired ? `Tempo encerrado: ${m.answered} de ${m.total} finalizaram. Quem ficou sem resposta recebe 0 ponto.` : `${m.answered} de ${m.total} finalizaram suas tentativas`;
     if (m.canReveal) { $("skip").disabled = false; $("skip").textContent = "Revelar respostas"; }
   }
   if (m.t === "reveal") {
