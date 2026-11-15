@@ -19,9 +19,11 @@
 </head>
 <body>
 
-<section id="join" class="card">
-  <h1>📖 Jogos Bíblicos</h1>
-  <p>Entre na sala com o código que está na tela</p>
+<section id="join" class="card join-screen">
+  <div class="game-emblem" aria-hidden="true"><svg viewBox="0 0 360 220"><defs><linearGradient id="scrollGold" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffe7a1"/><stop offset="1" stop-color="#d89a38"/></linearGradient></defs><circle cx="180" cy="110" r="86" fill="#e7b65b" opacity=".10"/><path d="M105 65q-20 0-20 18v76q0 18 20 18h150q20 0 20-18V83q0-18-20-18z" fill="url(#scrollGold)" stroke="#fff0c5" stroke-width="4"/><path d="M110 76h140v90H110z" fill="#fff0c5" opacity=".9"/><path d="M128 96h105m-105 17h105m-105 17h78" stroke="#9b6a2c" stroke-width="5" stroke-linecap="round" opacity=".8"/><path d="M92 65q-14 0-14 18v76q0 18 14 18m176-112q14 0 14 18v76q0 18-14 18" fill="none" stroke="#d99f43" stroke-width="10"/><path d="m180 22 6 14 15 2-11 10 3 15-13-8-13 8 3-15-11-10 15-2z" fill="#fff0b8"/><path d="m53 105 4 9 10 2-8 6 2 10-8-6-8 6 2-10-8-6 10-2zM302 105l4 9 10 2-8 6 2 10-8-6-8 6 2-10-8-6 10-2z" fill="#77d8ce"/></svg></div>
+  <div class="eyebrow">JOGUE JUNTO · DESAFIE SEUS AMIGOS</div>
+  <h1>Entre na aventura</h1>
+  <p>Digite o código da sala e prepare-se para o desafio bíblico.</p>
   <input id="code" inputmode="numeric" maxlength="4" placeholder="Código da sala">
   <input id="name" maxlength="14" placeholder="Seu nome">
   <div class="err" id="err"></div>
@@ -33,7 +35,7 @@
   <p id="waitmsg">Você está dentro! Aguarde o anfitrião começar o jogo.</p>
 </section>
 
-<section id="play" class="card player-card">
+<section id="play" class="card player-card game-screen">
   <div class="sub" id="qnum"></div>
   <div class="timerbar" id="playbarwrap"><div id="bar"></div></div>
   <div class="sub" id="qtext" style="color:#fff;font-size:1.1rem;margin-bottom:8px"></div>
@@ -42,7 +44,7 @@
   <p id="locked" style="display:none">Resposta enviada! Aguarde…</p>
 </section>
 
-<section id="result" class="card">
+<section id="result" class="card game-screen result-screen">
   <h1 id="rtitle"></h1>
   <p id="rinfo"></p>
   <h2 id="rscore"></h2>
@@ -63,7 +65,7 @@
   <div id="ilist" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
 </section>
 
-<section id="end" class="card">
+<section id="end" class="card game-screen final-screen">
   <h1>🏆 Fim de jogo!</h1>
   <h2 id="erank"></h2>
   <p id="escore"></p>

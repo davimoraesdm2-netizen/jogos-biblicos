@@ -258,5 +258,525 @@
     "a": 2,
     "ref": "Atos 11:26",
     "explain": "Foi em Antioquia que os discípulos receberam pela primeira vez o nome de cristãos."
+  },
+  {
+    "level": "Fácil",
+    "q": "Quem foi colocado em um cesto no rio quando era bebê?",
+    "o": [
+      "Samuel",
+      "Moisés",
+      "Josué",
+      "Isaque"
+    ],
+    "a": 1,
+    "ref": "Êxodo 2:3-10",
+    "explain": "A mãe de Moisés o colocou num cesto entre os juncos do Nilo para protegê-lo."
+  },
+  {
+    "level": "Fácil",
+    "q": "Qual era a profissão de Pedro antes de seguir Jesus?",
+    "o": [
+      "Carpinteiro",
+      "Pastor",
+      "Pescador",
+      "Cobrador de impostos"
+    ],
+    "a": 2,
+    "ref": "Mateus 4:18-20",
+    "explain": "Pedro e André estavam lançando redes ao mar quando Jesus os chamou."
+  },
+  {
+    "level": "Fácil",
+    "q": "Quem foi engolido por um grande peixe?",
+    "o": [
+      "Amós",
+      "Jonas",
+      "Naum",
+      "Joel"
+    ],
+    "a": 1,
+    "ref": "Jonas 1:17",
+    "explain": "O Senhor providenciou um grande peixe para engolir Jonas."
+  },
+  {
+    "level": "Fácil",
+    "q": "Qual instrumento Davi tocava para acalmar Saul?",
+    "o": [
+      "Trombeta",
+      "Tambor",
+      "Flauta",
+      "Harpa"
+    ],
+    "a": 3,
+    "ref": "1 Samuel 16:23",
+    "explain": "Davi tocava harpa, e Saul sentia alívio."
+  },
+  {
+    "level": "Fácil",
+    "q": "Quem subiu em uma árvore para conseguir ver Jesus?",
+    "o": [
+      "Bartimeu",
+      "Zaqueu",
+      "Nicodemos",
+      "Jairo"
+    ],
+    "a": 1,
+    "ref": "Lucas 19:1-4",
+    "explain": "Zaqueu subiu em um sicômoro porque era de pequena estatura."
+  },
+  {
+    "level": "Fácil",
+    "q": "Qual foi o primeiro milagre de Jesus registrado no Evangelho de João?",
+    "o": [
+      "Curar um cego",
+      "Multiplicar pães",
+      "Transformar água em vinho",
+      "Andar sobre o mar"
+    ],
+    "a": 2,
+    "ref": "João 2:1-11",
+    "explain": "Jesus transformou água em vinho durante um casamento em Caná da Galileia."
+  },
+  {
+    "level": "Fácil",
+    "q": "Quem recebeu a visita do anjo Gabriel anunciando o nascimento de Jesus?",
+    "o": [
+      "Marta",
+      "Maria",
+      "Joana",
+      "Priscila"
+    ],
+    "a": 1,
+    "ref": "Lucas 1:26-31",
+    "explain": "Gabriel foi enviado a Nazaré para falar com Maria."
+  },
+  {
+    "level": "Fácil",
+    "q": "Qual jovem derrotou Golias?",
+    "o": [
+      "Davi",
+      "Salomão",
+      "Absalão",
+      "Josias"
+    ],
+    "a": 0,
+    "ref": "1 Samuel 17:48-50",
+    "explain": "Davi venceu o guerreiro filisteu com uma funda e uma pedra."
+  },
+  {
+    "level": "Fácil",
+    "q": "Quem foi a esposa de Abraão?",
+    "o": [
+      "Rebeca",
+      "Raquel",
+      "Sara",
+      "Lia"
+    ],
+    "a": 2,
+    "ref": "Gênesis 17:15-19",
+    "explain": "Sara foi a esposa de Abraão e mãe de Isaque."
+  },
+  {
+    "level": "Fácil",
+    "q": "Qual discípulo duvidou da ressurreição até ver Jesus?",
+    "o": [
+      "Filipe",
+      "Tomé",
+      "Mateus",
+      "Tiago"
+    ],
+    "a": 1,
+    "ref": "João 20:24-29",
+    "explain": "Tomé declarou que precisava ver as marcas dos cravos para crer."
+  },
+  {
+    "level": "Fácil",
+    "q": "Quem conduziu o povo de Israel após a morte de Moisés?",
+    "o": [
+      "Calebe",
+      "Arão",
+      "Josué",
+      "Gideão"
+    ],
+    "a": 2,
+    "ref": "Josué 1:1-2",
+    "explain": "Deus encarregou Josué de conduzir o povo para a terra prometida."
+  },
+  {
+    "level": "Fácil",
+    "q": "Qual era o nome do irmão de Moisés que o ajudava a falar diante do faraó?",
+    "o": [
+      "Hur",
+      "Arão",
+      "Eleazar",
+      "Calebe"
+    ],
+    "a": 1,
+    "ref": "Êxodo 4:14-16",
+    "explain": "Arão foi designado para falar ao povo e acompanhar Moisés."
+  },
+  {
+    "level": "Fácil",
+    "q": "Quem foi lançado numa fornalha ardente junto com Sadraque e Mesaque?",
+    "o": [
+      "Daniel",
+      "Abede-Nego",
+      "Esdras",
+      "Neemias"
+    ],
+    "a": 1,
+    "ref": "Daniel 3:19-25",
+    "explain": "Abede-Nego foi lançado na fornalha junto com Sadraque e Mesaque."
+  },
+  {
+    "level": "Fácil",
+    "q": "Qual rainha visitou Salomão para testar sua sabedoria?",
+    "o": [
+      "Ester",
+      "Rainha de Sabá",
+      "Vasti",
+      "Jezabel"
+    ],
+    "a": 1,
+    "ref": "1 Reis 10:1-3",
+    "explain": "A rainha de Sabá foi a Jerusalém com perguntas difíceis para Salomão."
+  },
+  {
+    "level": "Fácil",
+    "q": "Quem batizou Jesus no rio Jordão?",
+    "o": [
+      "Pedro",
+      "João Batista",
+      "André",
+      "Tiago"
+    ],
+    "a": 1,
+    "ref": "Mateus 3:13-17",
+    "explain": "João Batista batizou Jesus no Jordão."
+  },
+  {
+    "level": "Fácil",
+    "q": "Qual cidade teve seus muros derrubados após o povo marchar ao redor deles?",
+    "o": [
+      "Ai",
+      "Jericó",
+      "Betel",
+      "Hebrom"
+    ],
+    "a": 1,
+    "ref": "Josué 6:20",
+    "explain": "Os muros de Jericó caíram depois que o povo gritou ao som das trombetas."
+  },
+  {
+    "level": "Fácil",
+    "q": "Quem foi vendido pelos próprios irmãos e levado ao Egito?",
+    "o": [
+      "Benjamim",
+      "Judá",
+      "José",
+      "Rúben"
+    ],
+    "a": 2,
+    "ref": "Gênesis 37:26-28",
+    "explain": "Os irmãos de José o venderam a mercadores que o levaram ao Egito."
+  },
+  {
+    "level": "Fácil",
+    "q": "Qual apóstolo era cobrador de impostos antes de seguir Jesus?",
+    "o": [
+      "Mateus",
+      "Pedro",
+      "João",
+      "Simão"
+    ],
+    "a": 0,
+    "ref": "Mateus 9:9",
+    "explain": "Jesus chamou Mateus enquanto ele estava sentado na coletoria."
+  },
+  {
+    "level": "Fácil",
+    "q": "Quem foi escolhida por Deus para ser mãe de Samuel?",
+    "o": [
+      "Penina",
+      "Ana",
+      "Abigail",
+      "Mical"
+    ],
+    "a": 1,
+    "ref": "1 Samuel 1:19-20",
+    "explain": "Ana orou por um filho e deu à luz Samuel."
+  },
+  {
+    "level": "Fácil",
+    "q": "Qual livro vem imediatamente depois dos quatro Evangelhos?",
+    "o": [
+      "Romanos",
+      "Atos dos Apóstolos",
+      "Apocalipse",
+      "Hebreus"
+    ],
+    "a": 1,
+    "ref": "Índice do Novo Testamento; Atos 1:1",
+    "explain": "Atos dos Apóstolos é o livro que segue João na ordem usual do Novo Testamento."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual rei de Judá encontrou o Livro da Lei durante a reforma do templo?",
+    "o": [
+      "Ezequias",
+      "Josias",
+      "Manassés",
+      "Acaz"
+    ],
+    "a": 1,
+    "ref": "2 Reis 22:8-11",
+    "explain": "O sumo sacerdote Hilquias encontrou o Livro da Lei, que foi lido diante do rei Josias."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual profeta foi alimentado por corvos junto ao ribeiro de Querite?",
+    "o": [
+      "Eliseu",
+      "Elias",
+      "Isaías",
+      "Jeremias"
+    ],
+    "a": 1,
+    "ref": "1 Reis 17:2-6",
+    "explain": "Deus ordenou que corvos levassem pão e carne a Elias."
+  },
+  {
+    "level": "Médio",
+    "q": "Quem era o pai de João Batista?",
+    "o": [
+      "Simeão",
+      "Zacarias",
+      "Joaquim",
+      "Anás"
+    ],
+    "a": 1,
+    "ref": "Lucas 1:5-13",
+    "explain": "Zacarias era sacerdote e marido de Isabel."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual mulher julgava Israel e convocou Baraque para a batalha contra Sísera?",
+    "o": [
+      "Jael",
+      "Miriã",
+      "Débora",
+      "Hulda"
+    ],
+    "a": 2,
+    "ref": "Juízes 4:4-9",
+    "explain": "Débora exercia a função de juíza e transmitiu a ordem do Senhor a Baraque."
+  },
+  {
+    "level": "Médio",
+    "q": "Em qual cidade Paulo e Silas cantaram louvores enquanto estavam presos?",
+    "o": [
+      "Tessalônica",
+      "Éfeso",
+      "Filipos",
+      "Corinto"
+    ],
+    "a": 2,
+    "ref": "Atos 16:12, 25",
+    "explain": "Na prisão em Filipos, Paulo e Silas oravam e cantavam hinos."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual profeta recebeu a visão de um vale cheio de ossos secos?",
+    "o": [
+      "Daniel",
+      "Ezequiel",
+      "Jeremias",
+      "Zacarias"
+    ],
+    "a": 1,
+    "ref": "Ezequiel 37:1-10",
+    "explain": "A visão dos ossos secos simbolizava a restauração de Israel."
+  },
+  {
+    "level": "Médio",
+    "q": "Quem foi o primeiro mártir cristão citado em Atos?",
+    "o": [
+      "Tiago",
+      "Estêvão",
+      "Filipe",
+      "Barnabé"
+    ],
+    "a": 1,
+    "ref": "Atos 7:54-60",
+    "explain": "Estêvão foi apedrejado após testemunhar diante do Sinédrio."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual casal mentiu sobre o valor da propriedade vendida na igreja primitiva?",
+    "o": [
+      "Áquila e Priscila",
+      "Ananias e Safira",
+      "Herodes e Herodias",
+      "Félix e Drusila"
+    ],
+    "a": 1,
+    "ref": "Atos 5:1-10",
+    "explain": "Ananias e Safira retiveram parte do valor e mentiram sobre a oferta."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual profeta confrontou Davi por causa de seu pecado com Bate-Seba?",
+    "o": [
+      "Gade",
+      "Samuel",
+      "Natã",
+      "Aías"
+    ],
+    "a": 2,
+    "ref": "2 Samuel 12:1-7",
+    "explain": "Natã contou uma parábola sobre uma cordeirinha para confrontar Davi."
+  },
+  {
+    "level": "Médio",
+    "q": "Quem foi a mulher que acolheu Paulo em Filipos e foi batizada com sua casa?",
+    "o": [
+      "Priscila",
+      "Lídia",
+      "Febe",
+      "Dorcas"
+    ],
+    "a": 1,
+    "ref": "Atos 16:14-15",
+    "explain": "Lídia, vendedora de púrpura, ouviu Paulo e recebeu o batismo."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual rei tentou matar o menino Jesus em Belém?",
+    "o": [
+      "César Augusto",
+      "Herodes",
+      "Arquelau",
+      "Pilatos"
+    ],
+    "a": 1,
+    "ref": "Mateus 2:13-16",
+    "explain": "Herodes ordenou a morte dos meninos de Belém após a visita dos magos."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual discípulo foi chamado de Dídimo?",
+    "o": [
+      "André",
+      "Tomé",
+      "Filipe",
+      "Bartolomeu"
+    ],
+    "a": 1,
+    "ref": "João 11:16; 20:24",
+    "explain": "Dídimo é a forma grega associada ao nome Tomé e significa gêmeo."
+  },
+  {
+    "level": "Médio",
+    "q": "Quem sucedeu Elias como profeta e recebeu sua capa?",
+    "o": [
+      "Micaías",
+      "Eliseu",
+      "Obadias",
+      "Jonas"
+    ],
+    "a": 1,
+    "ref": "2 Reis 2:9-15",
+    "explain": "Eliseu pediu porção dobrada do espírito de Elias e tomou sua capa após sua partida."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual igreja do Apocalipse foi repreendida por ser morna?",
+    "o": [
+      "Éfeso",
+      "Sardes",
+      "Laodiceia",
+      "Esmirna"
+    ],
+    "a": 2,
+    "ref": "Apocalipse 3:14-16",
+    "explain": "A igreja de Laodiceia foi advertida por não ser fria nem quente."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual profeta se casou com Gômer como sinal profético para Israel?",
+    "o": [
+      "Joel",
+      "Oseias",
+      "Miqueias",
+      "Amós"
+    ],
+    "a": 1,
+    "ref": "Oseias 1:2-3",
+    "explain": "O casamento de Oseias foi usado como sinal da infidelidade de Israel."
+  },
+  {
+    "level": "Médio",
+    "q": "Quem era o governador romano quando Jesus foi crucificado?",
+    "o": [
+      "Félix",
+      "Pôncio Pilatos",
+      "Festo",
+      "Quirino"
+    ],
+    "a": 1,
+    "ref": "Mateus 27:24-26",
+    "explain": "Pilatos autorizou a crucificação após ceder à pressão da multidão."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual apóstolo teve uma visão de um lençol com animais antes de visitar Cornélio?",
+    "o": [
+      "Paulo",
+      "Pedro",
+      "João",
+      "Tiago"
+    ],
+    "a": 1,
+    "ref": "Atos 10:9-16",
+    "explain": "A visão preparou Pedro para compreender que Deus não faz acepção de pessoas."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual rei consultou a médium de En-Dor antes de sua última batalha?",
+    "o": [
+      "Davi",
+      "Saul",
+      "Acabe",
+      "Roboão"
+    ],
+    "a": 1,
+    "ref": "1 Samuel 28:7-14",
+    "explain": "Saul procurou a médium de En-Dor quando não recebeu resposta do Senhor."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual profeta anunciou que o governante de Israel nasceria em Belém?",
+    "o": [
+      "Isaías",
+      "Miqueias",
+      "Zacarias",
+      "Malaquias"
+    ],
+    "a": 1,
+    "ref": "Miqueias 5:2",
+    "explain": "A profecia aponta Belém como origem daquele que governaria Israel."
+  },
+  {
+    "level": "Médio",
+    "q": "Quem escreveu a carta a Filemom sobre Onésimo?",
+    "o": [
+      "Pedro",
+      "Paulo",
+      "João",
+      "Judas"
+    ],
+    "a": 1,
+    "ref": "Filemom 1:1, 8-12",
+    "explain": "Paulo intercede por Onésimo e pede que Filemom o receba como irmão."
   }
 ]

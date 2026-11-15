@@ -19,27 +19,29 @@
 </head>
 <body>
 
-<section id="lobby" class="card host-card">
-  <h1>📖 Jogos Bíblicos ao vivo</h1>
-  <p>Entre no endereço abaixo pelo celular e digite o código</p>
-  <p id="url" style="font-size:1.4rem;color:#fff"></p>
-  <div class="big" id="code">----</div>
+<section id="lobby" class="card host-card lobby-screen">
+  <div class="game-emblem" aria-hidden="true"><svg viewBox="0 0 360 220" role="img"><defs><linearGradient id="templeGold" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffe7a1"/><stop offset="1" stop-color="#d89a38"/></linearGradient><linearGradient id="templeBlue" x1="0" x2="1"><stop stop-color="#7bd9d0"/><stop offset="1" stop-color="#3879b8"/></linearGradient></defs><circle cx="180" cy="106" r="82" fill="#f1bf62" opacity=".10"/><path d="M44 183h272M64 174h232M91 166h178" stroke="#f2c66e" stroke-width="4" stroke-linecap="round"/><path d="M88 91 180 38l92 53Z" fill="url(#templeGold)" stroke="#fff0c5" stroke-width="3"/><path d="M102 96h156v10H102z" fill="#e2b45e"/><path d="M112 108v55m34-55v55m68-55v55m34-55v55" stroke="url(#templeBlue)" stroke-width="14" stroke-linecap="round"/><path d="M104 165h152v9H104z" fill="#f4d58d"/><path d="m180 19 5 12 13 2-10 9 3 13-11-7-11 7 3-13-10-9 13-2z" fill="#fff0b8"/><path d="m52 52 3 8 8 2-7 5 2 8-6-5-7 5 2-8-7-5 8-2zM302 70l3 8 8 2-7 5 2 8-6-5-7 5 2-8-7-5 8-2z" fill="#79d5ce"/><path d="M147 124h66v38h-66z" rx="4" fill="#17304d" stroke="#f2c66e" stroke-width="3"/><path d="M156 134h48m-48 9h48m-48 9h34" stroke="#f4d58d" stroke-width="3" stroke-linecap="round"/></svg></div>
+  <div class="eyebrow">SALA DE DESAFIOS · AO VIVO</div>
+  <h1>Jogos Bíblicos</h1>
+  <p>Reúna sua equipe, entre na sala e comece a aventura.</p>
+  <div class="join-instruction"><span class="step-icon">01</span><div><b>Entre pelo celular</b><small>Acesse o endereço e informe o código da sala</small><p id="url" style="font-size:1rem;color:#fff;margin:4px 0 0"></p></div></div>
+  <div class="code-panel"><span>CÓDIGO DA PARTIDA</span><div class="big" id="code">----</div><small>Compartilhe com os jogadores</small></div>
   <div class="chips" id="players"></div>
   <p id="count">Aguardando jogadores…</p>
-  <div class="modes" id="modes">
+  <div class="section-kicker">ESCOLHA SUA MODALIDADE</div><div class="modes" id="modes">
     <button class="mode on" data-mode="quiz"><b>📝 Quiz Bíblico</b><small>Escolha entre Fácil, Médio e Difícil. Todos recebem o mesmo desafio.</small></button>
     <button class="mode" data-mode="who"><b>🕵️ Quem sou eu?</b><small>Digite a resposta usando pistas liberadas aos poucos. Quanto antes acertar, mais pontos.</small></button>
     <button class="mode" data-mode="impostor"><b>🎭 Impostor</b><small>Um não sabe a palavra secreta. Descubra quem é! (mín. 3)</small></button>
   </div>
-  <label id="difficultyWrap" style="width:min(100%,340px);display:block;text-align:left;margin:8px auto"><span>Nível do Quiz:</span><select id="difficulty"><option>Fácil</option><option selected>Médio</option><option>Difícil</option></select></label>
+  <div class="section-kicker settings-kicker">CONFIGURE A PARTIDA</div><label id="difficultyWrap" style="width:min(100%,340px);display:block;text-align:left;margin:8px auto"><span>Nível do Quiz:</span><select id="difficulty"><option>Fácil</option><option selected>Médio</option><option>Difícil</option></select></label>
   <label style="width:min(100%,340px);display:block;text-align:left;margin:8px auto"><span id="nlabel">Perguntas:</span>
     <select id="n" style="font-size:1.1rem;padding:6px;border-radius:8px"></select>
   </label>
   <div class="err" id="err"></div>
-  <button class="main" id="start" style="max-width:340px" disabled>Começar o jogo</button>
+  <button class="main start-game" id="start" style="max-width:420px" disabled><span>▶</span> Começar a aventura</button>
 </section>
 
-<section id="question" class="card host-card">
+<section id="question" class="card host-card game-screen">
   <div class="sub" id="qnum"></div>
   <div class="timerbar" id="qbarwrap"><div id="bar"></div></div>
   <div class="q" id="qtext"></div>
@@ -49,7 +51,7 @@
   <button class="main" id="skip" style="max-width:340px" disabled>Revelar respostas</button>
 </section>
 
-<section id="reveal" class="card host-card">
+<section id="reveal" class="card host-card game-screen result-screen">
   <h2 id="rtitle">Resposta certa</h2>
   <div class="opts" id="ropts"></div>
   <h2 style="margin-top:20px">Placar</h2>
@@ -68,7 +70,7 @@
   <button class="main" id="ibtn" style="max-width:340px"></button>
 </section>
 
-<section id="end" class="card host-card">
+<section id="end" class="card host-card game-screen final-screen">
   <h1>🏆 Resultado final</h1>
   <div id="final" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
   <button class="main" style="max-width:340px" id="again">Jogar de novo (mesmos jogadores)</button>
@@ -85,7 +87,7 @@ let playerCount = 0;
 let impAction = null;
 
 const COUNTS = {
-  quiz: { label: "Perguntas:", opts: [10, 15, 20, 25], def: 10 },
+  quiz: { label: "Perguntas:", opts: [10, 15, 20, 25, 30], def: 20 },
   who: { label: "Personagens:", opts: [5, 8, 10, 15], def: 8 },
   impostor: { label: "Rodadas:", opts: [3, 5, 7], def: 3 },
 };
@@ -99,7 +101,7 @@ $("url").textContent = location.host;
 function fillCounts() {
   $("difficultyWrap").style.display = mode === "quiz" ? "block" : "none";
   const c = COUNTS[mode];
-  const opts = mode === "quiz" && $("difficulty").value !== "Difícil" ? [5, 10] : c.opts;
+  const opts = mode === "quiz" && $("difficulty").value === "Difícil" ? [10, 15, 20, 25] : c.opts;
   const def = opts.includes(c.def) ? c.def : opts[opts.length - 1];
   $("nlabel").textContent = c.label;
   const sel = $("n"); sel.textContent = "";
