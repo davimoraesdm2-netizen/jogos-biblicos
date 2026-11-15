@@ -6,7 +6,7 @@ const { WebSocketServer } = require("ws");
 const PORT = process.env.PORT || 3000;
 const PUBLIC = path.join(__dirname, "public");
 const readJson = (f) => JSON.parse(fs.readFileSync(path.join(__dirname, f), "utf8"));
-const QUIZ = [...readJson("questions-fundamentos.json"), ...readJson("questions-avancadas.json").map(q => ({ ...q, level: "Difícil" }))];
+const QUIZ = [...readJson("questions-fundamentos.json"), ...readJson("questions-avancadas.json").map(q => ({ ...q, level: "Difícil" })), ...readJson("questions-ilustradas.json")];
 const WHO = readJson("quemsou.json");
 const IMP = readJson("impostor.json").categorias;
 
@@ -79,17 +79,17 @@ function lobbyUpdate(room) {
 /* ------------------------- Quiz e Quem sou eu ------------------------- */
 
 function buildQuiz(n, difficulty = "Médio") {
-  const pool = QUIZ.filter(q => q.level === difficulty);
+  const pool = difficulty === "Misto" ? QUIZ : QUIZ.filter(q => q.level === difficulty);
   const selected = shuffle(pool).slice(0, clamp(n, 3, pool.length));
   return selected.map((q) => {
     const opts = q.o.map((text, i) => ({ text, ok: i === q.a }));
     const o = shuffle(opts);
-    return { q: q.q, o: o.map(x => x.text), a: o.findIndex(x => x.ok), level: q.level.toUpperCase(), ref: q.ref, explain: q.explain };
+    return { q: q.q, o: o.map(x => x.text), a: o.findIndex(x => x.ok), level: q.level.toUpperCase(), ref: q.ref, explain: q.explain, art: q.art || "scroll" };
   });
 }
 
 function buildWho(n) {
-  return shuffle(WHO).slice(0, clamp(n, 3, WHO.length)).map(c => ({ clues: c.c, name: c.n }));
+  return shuffle(WHO).slice(0, clamp(n, 3, WHO.length)).map(c => ({ clues: c.c, name: c.n, art: c.art || "person" }));
 }
 
 function startQuestion(room) {
@@ -104,7 +104,7 @@ function startQuestion(room) {
   toAll(room, {
     t: "question", i: room.index + 1, total: room.questions.length,
     q: q.clues ? "Quem sou eu?" : q.q, o: q.clues ? [] : q.o, time: q.clues ? time : null,
-    typed: !!q.clues, level: q.level || null, clues: q.clues ? [q.clues[0]] : null,
+    typed: !!q.clues, level: q.level || null, clues: q.clues ? [q.clues[0]] : null, art: q.art || "person", ref: q.ref || null,
   });
   if (q.clues) room.timer = setTimeout(() => {
     if (room.state !== "question") return;
@@ -136,7 +136,7 @@ function reveal(room) {
   for (const p of room.players.values()) if (p.choice !== null && p.choice >= 0) counts[p.choice]++;
   const rank = ranking(room);
   const last = room.index + 1 >= room.questions.length;
-  send(room.host, { t: "reveal", correct: q.clues ? null : q.a, counts, top: rank.slice(0, 5), last, name: q.clues ? q.name : null, ref: q.ref || null, explain: q.explain || null });
+  send(room.host, { t: "reveal", correct: q.clues ? null : q.a, counts, top: rank.slice(0, 5), last, name: q.clues ? q.name : null, ref: q.ref || null, explain: q.explain || null, art: q.art || "person" });
   for (const p of room.players.values()) {
     const me = rank.find(r => r.name === p.name);
     send(p.ws, {
@@ -171,7 +171,9 @@ function startRound(room) {
   room.round++;
   const cat = pick(IMP);
   const word = pick(cat.itens);
+  const art = cat.nome.includes("Lugar") ? "city" : cat.nome.includes("Personagem") ? "person" : cat.nome.includes("História") ? "biblical-event" : cat.nome.includes("Objeto") ? "artifact" : "scroll";
   room.cat = cat.nome;
+  room.art = art;
   room.word = word;
   room.options = shuffle([word, ...shuffle(cat.itens.filter(x => x !== word)).slice(0, 5)]);
   room.impostor = pick(keys);
@@ -182,10 +184,10 @@ function startRound(room) {
   room.delta = new Map();
   room.caught = false;
   room.state = "irole";
-  send(room.host, { t: "irole", round: room.round, rounds: room.rounds, cat: room.cat, players: room.order.map(k => nameOf(room, k)) });
+  send(room.host, { t: "irole", round: room.round, rounds: room.rounds, cat: room.cat, art: room.art, players: room.order.map(k => nameOf(room, k)) });
   for (const k of keys) {
     send(room.players.get(k).ws, {
-      t: "irole", round: room.round, rounds: room.rounds, cat: room.cat,
+      t: "irole", round: room.round, rounds: room.rounds, cat: room.cat, art: room.art,
       impostor: k === room.impostor, word: k === room.impostor ? null : room.word,
     });
   }
@@ -201,9 +203,9 @@ function nextTurn(room) {
   const k = room.order[room.turn];
   const name = nameOf(room, k);
   room.state = "ihints";
-  send(room.host, { t: "iturn", name, turn: room.turn + 1, total: room.order.length, hints: room.hints, order: room.order.map(x => nameOf(room, x)), cat: room.cat, time: HINT_TIME });
+  send(room.host, { t: "iturn", name, turn: room.turn + 1, total: room.order.length, hints: room.hints, order: room.order.map(x => nameOf(room, x)), cat: room.cat, art: room.art, time: HINT_TIME });
   for (const x of room.order) {
-    send(room.players.get(x).ws, { t: "iturn", mine: x === k, name, hints: room.hints, time: HINT_TIME });
+    send(room.players.get(x).ws, { t: "iturn", mine: x === k, name, hints: room.hints, art: room.art, time: HINT_TIME });
   }
   room.timer = setTimeout(() => {
     room.hints.push({ name, text: "—" });
@@ -215,7 +217,7 @@ function nextTurn(room) {
 function startDiscuss(room) {
   clearTimeout(room.timer);
   room.state = "idiscuss";
-  const msg = { t: "idiscuss", hints: room.hints, time: DISCUSS_TIME, cat: room.cat };
+  const msg = { t: "idiscuss", hints: room.hints, time: DISCUSS_TIME, cat: room.cat, art: room.art };
   toAll(room, msg);
   room.timer = setTimeout(() => startVote(room), DISCUSS_TIME * 1000);
 }
