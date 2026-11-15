@@ -13,15 +13,39 @@ const IMP = readJson("impostor.json").categorias;
 const TYPES = { ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8" };
 
 const server = http.createServer((req, res) => {
-  let url = req.url.split("?")[0];
+  let url;
+  try { url = decodeURIComponent(new URL(req.url, "http://localhost").pathname); }
+  catch { res.writeHead(400); return res.end("Requisição inválida"); }
+
+  if (url === "/healthz") {
+    const artPath = path.join(PUBLIC, "art.js");
+    res.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" });
+    return res.end(JSON.stringify({ ok: true, app: "jogos-biblicos", illustrations: fs.existsSync(artPath) }));
+  }
+
   if (url === "/") url = "/index.html";
   if (url === "/host") url = "/host.html";
-  const file = path.resolve(PUBLIC, `.${url}`);
+
+  // Rota explícita para o arquivo das ilustrações, além do servidor estático.
+  const file = url === "/art.js"
+    ? path.join(PUBLIC, "art.js")
+    : path.resolve(PUBLIC, `.${url}`);
   const relative = path.relative(PUBLIC, file);
-  if (relative.startsWith("..") || path.isAbsolute(relative)) { res.writeHead(403); return res.end(); }
+  if (relative.startsWith("..") || path.isAbsolute(relative)) {
+    res.writeHead(403, { "Cache-Control": "no-store" });
+    return res.end();
+  }
+
   fs.readFile(file, (err, data) => {
-    if (err) { res.writeHead(404); return res.end("Não encontrado"); }
-    res.writeHead(200, { "Content-Type": TYPES[path.extname(file)] || "text/plain" });
+    if (err) {
+      res.writeHead(404, { "Cache-Control": "no-store" });
+      return res.end("Não encontrado");
+    }
+    res.writeHead(200, {
+      "Content-Type": TYPES[path.extname(file)] || "text/plain; charset=utf-8",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff"
+    });
     res.end(data);
   });
 });
