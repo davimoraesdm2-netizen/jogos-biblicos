@@ -607,3 +607,91 @@ button:disabled { cursor:not-allowed; filter:saturate(.35); }
   .who-score-track strong { font-size:1.15rem; }
   #question,#play { padding:24px 16px; }
 }
+
+
+/* DIREÇÃO DE ARTE — manuscrito bíblico ilustrado */
+:root {
+  --bg:#101b17; --bg2:#1b3025; --panel:#20372b; --panel2:#2a4434;
+  --text:#fff6e4; --muted:#d2c5a8; --gold:#f1c979; --gold-deep:#b77b35;
+  --mint:#b6d5a1; --line:rgba(237,216,167,.24);
+  --shadow:0 30px 90px rgba(4,12,8,.48);
+}
+body {
+  background:
+    radial-gradient(ellipse at 50% -12%,rgba(228,184,99,.22),transparent 42%),
+    radial-gradient(ellipse at 5% 80%,rgba(77,126,83,.28),transparent 35%),
+    radial-gradient(ellipse at 100% 60%,rgba(126,64,54,.2),transparent 32%),
+    repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 1px,transparent 1px 7px),
+    #101b17;
+}
+body::before {
+  opacity:.18;
+  background-image:radial-gradient(rgba(255,231,183,.55) .8px,transparent .8px),radial-gradient(rgba(196,153,82,.35) 1px,transparent 1px);
+  background-size:31px 31px,83px 83px; background-position:0 0,19px 23px;
+}
+.card {
+  background:linear-gradient(145deg,rgba(38,59,43,.98),rgba(18,34,26,.99));
+  border:1px solid rgba(232,201,139,.3);
+  box-shadow:0 32px 90px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,241,207,.1);
+}
+.lobby-screen,.join-screen {
+  background:
+    radial-gradient(ellipse at 50% 0%,rgba(226,184,104,.2),transparent 48%),
+    linear-gradient(145deg,rgba(48,69,47,.99),rgba(19,37,28,.99));
+}
+.lobby-screen::before,.join-screen::before {
+  content:""; position:absolute; inset:12px; border:1px solid rgba(239,207,143,.23);
+  border-radius:23px; pointer-events:none;
+}
+.lobby-screen h1,.join-screen h1 {
+  background:linear-gradient(180deg,#fff8e7 5%,#edcb86 90%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  letter-spacing:-.06em; text-shadow:none;
+}
+.eyebrow,.section-kicker { color:#d9bd7e; letter-spacing:.2em; }
+.game-emblem {
+  width:min(100%,410px); margin:0 auto 4px;
+  filter:drop-shadow(0 18px 25px rgba(0,0,0,.32));
+}
+.game-emblem svg { width:100%; display:block; }
+.verse-ribbon {
+  width:min(100%,680px); margin:18px auto 22px; padding:15px 22px;
+  border-top:1px solid rgba(237,207,145,.42); border-bottom:1px solid rgba(237,207,145,.42);
+  color:#f5e5c2; background:linear-gradient(90deg,transparent,rgba(191,145,72,.12),transparent);
+  font-family:Georgia,serif; font-style:italic; font-size:1.08rem; line-height:1.55;
+}
+.verse-ribbon small { display:block; margin-top:5px; color:#d5b979; font:800 .68rem 'DM Sans',sans-serif; letter-spacing:.18em; text-transform:uppercase; }
+.join-instruction,.code-panel {
+  background:linear-gradient(145deg,rgba(65,85,56,.78),rgba(27,47,35,.92));
+  border-color:rgba(223,193,130,.32);
+}
+.step-icon { background:linear-gradient(145deg,#f1d99e,#c18b47); color:#2a2618; }
+.code-panel { border-color:rgba(241,201,121,.52); }
+.code-panel .big { color:#ffe5ad; text-shadow:0 0 35px rgba(241,201,121,.28); }
+.mode {
+  background:linear-gradient(150deg,rgba(63,83,58,.94),rgba(27,47,36,.98));
+  border-color:rgba(222,197,145,.24); box-shadow:0 14px 30px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,245,220,.07);
+}
+.mode::after { content:"❧"; color:rgba(231,205,153,.15); font-family:Georgia,serif; font-size:6rem; }
+.mode.on { border-color:#e8c477; background:linear-gradient(145deg,rgba(125,91,48,.58),rgba(39,59,42,.98)); }
+button.main,.start-game {
+  background:linear-gradient(135deg,#f7dfaa,#d6a354)!important; color:#2d2415!important;
+  box-shadow:0 12px 28px rgba(181,128,53,.24),inset 0 1px 0 rgba(255,255,255,.58)!important;
+}
+input,select { background:rgba(12,25,18,.82); border-color:rgba(224,200,151,.28); }
+.game-screen {
+  background:radial-gradient(ellipse at 50% 0%,rgba(201,162,91,.14),transparent 50%),linear-gradient(145deg,rgba(38,59,43,.99),rgba(17,33,25,.99));
+}
+#qnum { color:#d9c18b; border-color:rgba(222,193,132,.32); background:rgba(156,119,58,.15); }
+.q,#play #qtext { color:#fff0d1!important; }
+.clue { background:linear-gradient(110deg,rgba(79,104,65,.55),rgba(36,58,42,.78)); border-color:rgba(221,197,146,.22); box-shadow:inset 3px 0 0 #d9b66e; }
+.who-score-track { background:linear-gradient(100deg,rgba(118,87,45,.35),rgba(34,53,39,.82)); border-color:rgba(237,201,121,.34); }
+.who-score-track span,.who-score-track strong { color:#f1d49a; }
+.who-score-track small,#locked,#progress { color:#c8e1a9; }
+.timerbar>div { background:linear-gradient(90deg,#b8d59c,#e9c37b); }
+.row { background:rgba(87,108,73,.24); border-color:rgba(223,204,160,.2); }
+.row.first { background:rgba(188,143,68,.2); border-color:rgba(236,197,117,.45); color:#ffe3a7; }
+.result-screen,.final-screen { background:radial-gradient(ellipse at 50% 8%,rgba(215,174,97,.2),transparent 43%),linear-gradient(145deg,rgba(54,70,46,.99),rgba(20,37,27,.99)); }
+.result-screen h2,.final-screen h1,#rtitle,#end h1 { color:#f4d69c; }
+#imp { background:linear-gradient(145deg,rgba(45,65,47,.99),rgba(18,35,26,.99)); }
+@media(max-width:650px) { .lobby-screen::before,.join-screen::before { inset:8px; } .verse-ribbon { font-size:.98rem; padding:12px 15px; } }
