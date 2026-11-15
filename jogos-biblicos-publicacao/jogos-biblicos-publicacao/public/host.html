@@ -19,7 +19,7 @@
 </head>
 <body>
 
-<section id="lobby">
+<section id="lobby" class="card host-card">
   <h1>📖 Jogos Bíblicos ao vivo</h1>
   <p>Entre no endereço abaixo pelo celular e digite o código</p>
   <p id="url" style="font-size:1.4rem;color:#fff"></p>
@@ -27,28 +27,29 @@
   <div class="chips" id="players"></div>
   <p id="count">Aguardando jogadores…</p>
   <div class="modes" id="modes">
-    <button class="mode on" data-mode="quiz"><b>📝 Quiz Bíblico</b><small>Perguntas avançadas, com referências e dificuldade crescente.</small></button>
+    <button class="mode on" data-mode="quiz"><b>📝 Quiz Bíblico</b><small>Escolha entre Fácil, Médio e Difícil. Todos recebem o mesmo desafio.</small></button>
     <button class="mode" data-mode="who"><b>🕵️ Quem sou eu?</b><small>Digite a resposta usando pistas liberadas aos poucos. Quanto antes acertar, mais pontos.</small></button>
     <button class="mode" data-mode="impostor"><b>🎭 Impostor</b><small>Um não sabe a palavra secreta. Descubra quem é! (mín. 3)</small></button>
   </div>
-  <label><span id="nlabel">Perguntas:</span>
+  <label id="difficultyWrap" style="width:min(100%,340px);display:block;text-align:left;margin:8px auto"><span>Nível do Quiz:</span><select id="difficulty"><option>Fácil</option><option selected>Médio</option><option>Difícil</option></select></label>
+  <label style="width:min(100%,340px);display:block;text-align:left;margin:8px auto"><span id="nlabel">Perguntas:</span>
     <select id="n" style="font-size:1.1rem;padding:6px;border-radius:8px"></select>
   </label>
   <div class="err" id="err"></div>
   <button class="main" id="start" style="max-width:340px" disabled>Começar o jogo</button>
 </section>
 
-<section id="question">
+<section id="question" class="card host-card">
   <div class="sub" id="qnum"></div>
-  <div class="timerbar"><div id="bar"></div></div>
+  <div class="timerbar" id="qbarwrap"><div id="bar"></div></div>
   <div class="q" id="qtext"></div>
   <div id="clues" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
   <div class="opts" id="opts"></div>
   <p id="progress"></p>
-  <button class="main" id="skip" style="max-width:260px">Encerrar pergunta</button>
+  <button class="main" id="skip" style="max-width:340px" disabled>Revelar respostas</button>
 </section>
 
-<section id="reveal">
+<section id="reveal" class="card host-card">
   <h2 id="rtitle">Resposta certa</h2>
   <div class="opts" id="ropts"></div>
   <h2 style="margin-top:20px">Placar</h2>
@@ -56,7 +57,7 @@
   <button class="main" id="next" style="max-width:340px">Próxima</button>
 </section>
 
-<section id="imp">
+<section id="imp" class="card host-card">
   <div class="sub" id="itag"></div>
   <div class="timerbar" id="ibarwrap"><div id="ibar"></div></div>
   <h1 id="ititle"></h1>
@@ -67,7 +68,7 @@
   <button class="main" id="ibtn" style="max-width:340px"></button>
 </section>
 
-<section id="end">
+<section id="end" class="card host-card">
   <h1>🏆 Resultado final</h1>
   <div id="final" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
   <button class="main" style="max-width:340px" id="again">Jogar de novo (mesmos jogadores)</button>
@@ -96,6 +97,7 @@ show("lobby");
 $("url").textContent = location.host;
 
 function fillCounts() {
+  $("difficultyWrap").style.display = mode === "quiz" ? "block" : "none";
   const c = COUNTS[mode];
   $("nlabel").textContent = c.label;
   const sel = $("n"); sel.textContent = "";
@@ -190,6 +192,9 @@ ws.onmessage = (ev) => {
   /* Quiz e Quem sou eu */
   if (m.t === "question") {
     show("question");
+    $("qbarwrap").style.display = m.time ? "block" : "none";
+    $("skip").disabled = mode === "quiz";
+    $("skip").textContent = mode === "quiz" ? "Aguardando respostas…" : "Encerrar pergunta";
     $("qnum").textContent = `${m.clues ? "DESAFIO DE PISTAS" : (m.level || "QUIZ")} · ${m.i} de ${m.total}`;
     $("qtext").textContent = m.q;
     $("clues").textContent = "";
@@ -197,10 +202,13 @@ ws.onmessage = (ev) => {
     const box = $("opts"); box.textContent = "";
     if (!m.typed) m.o.forEach((o, i) => { const d = document.createElement("div"); d.className = "opt c" + i; d.textContent = `${SHAPES[i]}  ${o}`; box.append(d); });
     $("progress").textContent = "";
-    runBar($("bar"), m.time);
+    if (m.time) runBar($("bar"), m.time);
   }
   if (m.t === "clue") addClue(m.text);
-  if (m.t === "progress") $("progress").textContent = `${m.answered} de ${m.total} responderam`;
+  if (m.t === "progress") {
+    $("progress").textContent = m.expired ? `Tempo encerrado: ${m.answered} de ${m.total} responderam. Quem não respondeu perde o ponto da rodada.` : `${m.answered} de ${m.total} responderam`;
+    if (m.canReveal) { $("skip").disabled = false; $("skip").textContent = "Revelar respostas"; }
+  }
   if (m.t === "reveal") {
     show("reveal");
     $("rtitle").textContent = m.name ? `Resposta: ${m.name}` : "Resposta certa";
@@ -276,8 +284,8 @@ ws.onmessage = (ev) => {
   }
 };
 
-$("start").onclick = () => ws.send(JSON.stringify({ t: "start", mode, n: $("n").value }));
-$("skip").onclick = () => ws.send(JSON.stringify({ t: "skip" }));
+$("start").onclick = () => ws.send(JSON.stringify({ t: "start", mode, n: $("n").value, difficulty: $("difficulty").value }));
+$("skip").onclick = () => ws.send(JSON.stringify({ t: mode === "quiz" ? "reveal" : "skip" }));
 $("again").onclick = () => ws.send(JSON.stringify({ t: "again" }));
 </script>
 </body>
