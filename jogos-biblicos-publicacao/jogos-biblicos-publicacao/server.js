@@ -6,7 +6,7 @@ const { WebSocketServer } = require("ws");
 const PORT = process.env.PORT || 3000;
 const PUBLIC = path.join(__dirname, "public");
 const readJson = (f) => JSON.parse(fs.readFileSync(path.join(__dirname, f), "utf8"));
-const QUIZ = readJson("questions-avancadas.json");
+const QUIZ = [...readJson("questions-fundamentos.json"), ...readJson("questions-avancadas.json").map(q => ({ ...q, level: "Difícil" }))];
 const WHO = readJson("quemsou.json");
 const IMP = readJson("impostor.json").categorias;
 
@@ -31,6 +31,7 @@ const rooms = new Map();
 
 // tempos (segundos)
 const QUESTION_TIME = 20;
+const QUIZ_ANSWER_TIME = 60;
 const WHO_INTERVAL = 5;      // uma nova dica a cada 5 s
 const WHO_TIME = 25;
 const HINT_TIME = 20;        // vez de cada jogador dar a dica (Impostor)
@@ -78,12 +79,13 @@ function lobbyUpdate(room) {
 
 /* ------------------------- Quiz e Quem sou eu ------------------------- */
 
-function buildQuiz(n) {
-  const selected = shuffle(QUIZ).slice(0, clamp(n, 3, QUIZ.length));
-  return selected.map((q, index) => {
+function buildQuiz(n, difficulty = "Médio") {
+  const pool = QUIZ.filter(q => q.level === difficulty);
+  const selected = shuffle(pool).slice(0, clamp(n, 3, pool.length));
+  return selected.map((q) => {
     const opts = q.o.map((text, i) => ({ text, ok: i === q.a }));
     const o = shuffle(opts);
-    return { q: q.q, o: o.map(x => x.text), a: o.findIndex(x => x.ok), level: index >= Math.ceil(selected.length * .4) ? "ESPECIALISTA" : "AVANÇADO", ref: q.ref, explain: q.explain };
+    return { q: q.q, o: o.map(x => x.text), a: o.findIndex(x => x.ok), level: q.level.toUpperCase(), ref: q.ref, explain: q.explain };
   });
 }
 
@@ -98,10 +100,11 @@ function startQuestion(room) {
   room.startedAt = Date.now();
   room.cluesShown = q.clues ? 1 : 0;
   for (const p of room.players.values()) { p.choice = null; p.delta = 0; }
-  const time = q.clues ? WHO_TIME : QUESTION_TIME;
+  const time = q.clues ? WHO_TIME : QUIZ_ANSWER_TIME;
+  room.quizExpired = false;
   toAll(room, {
     t: "question", i: room.index + 1, total: room.questions.length,
-    q: q.clues ? "Quem sou eu?" : q.q, o: q.clues ? [] : q.o, time,
+    q: q.clues ? "Quem sou eu?" : q.q, o: q.clues ? [] : q.o, time: q.clues ? time : null,
     typed: !!q.clues, level: q.level || null, clues: q.clues ? [q.clues[0]] : null,
   });
   if (q.clues) {
@@ -112,7 +115,14 @@ function startQuestion(room) {
       }, k * WHO_INTERVAL * 1000));
     }
   }
-  room.timer = setTimeout(() => reveal(room), time * 1000 + 300);
+  if (q.clues) room.timer = setTimeout(() => reveal(room), time * 1000 + 300);
+  else room.timer = setTimeout(() => {
+    if (room.state !== "question") return;
+    room.quizExpired = true;
+    for (const p of room.players.values()) if (p.choice === null) p.choice = -2;
+    toAll(room, { t: "answerWindowClosed" });
+    send(room.host, { t: "progress", answered: [...room.players.values()].filter(p => p.choice !== null).length, total: room.players.size, expired: true, canReveal: true });
+  }, QUIZ_ANSWER_TIME * 1000);
 }
 
 function reveal(room) {
@@ -128,7 +138,7 @@ function reveal(room) {
   for (const p of room.players.values()) {
     const me = rank.find(r => r.name === p.name);
     send(p.ws, {
-      t: "result", correct: q.clues ? null : q.a, answer: q.clues ? q.name : q.o[q.a], choice: p.choice, right: q.clues ? !!p.right : p.choice === q.a,
+      t: "result", correct: q.clues ? null : q.a, answer: q.clues ? q.name : q.o[q.a], choice: p.choice, right: q.clues ? !!p.right : p.choice === q.a, unanswered: p.choice === -2,
       delta: p.delta, score: p.score, rank: me ? me.rank : null, total: rank.length, ref: q.ref || null, explain: q.explain || null,
     });
   }
@@ -337,16 +347,17 @@ wss.on("connection", (ws) => {
           return startRound(room);
         }
         room.mode = mode;
-        room.questions = mode === "who" ? buildWho(n) : buildQuiz(n);
+        room.questions = mode === "who" ? buildWho(n) : buildQuiz(n, ["Fácil", "Médio", "Difícil"].includes(m.difficulty) ? m.difficulty : "Médio");
         room.index = 0;
         return startQuestion(room);
       }
+      if (m.t === "reveal" && room.state === "question" && (room.mode !== "quiz" || room.quizExpired || [...room.players.values()].every(p => p.choice !== null))) return reveal(room);
       if (m.t === "next" && room.state === "reveal") {
         if (room.index + 1 >= room.questions.length) return finish(room);
         room.index++;
         return startQuestion(room);
       }
-      if (m.t === "skip" && room.state === "question") return reveal(room);
+      if (m.t === "skip" && room.state === "question" && room.mode !== "quiz") return reveal(room);
       if (m.t === "startHints" && room.state === "irole") { room.turn = 0; return nextTurn(room); }
       if (m.t === "toVote" && room.state === "idiscuss") return startVote(room);
       if (m.t === "skipVote" && room.state === "ivote") return tally(room);
@@ -377,16 +388,16 @@ wss.on("connection", (ws) => {
         }
         if (right) {
           if (q.clues) p.delta = Math.max(200, 1200 - 200 * (room.cluesShown - 1));
-          else {
-            const elapsed = Math.min(QUESTION_TIME, (Date.now() - room.startedAt) / 1000);
-            p.delta = Math.round(1200 - 600 * (elapsed / QUESTION_TIME));
-          }
+          else p.delta = 1000;
           p.score += p.delta;
         }
         send(ws, { t: "locked" });
         const answered = [...room.players.values()].filter(x => x.choice !== null).length;
         send(room.host, { t: "progress", answered, total: room.players.size });
-        if (answered === room.players.size) setTimeout(() => reveal(room), 600);
+        if (answered === room.players.size) {
+          if (room.mode === "quiz") send(room.host, { t: "progress", answered, total: room.players.size, canReveal: true });
+          else setTimeout(() => reveal(room), 600);
+        }
         return;
       }
 

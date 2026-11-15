@@ -107,3 +107,139 @@ button.main:disabled { opacity: .42; cursor: not-allowed; box-shadow: none; }
   #typedanswer { width: 100%; }
   #typedanswer input { font-size: 1rem; }
 }
+
+
+/* --- acabamento visual: identidade premium Jogos Bíblicos --- */
+:root {
+  --bg: #070d19;
+  --bg2: #111c30;
+  --panel: rgba(15, 27, 47, .94);
+  --panel2: #182943;
+  --text: #f4f7fc;
+  --muted: #a6b4c9;
+  --gold: #f4c76b;
+  --gold-deep: #dca844;
+  --line: rgba(183, 202, 230, .16);
+  --shadow: 0 28px 90px rgba(0,0,0,.42);
+}
+body {
+  background:
+    radial-gradient(ellipse at 8% 0%, rgba(37, 100, 148, .25), transparent 38%),
+    radial-gradient(ellipse at 95% 95%, rgba(137, 98, 44, .13), transparent 34%),
+    linear-gradient(145deg, #070d19 0%, #0b1424 55%, #0a1020 100%);
+  padding: clamp(18px, 4vw, 48px);
+}
+body::before {
+  opacity: .10;
+  background-size: 28px 28px;
+}
+h1, h2, h3 { letter-spacing: -.045em; }
+h1 { font-size: clamp(2.15rem, 5vw, 3.8rem); }
+.card {
+  max-width: 580px;
+  background: linear-gradient(155deg, rgba(19, 34, 57, .97), rgba(10, 19, 34, .98));
+  border: 1px solid rgba(184, 205, 232, .17);
+  border-radius: 30px;
+  padding: clamp(26px, 4.5vw, 48px);
+  box-shadow: 0 32px 100px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.035);
+}
+.host-card { max-width: 1120px; }
+.player-card { max-width: 900px; }
+.big {
+  color: #f5d38b;
+  text-shadow: 0 0 44px rgba(244,199,107,.22);
+  letter-spacing: .16em;
+  margin: 10px 0 4px;
+}
+.chip {
+  background: rgba(69, 119, 158, .16);
+  border-color: rgba(129, 171, 205, .22);
+  padding: 10px 16px;
+}
+button.main {
+  background: linear-gradient(135deg, #f7d995, #dca844);
+  color: #1d1a12;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(196, 145, 56, .17);
+}
+button.main:hover:not(:disabled) {
+  box-shadow: 0 16px 36px rgba(196, 145, 56, .25);
+}
+input, select {
+  background: rgba(5, 13, 25, .72);
+  border-color: rgba(164, 190, 220, .2);
+  border-radius: 15px;
+  min-height: 52px;
+}
+.modes { gap: 14px; }
+.mode {
+  flex: 1 1 220px;
+  width: auto;
+  min-height: 128px;
+  padding: 20px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(34, 55, 83, .62), rgba(15, 28, 48, .82));
+  border: 1px solid rgba(153, 184, 214, .17);
+}
+.mode b { font-size: 1.2rem; }
+.mode small { display: block; font-size: .88rem; }
+.mode.on {
+  border-color: rgba(244,199,107,.78);
+  background: linear-gradient(145deg, rgba(120, 91, 43, .24), rgba(26, 39, 59, .94));
+  box-shadow: 0 0 0 1px rgba(244,199,107,.15) inset, 0 14px 34px rgba(0,0,0,.16);
+}
+.sub { color: #d2b875; letter-spacing: .13em; }
+.q {
+  max-width: 900px;
+  font-size: clamp(1.55rem, 3.4vw, 2.65rem);
+  line-height: 1.24;
+  margin: 20px auto 30px;
+}
+.opt {
+  background: linear-gradient(145deg, rgba(35, 57, 85, .96), rgba(19, 35, 57, .98)) !important;
+  border: 1px solid rgba(165, 192, 220, .2);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.18);
+}
+.opt.c0 { border-left: 4px solid #e67d8d; }
+.opt.c1 { border-left: 4px solid #69a9ef; }
+.opt.c2 { border-left: 4px solid #e9bd63; }
+.opt.c3 { border-left: 4px solid #63c6a2; }
+.pad {
+  background: linear-gradient(145deg, rgba(35, 57, 85, .98), rgba(19, 35, 57, .98)) !important;
+  border: 1px solid rgba(165, 192, 220, .2);
+  border-radius: 22px;
+  min-height: 160px;
+}
+.pad.c0 { border-bottom: 4px solid #e67d8d; }
+.pad.c1 { border-bottom: 4px solid #69a9ef; }
+.pad.c2 { border-bottom: 4px solid #e9bd63; }
+.pad.c3 { border-bottom: 4px solid #63c6a2; }
+.row {
+  background: rgba(52, 79, 111, .24);
+  border-color: rgba(165, 192, 220, .13);
+  border-radius: 15px;
+  padding: 15px 19px;
+}
+.row.first {
+  background: rgba(244,199,107,.12);
+  border-color: rgba(244,199,107,.3);
+}
+.timerbar { background: rgba(255,255,255,.08); }
+.clue {
+  background: rgba(45, 72, 103, .32);
+  border-color: rgba(165, 192, 220, .14);
+  border-radius: 15px;
+}
+#progress, #locked { font-weight: 700; }
+#locked { color: var(--gold); }
+#rtitle { line-height: 1.25; }
+.err { color: #ff9eae; }
+@media (max-width: 650px) {
+  body { padding: 14px; }
+  .card { border-radius: 24px; padding: 25px 19px; }
+  .host-card { width: 100%; }
+  .mode { min-height: auto; }
+  .pads { min-height: 0; }
+  .pad { min-height: 125px; }
+}

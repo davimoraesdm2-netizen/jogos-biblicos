@@ -1,0 +1,262 @@
+[
+  {
+    "level": "Fácil",
+    "q": "Quem construiu a arca para sobreviver ao dilúvio?",
+    "o": [
+      "Abraão",
+      "Moisés",
+      "Noé",
+      "Davi"
+    ],
+    "a": 2,
+    "ref": "Gênesis 6:13-22",
+    "explain": "Deus orientou Noé a construir a arca para preservar sua família e os animais."
+  },
+  {
+    "level": "Fácil",
+    "q": "Qual foi o primeiro homem, segundo o relato de Gênesis?",
+    "o": [
+      "Adão",
+      "Caim",
+      "Sete",
+      "Enoque"
+    ],
+    "a": 0,
+    "ref": "Gênesis 2:7",
+    "explain": "O texto descreve Deus formando o homem do pó da terra e dando-lhe fôlego de vida."
+  },
+  {
+    "level": "Fácil",
+    "q": "Quem derrotou o gigante Golias?",
+    "o": [
+      "Saul",
+      "Jônatas",
+      "Davi",
+      "Samuel"
+    ],
+    "a": 2,
+    "ref": "1 Samuel 17:45-50",
+    "explain": "Davi enfrentou Golias confiando no Senhor e o derrotou com uma funda e uma pedra."
+  },
+  {
+    "level": "Fácil",
+    "q": "Em qual cidade Jesus nasceu?",
+    "o": [
+      "Nazaré",
+      "Jerusalém",
+      "Cafarnaum",
+      "Belém"
+    ],
+    "a": 3,
+    "ref": "Mateus 2:1",
+    "explain": "Mateus registra o nascimento de Jesus em Belém da Judeia."
+  },
+  {
+    "level": "Fácil",
+    "q": "Quem recebeu os Dez Mandamentos no monte Sinai?",
+    "o": [
+      "Arão",
+      "Josué",
+      "Moisés",
+      "Elias"
+    ],
+    "a": 2,
+    "ref": "Êxodo 31:18",
+    "explain": "Moisés recebeu as tábuas do testemunho no monte Sinai."
+  },
+  {
+    "level": "Fácil",
+    "q": "Qual discípulo negou Jesus três vezes?",
+    "o": [
+      "João",
+      "Pedro",
+      "Tomé",
+      "André"
+    ],
+    "a": 1,
+    "ref": "Lucas 22:54-62",
+    "explain": "Pedro negou conhecer Jesus três vezes antes do cantar do galo."
+  },
+  {
+    "level": "Fácil",
+    "q": "Quem foi lançado na cova dos leões?",
+    "o": [
+      "José",
+      "Daniel",
+      "Jeremias",
+      "Ezequiel"
+    ],
+    "a": 1,
+    "ref": "Daniel 6:16-23",
+    "explain": "Daniel foi lançado na cova, mas Deus fechou a boca dos leões."
+  },
+  {
+    "level": "Fácil",
+    "q": "Quantos dias e noites choveu durante o dilúvio?",
+    "o": [
+      "7",
+      "12",
+      "30",
+      "40"
+    ],
+    "a": 3,
+    "ref": "Gênesis 7:12",
+    "explain": "A chuva caiu sobre a terra durante quarenta dias e quarenta noites."
+  },
+  {
+    "level": "Fácil",
+    "q": "Qual mar o povo de Israel atravessou na saída do Egito?",
+    "o": [
+      "Mar da Galileia",
+      "Mar Morto",
+      "Mar Vermelho",
+      "Rio Jordão"
+    ],
+    "a": 2,
+    "ref": "Êxodo 14:21-22",
+    "explain": "Deus abriu caminho pelo meio do mar, e os israelitas passaram em terra seca."
+  },
+  {
+    "level": "Fácil",
+    "q": "Quem foi a mãe de Jesus?",
+    "o": [
+      "Marta",
+      "Isabel",
+      "Ana",
+      "Maria"
+    ],
+    "a": 3,
+    "ref": "Lucas 1:30-31",
+    "explain": "O anjo anunciou a Maria que ela conceberia e daria à luz Jesus."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual juiz de Israel fez um voto precipitado envolvendo a primeira pessoa que saísse de sua casa?",
+    "o": [
+      "Gideão",
+      "Sansão",
+      "Jefté",
+      "Débora"
+    ],
+    "a": 2,
+    "ref": "Juízes 11:30-35",
+    "explain": "Jefté fez o voto antes da batalha contra os amonitas, e sua filha saiu ao seu encontro."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual rei pediu sabedoria a Deus em vez de riquezas ou vida longa?",
+    "o": [
+      "Davi",
+      "Salomão",
+      "Ezequias",
+      "Josias"
+    ],
+    "a": 1,
+    "ref": "1 Reis 3:5-12",
+    "explain": "Salomão pediu um coração compreensivo para governar o povo."
+  },
+  {
+    "level": "Médio",
+    "q": "Em qual ilha João recebeu as visões registradas no Apocalipse?",
+    "o": [
+      "Creta",
+      "Chipre",
+      "Malta",
+      "Patmos"
+    ],
+    "a": 3,
+    "ref": "Apocalipse 1:9",
+    "explain": "João afirma que estava na ilha chamada Patmos por causa da palavra de Deus."
+  },
+  {
+    "level": "Médio",
+    "q": "Quem interpretou os sonhos do faraó sobre sete anos de fartura e sete de fome?",
+    "o": [
+      "Daniel",
+      "José",
+      "Moisés",
+      "Arão"
+    ],
+    "a": 1,
+    "ref": "Gênesis 41:14-30",
+    "explain": "José explicou os sonhos e orientou o armazenamento de alimentos durante os anos de fartura."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual profeta confrontou os profetas de Baal no monte Carmelo?",
+    "o": [
+      "Eliseu",
+      "Isaías",
+      "Elias",
+      "Samuel"
+    ],
+    "a": 2,
+    "ref": "1 Reis 18:20-39",
+    "explain": "Elias desafiou os profetas de Baal e Deus respondeu com fogo sobre o sacrifício."
+  },
+  {
+    "level": "Médio",
+    "q": "Quem acompanhou Paulo em sua primeira viagem missionária, antes de João Marcos voltar a Jerusalém?",
+    "o": [
+      "Silas",
+      "Timóteo",
+      "Lucas",
+      "Barnabé"
+    ],
+    "a": 3,
+    "ref": "Atos 13:2-13",
+    "explain": "Barnabé e Saulo foram enviados juntos; João Marcos os acompanhou inicialmente."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual mulher escondeu os espias israelitas em Jericó?",
+    "o": [
+      "Rute",
+      "Raabe",
+      "Jael",
+      "Miriã"
+    ],
+    "a": 1,
+    "ref": "Josué 2:1-6",
+    "explain": "Raabe recebeu os espias e os escondeu no terraço de sua casa."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual apóstolo foi escolhido para ocupar o lugar de Judas Iscariotes?",
+    "o": [
+      "Estêvão",
+      "Barnabé",
+      "Matias",
+      "Silas"
+    ],
+    "a": 2,
+    "ref": "Atos 1:23-26",
+    "explain": "Matias foi escolhido por sorteio após oração e passou a integrar os onze apóstolos."
+  },
+  {
+    "level": "Médio",
+    "q": "Qual era o nome do servo do sumo sacerdote cuja orelha foi cortada durante a prisão de Jesus?",
+    "o": [
+      "Malco",
+      "Bartimeu",
+      "Clopas",
+      "Tíquico"
+    ],
+    "a": 0,
+    "ref": "João 18:10",
+    "explain": "João identifica o servo como Malco; Pedro foi quem cortou sua orelha."
+  },
+  {
+    "level": "Médio",
+    "q": "Em qual cidade os discípulos foram chamados cristãos pela primeira vez?",
+    "o": [
+      "Éfeso",
+      "Corinto",
+      "Antioquia",
+      "Filipos"
+    ],
+    "a": 2,
+    "ref": "Atos 11:26",
+    "explain": "Foi em Antioquia que os discípulos receberam pela primeira vez o nome de cristãos."
+  }
+]

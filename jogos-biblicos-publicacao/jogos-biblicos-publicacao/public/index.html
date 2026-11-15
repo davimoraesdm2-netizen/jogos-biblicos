@@ -33,9 +33,9 @@
   <p id="waitmsg">Você está dentro! Aguarde o anfitrião começar o jogo.</p>
 </section>
 
-<section id="play">
+<section id="play" class="card player-card">
   <div class="sub" id="qnum"></div>
-  <div class="timerbar"><div id="bar"></div></div>
+  <div class="timerbar" id="playbarwrap"><div id="bar"></div></div>
   <div class="sub" id="qtext" style="color:#fff;font-size:1.1rem;margin-bottom:8px"></div>
   <div id="clues" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
   <div class="pads" id="pads"></div><div id="typedanswer" style="display:none;width:100%;max-width:560px"><input id="guess" maxlength="60" placeholder="Digite sua resposta"><button class="main" id="sendguess">Enviar resposta</button></div>
@@ -159,6 +159,7 @@ function onMsg(ev) {
   if (m.t === "question") {
     answered = false;
     show("play");
+    $("playbarwrap").style.display = m.time ? "block" : "none";
     $("qnum").textContent = `${m.clues ? "DESAFIO DE PISTAS" : (m.level || "QUIZ")} · ${m.i} de ${m.total}`;
     $("qtext").textContent = m.q;
     $("typedanswer").style.display = m.typed ? "block" : "none";
@@ -184,12 +185,19 @@ function onMsg(ev) {
       };
       pads.append(b);
     });
-    runBar($("bar"), m.time);
+    if (m.time) runBar($("bar"), m.time);
   }
   if (m.t === "clue") addClue(m.text);
+  if (m.t === "answerWindowClosed" && !answered) {
+    $("locked").style.display = "block";
+    $("locked").textContent = "Tempo encerrado. Você não respondeu nesta rodada. Aguarde o anfitrião.";
+    $("sendguess").disabled = true;
+    [...$("pads").children].forEach((x) => x.disabled = true);
+  }
   if (m.t === "result") {
     show("result");
-    if (m.choice === null) { $("rtitle").textContent = "⏰ Tempo esgotado"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer}`; }
+    if (m.unanswered) { $("rtitle").textContent = "⌛ Você não respondeu"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer}`; }
+    else if (m.choice === null) { $("rtitle").textContent = "⌛ Rodada encerrada"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer}`; }
     else if (m.right) { $("rtitle").textContent = "✅ Acertou!"; $("rtitle").className = "good"; $("rinfo").textContent = `+${m.delta} pontos`; }
     else { $("rtitle").textContent = "❌ Errou"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer}`; }
     if (m.ref) $("rinfo").textContent += " · " + m.ref;
