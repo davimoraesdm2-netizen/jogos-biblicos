@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jogos Bíblicos</title>
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style.css?v=showtime-20261115">
 <style>
   section { width: 100%; flex-direction: column; align-items: center; }
   .pad { font-size: 1.3rem; padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
@@ -17,7 +17,7 @@
   .secret { font-size: 2.2rem; font-weight: bold; color: var(--gold); margin: 12px 0; }
 </style>
 </head>
-<body>
+<body class="showtime">
 
 <section id="join" class="card join-screen">
   <div class="game-emblem" aria-hidden="true"><svg viewBox="0 0 520 300" role="img" aria-label="Ilustração de uma Bíblia aberta sob uma cruz, raios de luz e ramos de oliveira"><defs><linearGradient id="holyGlow" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0bd"/><stop offset="1" stop-color="#c9954f"/></linearGradient><linearGradient id="bookGold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff4d7"/><stop offset="1" stop-color="#d9b779"/></linearGradient></defs><circle cx="260" cy="128" r="104" fill="#edc777" opacity=".10"/><circle cx="260" cy="128" r="88" fill="none" stroke="#e8c783" stroke-opacity=".3" stroke-width="1.5"/><g stroke="#eacb8c" stroke-width="3" stroke-linecap="round" opacity=".72"><path d="M260 8v28M205 22l13 25M315 22l-13 25M160 58l24 14M360 58l-24 14M137 119h29M383 119h-29"/></g><path d="M260 43v105m-22-80h44" stroke="url(#holyGlow)" stroke-width="13" stroke-linecap="round"/><path d="M80 230q60-45 115-22t65 22q-55 17-95 22-48 8-85-22Z" fill="#56764e" stroke="#b6c58b" stroke-width="2"/><path d="M440 230q-60-45-115-22t-65 22q55 17 95 22 48 8 85-22Z" fill="#56764e" stroke="#b6c58b" stroke-width="2"/><g fill="#9bb77b"><ellipse cx="115" cy="207" rx="9" ry="18" transform="rotate(-42 115 207)"/><ellipse cx="151" cy="195" rx="9" ry="17" transform="rotate(-28 151 195)"/><ellipse cx="405" cy="207" rx="9" ry="18" transform="rotate(42 405 207)"/><ellipse cx="369" cy="195" rx="9" ry="17" transform="rotate(28 369 195)"/></g><path d="M78 258q82-20 182 8 100-28 182-8" fill="none" stroke="#d8b77c" stroke-width="3"/><path d="M90 254q75-42 170 5v28q-96-43-170-5Z" fill="url(#bookGold)" stroke="#fff1ce" stroke-width="3"/><path d="M430 254q-75-42-170 5v28q96-43 170-5Z" fill="url(#bookGold)" stroke="#fff1ce" stroke-width="3"/><path d="M260 259v29" stroke="#a67b45" stroke-width="3"/><g stroke="#9d7b4d" stroke-width="2" opacity=".65"><path d="M112 261q66-25 125 1M112 270q66-25 125 1M408 261q-66-25-125 1M408 270q-66-25-125 1"/></g><path d="M54 280q206 18 412 0" fill="none" stroke="#e3c27e" stroke-width="2" opacity=".6"/></svg></div>
@@ -35,7 +35,8 @@
   <p id="waitmsg">Você está dentro! Aguarde o anfitrião começar o jogo.</p>
 </section>
 
-<section id="play" class="card player-card game-screen">
+<section id="play" class="card player-card game-screen show-stage">
+  <div class="show-kicker"><span class="live-dot"></span> DESAFIO BÍBLICO · AO VIVO</div>
   <div class="sub" id="qnum"></div>
   <div class="who-score-track" id="whotrack" style="display:none"><span>VALOR DA RESPOSTA</span><strong id="whopoints">10 PONTOS</strong><small id="whoattempt">1ª tentativa de 4</small></div>
   <div class="timerbar" id="playbarwrap"><div id="bar"></div></div>
@@ -46,14 +47,16 @@
   <p id="locked" style="display:none">Resposta enviada! Aguarde…</p>
 </section>
 
-<section id="result" class="card game-screen result-screen">
+<section id="result" class="card game-screen result-screen show-stage">
+  <div class="show-kicker"><span class="live-dot"></span> RESULTADO DA RODADA · AO VIVO</div>
   <h1 id="rtitle"></h1>
   <p id="rinfo"></p>
   <h2 id="rscore"></h2>
   <p id="rrank"></p>
 </section>
 
-<section id="imp" class="card">
+<section id="imp" class="card show-stage">
+  <div class="show-kicker"><span class="live-dot"></span> MISSÃO SECRETA · AO VIVO</div>
   <div class="sub" id="itag"></div>
   <div class="timerbar" id="ibarwrap"><div id="ibar"></div></div>
   <div id="impArt" class="biblical-art compact-art" hidden></div>
@@ -68,7 +71,8 @@
   <div id="ilist" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
 </section>
 
-<section id="end" class="card game-screen final-screen">
+<section id="end" class="card game-screen final-screen show-stage">
+  <div class="show-kicker"><span class="live-dot"></span> PLACAR FINAL · AO VIVO</div>
   <h1>🏆 Fim de jogo!</h1>
   <h2 id="erank"></h2>
   <p id="escore"></p>

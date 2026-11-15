@@ -720,3 +720,165 @@ input,select { background:rgba(12,25,18,.82); border-color:rgba(224,200,151,.28)
   .compact-art svg { max-height:160px; }
   .biblical-art-caption { padding:7px 10px; font-size:.78rem; }
 }
+
+
+/* =========================================================
+   GAME SHOW BÍBLICO — direção visual unificada das 3 modalidades
+   ========================================================= */
+body.showtime {
+  --bg:#071326; --bg2:#122747; --panel:#102443; --panel2:#19365d;
+  --text:#f8f5ed; --muted:#c0cce0; --gold:#ffd77e; --gold-deep:#c88a32;
+  --mint:#8fe8dc; --line:rgba(154,190,235,.24);
+  background:
+    radial-gradient(ellipse at 50% -12%,rgba(54,112,190,.42),transparent 43%),
+    radial-gradient(ellipse at 8% 50%,rgba(27,94,158,.18),transparent 35%),
+    radial-gradient(ellipse at 95% 68%,rgba(190,133,47,.15),transparent 30%),
+    linear-gradient(160deg,#050d1c 0%,#0b1b35 54%,#071226 100%);
+}
+body.showtime::before {
+  opacity:.22;
+  background-image:radial-gradient(rgba(255,255,255,.55) .8px,transparent .8px),radial-gradient(rgba(255,215,126,.35) 1px,transparent 1px);
+  background-size:28px 28px,79px 79px;
+}
+body.showtime .card {
+  border:1px solid rgba(255,215,126,.32);
+  background:linear-gradient(150deg,rgba(18,42,76,.98),rgba(6,18,39,.99));
+  box-shadow:0 34px 100px rgba(0,0,0,.56),0 0 44px rgba(42,112,190,.12),inset 0 1px 0 rgba(255,255,255,.09);
+}
+body.showtime .lobby-screen, body.showtime .join-screen {
+  background:radial-gradient(ellipse at 50% 0%,rgba(72,133,211,.3),transparent 52%),linear-gradient(145deg,#17365e,#08172f);
+}
+body.showtime .eyebrow, body.showtime .section-kicker { color:#9fe8e0; }
+body.showtime .mode {
+  background:linear-gradient(145deg,rgba(33,66,109,.96),rgba(12,31,59,.99));
+  border:1px solid rgba(157,190,233,.27);
+}
+body.showtime .mode.on {
+  border:2px solid var(--gold);
+  background:linear-gradient(145deg,rgba(123,87,35,.5),rgba(19,48,82,.99));
+  box-shadow:0 0 0 2px rgba(255,215,126,.16),0 0 28px rgba(255,197,87,.14);
+}
+body.showtime .mode::after { color:rgba(255,215,126,.12); }
+body.showtime .code-panel, body.showtime .join-instruction {
+  background:linear-gradient(145deg,rgba(35,74,119,.85),rgba(10,31,58,.96));
+  border-color:rgba(255,215,126,.4);
+}
+body.showtime .step-icon { background:linear-gradient(145deg,#fff0bc,#d99c43); }
+body.showtime .verse-ribbon { border-color:rgba(255,215,126,.35); }
+body.showtime button.main, body.showtime .start-game {
+  background:linear-gradient(135deg,#fff0bd,#e4ae50)!important;
+  color:#2c210e!important;
+  box-shadow:0 12px 30px rgba(225,166,66,.27),inset 0 1px 0 rgba(255,255,255,.7)!important;
+}
+body.showtime input, body.showtime select {
+  background:rgba(5,17,36,.92); border-color:rgba(165,194,230,.3);
+}
+body.showtime .game-screen, body.showtime #imp {
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(255,215,126,.38);
+  background:
+    radial-gradient(ellipse at 50% -8%,rgba(75,137,212,.3),transparent 48%),
+    linear-gradient(150deg,rgba(17,43,78,.99),rgba(5,17,37,.995));
+}
+body.showtime .show-stage {
+  isolation:isolate;
+  padding-top:clamp(42px,5vw,62px);
+}
+body.showtime .show-stage::after {
+  content:"";
+  position:absolute; z-index:-1; pointer-events:none;
+  width:min(75vw,760px); height:240px; top:-145px; left:50%; transform:translateX(-50%);
+  background:radial-gradient(ellipse,rgba(100,167,255,.2),transparent 68%);
+  filter:blur(12px);
+}
+body.showtime .show-kicker {
+  display:flex; align-items:center; justify-content:center; gap:9px;
+  width:fit-content; max-width:100%; margin:0 auto 16px; padding:8px 15px;
+  border:1px solid rgba(255,215,126,.42); border-radius:999px;
+  background:linear-gradient(90deg,rgba(16,48,83,.9),rgba(91,65,28,.42),rgba(16,48,83,.9));
+  color:#ffe3a4; font-size:.7rem; font-weight:900; letter-spacing:.19em;
+  text-transform:uppercase; box-shadow:0 0 25px rgba(68,137,213,.12);
+}
+body.showtime .live-dot {
+  width:7px; height:7px; border-radius:50%; background:#ff6d73;
+  box-shadow:0 0 0 4px rgba(255,109,115,.12),0 0 13px rgba(255,109,115,.8);
+  animation:showPulse 1.5s ease-in-out infinite;
+}
+@keyframes showPulse { 50% { opacity:.55; box-shadow:0 0 0 7px rgba(255,109,115,.04),0 0 5px rgba(255,109,115,.35); } }
+body.showtime #qnum {
+  color:#ffe1a0; border:1px solid rgba(255,215,126,.42);
+  background:linear-gradient(90deg,rgba(21,57,98,.9),rgba(89,64,29,.36),rgba(21,57,98,.9));
+  box-shadow:0 5px 22px rgba(0,0,0,.16); font-weight:900;
+}
+body.showtime .q, body.showtime #play #qtext {
+  color:#fff4dc!important; text-shadow:0 2px 18px rgba(105,157,220,.16);
+}
+body.showtime .opts { gap:13px; }
+body.showtime .opt, body.showtime .pad {
+  border:1px solid rgba(255,225,169,.32);
+  background:linear-gradient(145deg,#174d82,#102c54)!important;
+  box-shadow:0 12px 28px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.13);
+  color:#fff8e9;
+}
+body.showtime .opt:nth-child(2), body.showtime .pad.c1 { background:linear-gradient(145deg,#174d82,#102c54)!important; }
+body.showtime .opt:nth-child(3), body.showtime .pad.c2 { background:linear-gradient(145deg,#174477,#102747)!important; }
+body.showtime .opt:nth-child(4), body.showtime .pad.c3 { background:linear-gradient(145deg,#174d82,#102c54)!important; }
+body.showtime .opt:hover, body.showtime .pad:hover, body.showtime .listbtn:hover {
+  border-color:var(--gold); box-shadow:0 0 0 2px rgba(255,215,126,.13),0 16px 32px rgba(0,0,0,.3);
+}
+body.showtime .pad { min-height:145px; }
+body.showtime .pad b { color:#ffdf99; }
+body.showtime .clue, body.showtime .hintrow, body.showtime .hint {
+  background:linear-gradient(110deg,rgba(28,68,112,.82),rgba(12,34,64,.92));
+  border:1px solid rgba(156,193,236,.25); color:#f8f2e5;
+  box-shadow:inset 3px 0 0 #e7bd6d,0 7px 18px rgba(0,0,0,.13);
+}
+body.showtime .timerbar {
+  height:13px; background:rgba(2,10,24,.75); border:1px solid rgba(255,255,255,.12);
+  box-shadow:inset 0 2px 5px rgba(0,0,0,.35);
+}
+body.showtime .timerbar>div {
+  background:linear-gradient(90deg,#8ce4d7,#f5d27f,#e9a84c);
+  box-shadow:0 0 18px rgba(255,207,111,.28);
+}
+body.showtime .who-score-track {
+  border-color:rgba(255,215,126,.46);
+  background:linear-gradient(100deg,rgba(101,73,34,.46),rgba(17,47,81,.9));
+  box-shadow:0 8px 25px rgba(0,0,0,.18);
+}
+body.showtime .who-score-track span, body.showtime .who-score-track strong { color:#ffe1a0; }
+body.showtime .who-score-track small, body.showtime #locked, body.showtime #progress { color:#9fe8dc; }
+body.showtime #typedanswer, body.showtime #typedanswer input { width:min(100%,680px); }
+body.showtime #typedanswer input { border:1px solid rgba(255,215,126,.45); box-shadow:0 0 24px rgba(44,120,194,.12); }
+body.showtime #typedanswer button { width:100%; }
+body.showtime #imp h1, body.showtime #ititle { color:#fff0cf; }
+body.showtime #imp .listbtn, body.showtime .listbtn {
+  background:linear-gradient(145deg,#174879,#102b50);
+  border:1px solid rgba(255,215,126,.27); color:#fff4df;
+  min-height:58px; border-radius:16px;
+}
+body.showtime .listbtn.gold { background:linear-gradient(135deg,#fff0bd,#e4ae50); color:#2c210e; }
+body.showtime .secret { color:#ffe0a0; text-shadow:0 0 28px rgba(255,206,111,.25); }
+body.showtime .row {
+  background:linear-gradient(100deg,rgba(24,61,102,.82),rgba(11,30,56,.9));
+  border:1px solid rgba(155,190,231,.22); color:#f7f2e8;
+}
+body.showtime .row.first {
+  background:linear-gradient(100deg,rgba(119,82,30,.48),rgba(22,49,79,.92));
+  border-color:rgba(255,215,126,.52); color:#ffe3a5;
+}
+body.showtime .result-screen, body.showtime .final-screen {
+  background:radial-gradient(ellipse at 50% 8%,rgba(255,205,112,.2),transparent 42%),linear-gradient(145deg,#18385e,#081a34);
+}
+body.showtime #rtitle, body.showtime #end h1, body.showtime #rscore { color:#ffe2a2; }
+body.showtime .biblical-art { border-color:rgba(255,215,126,.78); box-shadow:0 16px 42px rgba(0,0,0,.4),0 0 28px rgba(63,129,198,.12); }
+@media(max-width:650px) {
+  body.showtime .show-stage { padding-top:40px; }
+  body.showtime .show-kicker { font-size:.62rem; letter-spacing:.13em; padding:7px 11px; }
+  body.showtime .pad { min-height:118px; }
+  body.showtime .opts { grid-template-columns:1fr; }
+}
+@media(prefers-reduced-motion:reduce) {
+  body.showtime .live-dot { animation:none; }
+}
