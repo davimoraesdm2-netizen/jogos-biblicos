@@ -99,9 +99,11 @@ $("url").textContent = location.host;
 function fillCounts() {
   $("difficultyWrap").style.display = mode === "quiz" ? "block" : "none";
   const c = COUNTS[mode];
+  const opts = mode === "quiz" && $("difficulty").value !== "Difícil" ? [5, 10] : c.opts;
+  const def = opts.includes(c.def) ? c.def : opts[opts.length - 1];
   $("nlabel").textContent = c.label;
   const sel = $("n"); sel.textContent = "";
-  c.opts.forEach((v) => { const o = document.createElement("option"); o.value = v; o.textContent = v; if (v === c.def) o.selected = true; sel.append(o); });
+  opts.forEach((v) => { const o = document.createElement("option"); o.value = v; o.textContent = v; if (v === def) o.selected = true; sel.append(o); });
   updateStart();
 }
 function updateStart() {
@@ -118,6 +120,7 @@ document.querySelectorAll(".mode").forEach((b) => {
   };
 });
 fillCounts();
+$("difficulty").addEventListener("change", fillCounts);
 
 ws.onopen = () => ws.send(JSON.stringify({ t: "create" }));
 ws.onclose = () => { alert("Conexão perdida. Recarregue a página para criar uma nova sala."); };
