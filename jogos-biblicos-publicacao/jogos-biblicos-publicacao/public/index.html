@@ -37,6 +37,7 @@
 
 <section id="play" class="card player-card game-screen">
   <div class="sub" id="qnum"></div>
+  <div class="who-score-track" id="whotrack" style="display:none"><span>VALOR DA RESPOSTA</span><strong id="whopoints">10 PONTOS</strong><small id="whoattempt">1ª tentativa de 4</small></div>
   <div class="timerbar" id="playbarwrap"><div id="bar"></div></div>
   <div class="sub" id="qtext" style="color:#fff;font-size:1.1rem;margin-bottom:8px"></div>
   <div id="clues" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
@@ -141,7 +142,7 @@ $("isend").onclick = () => {
 };
 
 $("guess").addEventListener("keydown", (e) => { if (e.key === "Enter") $("sendguess").click(); });
-$("sendguess").onclick = () => { const text = $("guess").value.trim(); if (!text || answered) return; answered = true; ws.send(JSON.stringify({ t: "answer", text })); $("locked").style.display = "block"; $("locked").textContent = "Resposta enviada! Aguarde…"; $("sendguess").disabled = true; };
+$("sendguess").onclick = () => { const text = $("guess").value.trim(); if (!text || answered) return; answered = true; ws.send(JSON.stringify({ t: "answer", text })); $("locked").style.display = "block"; $("locked").textContent = "Conferindo sua resposta…"; $("sendguess").disabled = true; };
 
 function onMsg(ev) {
   const m = JSON.parse(ev.data);
@@ -165,6 +166,8 @@ function onMsg(ev) {
     $("qnum").textContent = `${m.clues ? "DESAFIO DE PISTAS" : (m.level || "QUIZ")} · ${m.i} de ${m.total}`;
     $("qtext").textContent = m.q;
     $("typedanswer").style.display = m.typed ? "block" : "none";
+    $("whotrack").style.display = m.typed ? "flex" : "none";
+    $("whopoints").textContent = "10 PONTOS"; $("whoattempt").textContent = "1ª tentativa de 4";
     $("guess").value = "";
     $("sendguess").disabled = false;
     $("clues").textContent = "";
@@ -190,6 +193,15 @@ function onMsg(ev) {
     if (m.time) runBar($("bar"), m.time);
   }
   if (m.t === "clue") addClue(m.text);
+  if (m.t === "whoWrong") {
+    answered = false; $("guess").value = ""; $("sendguess").disabled = false;
+    addClue(m.text); $("locked").style.display = "block";
+    $("locked").textContent = `Não foi dessa vez! Nova dica liberada · ${m.points} pontos se acertar.`;
+    $("whopoints").textContent = `${m.points} PONTOS`; $("whoattempt").textContent = `${m.attempt}ª tentativa de 4`;
+    $("guess").focus();
+  }
+  if (m.t === "whoFailed") { answered = true; $("sendguess").disabled = true; $("locked").style.display = "block"; $("locked").textContent = "As quatro tentativas acabaram. Esta rodada vale 0 ponto."; }
+  if (m.t === "whoTimeExpired") { answered = true; $("sendguess").disabled = true; $("locked").style.display = "block"; $("locked").textContent = "Tempo encerrado. Esta rodada vale 0 ponto."; }
   if (m.t === "answerWindowClosed" && !answered) {
     $("locked").style.display = "block";
     $("locked").textContent = "Tempo encerrado. Você não respondeu nesta rodada. Aguarde o anfitrião.";
@@ -198,7 +210,8 @@ function onMsg(ev) {
   }
   if (m.t === "result") {
     show("result");
-    if (m.unanswered) { $("rtitle").textContent = "⌛ Você não respondeu"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer}`; }
+    if (m.failed) { $("rtitle").textContent = "❌ As quatro tentativas acabaram"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer} · 0 ponto`; }
+    else if (m.unanswered) { $("rtitle").textContent = "⌛ Você não respondeu"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer}`; }
     else if (m.choice === null) { $("rtitle").textContent = "⌛ Rodada encerrada"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer}`; }
     else if (m.right) { $("rtitle").textContent = "✅ Acertou!"; $("rtitle").className = "good"; $("rinfo").textContent = `+${m.delta} pontos`; }
     else { $("rtitle").textContent = "❌ Errou"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer}`; }
