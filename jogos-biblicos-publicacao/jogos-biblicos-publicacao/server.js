@@ -78,18 +78,30 @@ function lobbyUpdate(room) {
 
 /* ------------------------- Quiz e Quem sou eu ------------------------- */
 
+function inferArt(q) {
+  const text = [q.q, q.o && q.o[q.a]].filter(Boolean).join(" ").toLowerCase();
+  const rules = [
+    [/jericó|muralha|raabe|espias/, "jericho"], [/davi|golias/, "david"], [/moisés|mar vermelho|êxodo|faraó/, "moses"],
+    [/daniel|leões/, "daniel"], [/jonas|grande peixe/, "jonah"], [/noé|arca/, "noah"],
+    [/ester|rainha|débora|rute|sara|maria|ana,/, "woman"], [/jesus|cristo|cruz|ressurreição|nascimento de jesus/, "jesus"],
+    [/salomão/, "solomon"], [/elias|carmelo|baal/, "elijah"], [/paulo|silas|filipos|apóstolo/, "paul"],
+    [/jerusalém|cidade/, "city"], [/templo|pergaminho|lei|livro/, "scroll"]
+  ];
+  return (rules.find(([pattern]) => pattern.test(text)) || [null, "person"])[1];
+}
+
 function buildQuiz(n, difficulty = "Médio") {
   const pool = difficulty === "Misto" ? QUIZ : QUIZ.filter(q => q.level === difficulty);
   const selected = shuffle(pool).slice(0, clamp(n, 3, pool.length));
   return selected.map((q) => {
     const opts = q.o.map((text, i) => ({ text, ok: i === q.a }));
     const o = shuffle(opts);
-    return { q: q.q, o: o.map(x => x.text), a: o.findIndex(x => x.ok), level: q.level.toUpperCase(), ref: q.ref, explain: q.explain, art: q.art || "scroll" };
+    return { q: q.q, o: o.map(x => x.text), a: o.findIndex(x => x.ok), level: q.level.toUpperCase(), ref: q.ref, explain: q.explain, art: q.art || inferArt(q) };
   });
 }
 
 function buildWho(n) {
-  return shuffle(WHO).slice(0, clamp(n, 3, WHO.length)).map(c => ({ clues: c.c, name: c.n, art: c.art || (/Jericó/i.test(c.n) ? "jericho" : /Carmelo/i.test(c.n) ? "elijah" : /Patmos/i.test(c.n) ? "patmos" : "person") }));
+  return shuffle(WHO).slice(0, clamp(n, 3, WHO.length)).map(c => ({ clues: c.c, name: c.n, art: c.art || (/Jericó/i.test(c.n) ? "jericho" : /Carmelo/i.test(c.n) ? "elijah" : /Patmos/i.test(c.n) ? "patmos" : /Ester|Rute|Débora|Maria|Eva|Miriã|Raabe/i.test(c.n) ? "woman" : /Daniel/i.test(c.n) ? "daniel" : /Davi/i.test(c.n) ? "david" : /Moisés/i.test(c.n) ? "moses" : /Noé/i.test(c.n) ? "noah" : /Jonas/i.test(c.n) ? "jonah" : "person") }));
 }
 
 function startQuestion(room) {
