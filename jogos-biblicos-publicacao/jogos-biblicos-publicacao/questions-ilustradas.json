@@ -336,7 +336,7 @@
     "art": "paul"
   },
   {
-    "q": "Qual cidade teve seu povo curado da cegueira espiritual após ouvir Jonas?",
+    "q": "Qual cidade teve seu povo arrependido após ouvir a pregação do profeta Jonas?",
     "o": [
       "Társis",
       "Nínive",
@@ -476,17 +476,17 @@
     "art": "joseph"
   },
   {
-    "q": "Qual jovem foi levado ao céu num redemoinho após caminhar com Elias?",
+    "q": "Qual profeta foi levado ao céu num redemoinho diante de Eliseu?",
     "o": [
+      "Elias",
       "Eliseu",
-      "Geazi",
-      "Jonas",
-      "Micaías"
+      "Moisés",
+      "Samuel"
     ],
     "a": 0,
     "level": "Difícil",
     "ref": "2 Reis 2:9-12",
-    "explain": "Eliseu viu Elias ser levado num redemoinho, com carros e cavalos de fogo.",
+    "explain": "Elias foi levado num redemoinho, enquanto Eliseu testemunhava a sua partida.",
     "art": "elijah"
   },
   {
