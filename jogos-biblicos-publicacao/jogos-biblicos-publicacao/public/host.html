@@ -33,7 +33,7 @@
     <button class="mode" data-mode="who"><b>🕵️ Quem sou eu?</b><small>Quatro tentativas com dicas progressivas. Vale 10, 7, 5 ou 3 pontos.</small></button>
     <button class="mode" data-mode="impostor"><b>🎭 Impostor</b><small>Um não sabe a palavra secreta. Descubra quem é! (mín. 3)</small></button>
   </div>
-  <div class="section-kicker settings-kicker">CONFIGURE A PARTIDA</div><label id="difficultyWrap" style="width:min(100%,340px);display:block;text-align:left;margin:8px auto"><span>Nível do Quiz:</span><select id="difficulty"><option>Fácil</option><option selected>Médio</option><option>Difícil</option></select></label>
+  <div class="section-kicker settings-kicker">CONFIGURE A PARTIDA</div><label id="difficultyWrap" style="width:min(100%,340px);display:block;text-align:left;margin:8px auto"><span>Nível do Quiz:</span><select id="difficulty"><option>Fácil</option><option selected>Médio</option><option>Difícil</option><option>Misto</option></select></label>
   <label style="width:min(100%,340px);display:block;text-align:left;margin:8px auto"><span id="nlabel">Perguntas:</span>
     <select id="n" style="font-size:1.1rem;padding:6px;border-radius:8px"></select>
   </label>
@@ -44,6 +44,7 @@
 <section id="question" class="card host-card game-screen">
   <div class="sub" id="qnum"></div>
   <div class="timerbar" id="qbarwrap"><div id="bar"></div></div>
+  <div id="questionArt" class="biblical-art" hidden></div>
   <div class="q" id="qtext"></div>
   <div id="clues" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
   <div class="opts" id="opts"></div>
@@ -62,6 +63,7 @@
 <section id="imp" class="card host-card">
   <div class="sub" id="itag"></div>
   <div class="timerbar" id="ibarwrap"><div id="ibar"></div></div>
+  <div id="impArt" class="biblical-art compact-art" hidden></div>
   <h1 id="ititle"></h1>
   <div id="itext" style="font-size:1.3rem;color:var(--muted);max-width:800px"></div>
   <div id="ihints" style="margin:12px 0;max-width:900px"></div>
@@ -76,6 +78,7 @@
   <button class="main" style="max-width:340px" id="again">Jogar de novo (mesmos jogadores)</button>
 </section>
 
+<script src="/art.js"></script>
 <script>
 const $ = (id) => document.getElementById(id);
 const proto = location.protocol === "https:" ? "wss" : "ws";
@@ -157,6 +160,7 @@ function setImp(o) {
   $("itag").textContent = o.tag || "";
   $("ititle").textContent = o.title || "";
   $("itext").textContent = o.text || "";
+  if (o.art) showBiblicalArt("impArt", o.art, o.artCaption || o.tag || "Cena bíblica"); else hideBiblicalArt("impArt");
   $("iprog").textContent = o.prog || "";
   $("ibarwrap").style.display = o.time ? "block" : "none";
   if (o.time) runBar($("ibar"), o.time);
@@ -202,6 +206,7 @@ ws.onmessage = (ev) => {
     $("skip").textContent = "Aguardando respostas…";
     $("qnum").textContent = `${m.clues ? "DESAFIO DE PISTAS" : (m.level || "QUIZ")} · ${m.i} de ${m.total}`;
     $("qtext").textContent = m.q;
+    showBiblicalArt("questionArt", m.art, m.clues ? "Pista visual" : m.q);
     $("clues").textContent = "";
     if (m.clues) m.clues.forEach(addClue);
     const box = $("opts"); box.textContent = "";
@@ -235,6 +240,7 @@ ws.onmessage = (ev) => {
   if (m.t === "irole") {
     setImp({
       tag: `Rodada ${m.round} de ${m.rounds}`,
+      art: m.art,
       title: "🎭 Olhem o celular!",
       text: `Categoria: ${m.cat}. Todos recebem a palavra secreta, menos UM jogador: o impostor. Cada um confira sua carta sem mostrar aos outros.`,
       rows: m.players.map((n) => ({ left: n, right: "" })),
@@ -244,6 +250,7 @@ ws.onmessage = (ev) => {
   if (m.t === "iturn") {
     setImp({
       tag: `Dicas: ${m.turn} de ${m.total}  ·  ${m.cat}`,
+      art: m.art,
       title: `Vez de ${m.name}`,
       text: "Diga UMA palavra que ajude quem sabe, sem entregar a palavra secreta ao impostor.",
       hints: m.hints,
@@ -253,6 +260,7 @@ ws.onmessage = (ev) => {
   if (m.t === "idiscuss") {
     setImp({
       tag: m.cat,
+      art: m.art,
       title: "🗣️ Hora de discutir!",
       text: "Quem deu uma dica estranha? Quem parece estar enrolando?",
       hints: m.hints,
