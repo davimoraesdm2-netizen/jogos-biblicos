@@ -98,7 +98,7 @@ function startQuestion(room) {
   const q = room.questions[room.index];
   room.startedAt = Date.now();
   room.cluesShown = q.clues ? 1 : 0;
-  for (const p of room.players.values()) { p.choice = null; p.delta = 0; p.right = false; p.whoAttempt = 0; }
+  for (const p of room.players.values()) { p.choice = null; p.delta = 0; p.right = false; p.whoAttempt = 0; p.whoTimedOut = false; }
   const time = q.clues ? WHO_TIME : QUIZ_ANSWER_TIME;
   room.quizExpired = false;
   toAll(room, {
