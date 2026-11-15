@@ -210,7 +210,8 @@ function onMsg(ev) {
   }
   if (m.t === "result") {
     show("result");
-    if (m.failed) { $("rtitle").textContent = "❌ As quatro tentativas acabaram"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer} · 0 ponto`; }
+    if (m.timedOut) { $("rtitle").textContent = "⌛ Tempo esgotado"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer} · 0 ponto`; }
+    else if (m.failed) { $("rtitle").textContent = "❌ As quatro tentativas acabaram"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer} · 0 ponto`; }
     else if (m.unanswered) { $("rtitle").textContent = "⌛ Você não respondeu"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer}`; }
     else if (m.choice === null) { $("rtitle").textContent = "⌛ Rodada encerrada"; $("rtitle").className = "bad"; $("rinfo").textContent = `A resposta era: ${m.answer}`; }
     else if (m.right) { $("rtitle").textContent = "✅ Acertou!"; $("rtitle").className = "good"; $("rinfo").textContent = `+${m.delta} pontos`; }
