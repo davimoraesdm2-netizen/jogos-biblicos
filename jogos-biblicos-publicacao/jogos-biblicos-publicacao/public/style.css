@@ -695,3 +695,28 @@ input,select { background:rgba(12,25,18,.82); border-color:rgba(224,200,151,.28)
 .result-screen h2,.final-screen h1,#rtitle,#end h1 { color:#f4d69c; }
 #imp { background:linear-gradient(145deg,rgba(45,65,47,.99),rgba(18,35,26,.99)); }
 @media(max-width:650px) { .lobby-screen::before,.join-screen::before { inset:8px; } .verse-ribbon { font-size:.98rem; padding:12px 15px; } }
+
+/* Ilustrações bíblicas em estilo de pintura histórica */
+.biblical-art {
+  width:min(100%,900px); margin:14px auto 18px; overflow:hidden;
+  border:2px solid rgba(225,190,125,.78); border-radius:18px;
+  background:linear-gradient(145deg,#152b42,#342f2b);
+  box-shadow:0 14px 34px rgba(0,0,0,.34),inset 0 0 0 4px rgba(239,218,174,.1);
+  position:relative;
+}
+.biblical-art[hidden] { display:none !important; }
+.biblical-art svg { display:block; width:100%; height:auto; max-height:330px; }
+.biblical-art-caption {
+  padding:9px 14px 11px; color:#f3d9a5; text-align:center;
+  font:600 .88rem/1.3 Georgia,serif; letter-spacing:.04em;
+  background:linear-gradient(90deg,rgba(15,31,47,.96),rgba(45,54,54,.96),rgba(15,31,47,.96));
+  border-top:1px solid rgba(225,190,125,.45);
+}
+.compact-art { max-width:640px; margin:12px auto 18px; }
+.compact-art svg { max-height:220px; }
+@media(max-width:600px) {
+  .biblical-art { border-radius:12px; margin:10px auto 14px; }
+  .biblical-art svg { max-height:210px; }
+  .compact-art svg { max-height:160px; }
+  .biblical-art-caption { padding:7px 10px; font-size:.78rem; }
+}

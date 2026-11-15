@@ -1,0 +1,562 @@
+[
+  {
+    "q": "Qual cidade teve suas muralhas derrubadas depois que Israel marchou ao redor dela durante sete dias?",
+    "o": [
+      "Ai",
+      "Jericó",
+      "Hazor",
+      "Betel"
+    ],
+    "a": 1,
+    "level": "Médio",
+    "ref": "Josué 6:1-20",
+    "explain": "Após a marcha, as trombetas e o grito do povo, a muralha de Jericó caiu.",
+    "art": "jericho"
+  },
+  {
+    "q": "Qual mulher escondeu os espias enviados por Josué em Jericó?",
+    "o": [
+      "Débora",
+      "Raabe",
+      "Jael",
+      "Abigail"
+    ],
+    "a": 1,
+    "level": "Médio",
+    "ref": "Josué 2:1-21",
+    "explain": "Raabe acolheu os espias e os ajudou a escapar.",
+    "art": "rahab"
+  },
+  {
+    "q": "Em qual monte Elias enfrentou os profetas de Baal?",
+    "o": [
+      "Sinai",
+      "Carmelo",
+      "Horebe",
+      "Sião"
+    ],
+    "a": 1,
+    "level": "Médio",
+    "ref": "1 Reis 18:19-40",
+    "explain": "No monte Carmelo, Deus respondeu à oração de Elias com fogo.",
+    "art": "elijah"
+  },
+  {
+    "q": "Qual rei viu uma escrita misteriosa aparecer na parede durante um banquete?",
+    "o": [
+      "Ciro",
+      "Dario",
+      "Belsazar",
+      "Nabucodonosor"
+    ],
+    "a": 2,
+    "level": "Difícil",
+    "ref": "Daniel 5:1-30",
+    "explain": "Belsazar viu a escrita na parede; Daniel interpretou a mensagem.",
+    "art": "writing"
+  },
+  {
+    "q": "Quem pediu a Deus um sinal usando um velo de lã?",
+    "o": [
+      "Sansão",
+      "Gideão",
+      "Samuel",
+      "Jeú"
+    ],
+    "a": 1,
+    "level": "Médio",
+    "ref": "Juízes 6:36-40",
+    "explain": "Gideão pediu sinais com o velo para confirmar a missão recebida.",
+    "art": "gideon"
+  },
+  {
+    "q": "Qual profeta foi alimentado por corvos junto ao ribeiro de Querite?",
+    "o": [
+      "Eliseu",
+      "Elias",
+      "Isaías",
+      "Amós"
+    ],
+    "a": 1,
+    "level": "Difícil",
+    "ref": "1 Reis 17:2-6",
+    "explain": "Corvos levavam pão e carne a Elias pela manhã e à tarde.",
+    "art": "elijah"
+  },
+  {
+    "q": "Em qual cidade os discípulos foram chamados cristãos pela primeira vez?",
+    "o": [
+      "Éfeso",
+      "Antioquia",
+      "Roma",
+      "Corinto"
+    ],
+    "a": 1,
+    "level": "Difícil",
+    "ref": "Atos 11:26",
+    "explain": "Foi em Antioquia que os discípulos receberam pela primeira vez o nome de cristãos.",
+    "art": "antioch"
+  },
+  {
+    "q": "Qual casal caiu morto após mentir sobre o valor da oferta?",
+    "o": [
+      "Áquila e Priscila",
+      "Ananias e Safira",
+      "Herodes e Herodias",
+      "Zacarias e Isabel"
+    ],
+    "a": 1,
+    "level": "Difícil",
+    "ref": "Atos 5:1-11",
+    "explain": "Ananias e Safira mentiram ao Espírito Santo sobre o valor entregue.",
+    "art": "temple"
+  },
+  {
+    "q": "Quem caiu da janela durante uma longa mensagem de Paulo em Trôade?",
+    "o": [
+      "Êutico",
+      "Timóteo",
+      "Tito",
+      "Trófimo"
+    ],
+    "a": 0,
+    "level": "Difícil",
+    "ref": "Atos 20:7-12",
+    "explain": "Êutico adormeceu durante a fala de Paulo e caiu do terceiro andar.",
+    "art": "troas"
+  },
+  {
+    "q": "Qual profeta recebeu a ordem de casar-se com Gômer como sinal para Israel?",
+    "o": [
+      "Joel",
+      "Oséias",
+      "Miquéias",
+      "Naum"
+    ],
+    "a": 1,
+    "level": "Difícil",
+    "ref": "Oséias 1:2-3",
+    "explain": "A vida familiar de Oséias tornou-se um sinal da infidelidade de Israel.",
+    "art": "hosea"
+  },
+  {
+    "q": "Qual juiz canhoto matou Eglom, rei de Moabe?",
+    "o": [
+      "Jefté",
+      "Eúde",
+      "Sangar",
+      "Otniel"
+    ],
+    "a": 1,
+    "level": "Difícil",
+    "ref": "Juízes 3:15-22",
+    "explain": "Eúde, descrito como canhoto, levou uma espada de dois gumes e matou Eglom.",
+    "art": "ehud"
+  },
+  {
+    "q": "Que objeto flutuou depois que Eliseu lançou um pedaço de madeira na água?",
+    "o": [
+      "Uma âncora",
+      "Um machado de ferro",
+      "Uma lança",
+      "Uma moeda"
+    ],
+    "a": 1,
+    "level": "Difícil",
+    "ref": "2 Reis 6:1-7",
+    "explain": "O ferro do machado que havia caído na água flutuou.",
+    "art": "elisha"
+  },
+  {
+    "q": "Qual mulher julgava Israel e convocou Baraque para a batalha?",
+    "o": [
+      "Jael",
+      "Débora",
+      "Miriã",
+      "Hulda"
+    ],
+    "a": 1,
+    "level": "Médio",
+    "ref": "Juízes 4:4-10",
+    "explain": "Débora era profetisa e julgava Israel debaixo da palmeira que levava seu nome.",
+    "art": "deborah"
+  },
+  {
+    "q": "Qual cidade foi reconstruída por Neemias apesar da oposição de Sambalate e Tobias?",
+    "o": [
+      "Samaria",
+      "Jerusalém",
+      "Belém",
+      "Hebrom"
+    ],
+    "a": 1,
+    "level": "Médio",
+    "ref": "Neemias 2:17-20; 6:15",
+    "explain": "Neemias liderou a reconstrução dos muros de Jerusalém.",
+    "art": "jerusalem"
+  },
+  {
+    "q": "Qual rei consultou uma médium em En-Dor antes de uma batalha?",
+    "o": [
+      "Davi",
+      "Saul",
+      "Acabe",
+      "Roboão"
+    ],
+    "a": 1,
+    "level": "Difícil",
+    "ref": "1 Samuel 28:7-20",
+    "explain": "Saul procurou a médium de En-Dor após não receber resposta do Senhor.",
+    "art": "saul"
+  },
+  {
+    "q": "Quem foi escolhido para substituir Judas Iscariotes entre os apóstolos?",
+    "o": [
+      "Barnabé",
+      "Matias",
+      "Silas",
+      "Estêvão"
+    ],
+    "a": 1,
+    "level": "Médio",
+    "ref": "Atos 1:23-26",
+    "explain": "Matias foi escolhido após oração e lançamento de sortes.",
+    "art": "apostles"
+  },
+  {
+    "q": "Em qual ilha João recebeu as visões registradas no Apocalipse?",
+    "o": [
+      "Creta",
+      "Chipre",
+      "Patmos",
+      "Malta"
+    ],
+    "a": 2,
+    "level": "Médio",
+    "ref": "Apocalipse 1:9",
+    "explain": "João estava na ilha chamada Patmos por causa da palavra de Deus.",
+    "art": "patmos"
+  },
+  {
+    "q": "Qual profeta confrontou Davi com a parábola da cordeirinha?",
+    "o": [
+      "Gade",
+      "Natã",
+      "Samuel",
+      "Aías"
+    ],
+    "a": 1,
+    "level": "Difícil",
+    "ref": "2 Samuel 12:1-7",
+    "explain": "Natã contou a parábola e declarou a Davi: tu és o homem.",
+    "art": "nathan"
+  },
+  {
+    "q": "Qual mulher escondeu os espias em Jericó e amarrou um cordão vermelho na janela?",
+    "o": [
+      "Rute",
+      "Raabe",
+      "Ester",
+      "Mical"
+    ],
+    "a": 1,
+    "level": "Médio",
+    "ref": "Josué 2:18-21",
+    "explain": "O cordão escarlate marcou a casa de Raabe durante a conquista.",
+    "art": "rahab"
+  },
+  {
+    "q": "Qual rei de Judá encontrou o Livro da Lei durante a reforma do templo?",
+    "o": [
+      "Ezequias",
+      "Josias",
+      "Uzias",
+      "Manassés"
+    ],
+    "a": 1,
+    "level": "Difícil",
+    "ref": "2 Reis 22:8-13",
+    "explain": "O sacerdote Hilquias encontrou o Livro da Lei, que foi lido ao rei Josias.",
+    "art": "scroll"
+  },
+  {
+    "q": "Qual profeta viu um vale cheio de ossos secos que voltaram a ter vida?",
+    "o": [
+      "Jeremias",
+      "Ezequiel",
+      "Daniel",
+      "Zacarias"
+    ],
+    "a": 1,
+    "level": "Médio",
+    "ref": "Ezequiel 37:1-14",
+    "explain": "A visão dos ossos secos simbolizava a restauração de Israel.",
+    "art": "drybones"
+  },
+  {
+    "q": "Qual discípulo foi escolhido para acompanhar Paulo depois da separação de Barnabé?",
+    "o": [
+      "Lucas",
+      "Silas",
+      "Marcos",
+      "Apolo"
+    ],
+    "a": 1,
+    "level": "Difícil",
+    "ref": "Atos 15:39-40",
+    "explain": "Paulo escolheu Silas e partiu, sendo recomendado pelos irmãos à graça do Senhor.",
+    "art": "paul"
+  },
+  {
+    "q": "Em qual cidade Paulo e Silas cantaram hinos na prisão à meia-noite?",
+    "o": [
+      "Filipos",
+      "Tessalônica",
+      "Atenas",
+      "Corinto"
+    ],
+    "a": 0,
+    "level": "Médio",
+    "ref": "Atos 16:22-26",
+    "explain": "Na prisão de Filipos, os presos ouviram Paulo e Silas orando e cantando.",
+    "art": "prison"
+  },
+  {
+    "q": "Quem foi o mestre de Paulo, segundo seu próprio testemunho em Atos?",
+    "o": [
+      "Gamaliel",
+      "Nicodemos",
+      "Caifás",
+      "Anás"
+    ],
+    "a": 0,
+    "level": "Difícil",
+    "ref": "Atos 22:3",
+    "explain": "Paulo declarou ter sido instruído aos pés de Gamaliel.",
+    "art": "paul"
+  },
+  {
+    "q": "Qual cidade teve seu povo arrependido após ouvir a pregação do profeta Jonas?",
+    "o": [
+      "Társis",
+      "Nínive",
+      "Damasco",
+      "Babilônia"
+    ],
+    "a": 1,
+    "level": "Médio",
+    "ref": "Jonas 3:1-10",
+    "explain": "Os ninivitas creram em Deus, proclamaram jejum e se arrependeram.",
+    "art": "nineveh"
+  },
+  {
+    "q": "Qual sacerdote criou Samuel no serviço do santuário em Siló?",
+    "o": [
+      "Abiatar",
+      "Eli",
+      "Zadoque",
+      "Aimeleque"
+    ],
+    "a": 1,
+    "level": "Difícil",
+    "ref": "1 Samuel 1:24-28; 2:11",
+    "explain": "Samuel foi apresentado ao Senhor e serviu sob a orientação de Eli.",
+    "art": "shiloh"
+  },
+  {
+    "q": "Qual era o nome do irmão de Marta e Maria que Jesus ressuscitou?",
+    "o": [
+      "Jairo",
+      "Lázaro",
+      "Bartimeu",
+      "Estêvão"
+    ],
+    "a": 1,
+    "level": "Fácil",
+    "ref": "João 11:1-44",
+    "explain": "Jesus chamou Lázaro para fora do túmulo em Betânia.",
+    "art": "lazarus"
+  },
+  {
+    "q": "Qual mulher julgou Israel e era conhecida por sua coragem e sabedoria?",
+    "o": [
+      "Ester",
+      "Débora",
+      "Abigail",
+      "Miriã"
+    ],
+    "a": 1,
+    "level": "Médio",
+    "ref": "Juízes 4:4-5",
+    "explain": "Débora exercia liderança e julgava Israel debaixo de uma palmeira.",
+    "art": "deborah"
+  },
+  {
+    "q": "Qual profeta enfrentou os sacerdotes de Baal e orou para que Deus enviasse fogo?",
+    "o": [
+      "Eliseu",
+      "Elias",
+      "Micaías",
+      "Samuel"
+    ],
+    "a": 1,
+    "level": "Fácil",
+    "ref": "1 Reis 18:36-39",
+    "explain": "O fogo do Senhor consumiu o holocausto, a lenha, as pedras e a água.",
+    "art": "elijah"
+  },
+  {
+    "q": "Qual era o nome do jardim onde Jesus orou antes de ser preso?",
+    "o": [
+      "Éden",
+      "Getsêmani",
+      "Betânia",
+      "Gólgota"
+    ],
+    "a": 1,
+    "level": "Médio",
+    "ref": "Mateus 26:36-46",
+    "explain": "Jesus foi com os discípulos a um lugar chamado Getsêmani.",
+    "art": "gethsemane"
+  },
+  {
+    "q": "Qual cidade era conhecida por suas muralhas e foi conquistada após o toque das trombetas?",
+    "o": [
+      "Jerusalém",
+      "Jericó",
+      "Nínive",
+      "Damasco"
+    ],
+    "a": 1,
+    "level": "Fácil",
+    "ref": "Josué 6:20",
+    "explain": "Os muros de Jericó caíram depois que o povo gritou e as trombetas soaram.",
+    "art": "jericho"
+  },
+  {
+    "q": "Qual mulher foi juíza e profetisa, esposa de Lapidote?",
+    "o": [
+      "Hulda",
+      "Débora",
+      "Jael",
+      "Ana"
+    ],
+    "a": 1,
+    "level": "Difícil",
+    "ref": "Juízes 4:4",
+    "explain": "Débora é identificada como profetisa e mulher de Lapidote.",
+    "art": "deborah"
+  },
+  {
+    "q": "Qual rei pediu sabedoria a Deus em Gibeão, em vez de pedir vida longa ou riquezas?",
+    "o": [
+      "Davi",
+      "Salomão",
+      "Josias",
+      "Ezequias"
+    ],
+    "a": 1,
+    "level": "Fácil",
+    "ref": "1 Reis 3:5-12",
+    "explain": "Salomão pediu um coração compreensivo para governar o povo.",
+    "art": "solomon"
+  },
+  {
+    "q": "Quem interpretou o sonho de Faraó sobre sete vacas gordas e sete vacas magras?",
+    "o": [
+      "Daniel",
+      "José",
+      "Moisés",
+      "Arão"
+    ],
+    "a": 1,
+    "level": "Fácil",
+    "ref": "Gênesis 41:14-32",
+    "explain": "José explicou que o sonho anunciava sete anos de fartura seguidos por sete anos de fome.",
+    "art": "joseph"
+  },
+  {
+    "q": "Qual profeta foi levado ao céu num redemoinho diante de Eliseu?",
+    "o": [
+      "Elias",
+      "Eliseu",
+      "Moisés",
+      "Samuel"
+    ],
+    "a": 0,
+    "level": "Difícil",
+    "ref": "2 Reis 2:9-12",
+    "explain": "Elias foi levado num redemoinho, enquanto Eliseu testemunhava a sua partida.",
+    "art": "elijah"
+  },
+  {
+    "q": "Em qual cidade Jesus curou um cego chamado Bartimeu?",
+    "o": [
+      "Jericó",
+      "Betânia",
+      "Nazaré",
+      "Cana"
+    ],
+    "a": 0,
+    "level": "Médio",
+    "ref": "Marcos 10:46-52",
+    "explain": "Bartimeu estava à beira do caminho quando Jesus saía de Jericó.",
+    "art": "jericho"
+  },
+  {
+    "q": "Qual apóstolo teve uma visão de um lençol com animais descendo do céu?",
+    "o": [
+      "João",
+      "Pedro",
+      "Paulo",
+      "Tiago"
+    ],
+    "a": 1,
+    "level": "Médio",
+    "ref": "Atos 10:9-16",
+    "explain": "Pedro viu o lençol e ouviu a voz que o instruía a não considerar impuro o que Deus purificou.",
+    "art": "peter"
+  },
+  {
+    "q": "Qual casal acompanhou Apolo e lhe explicou com mais precisão o caminho de Deus?",
+    "o": [
+      "Ananias e Safira",
+      "Áquila e Priscila",
+      "Zacarias e Isabel",
+      "José e Maria"
+    ],
+    "a": 1,
+    "level": "Difícil",
+    "ref": "Atos 18:24-26",
+    "explain": "Áquila e Priscila chamaram Apolo e lhe expuseram mais corretamente o caminho de Deus.",
+    "art": "aquila"
+  },
+  {
+    "q": "Qual profeta foi lançado numa cisterna lamacenta por anunciar a mensagem de Deus?",
+    "o": [
+      "Isaías",
+      "Jeremias",
+      "Ezequiel",
+      "Oseias"
+    ],
+    "a": 1,
+    "level": "Difícil",
+    "ref": "Jeremias 38:6-13",
+    "explain": "Jeremias foi colocado numa cisterna sem água, cheia de lama, e depois resgatado.",
+    "art": "jeremiah"
+  },
+  {
+    "q": "Qual discípulo era conhecido como o médico amado?",
+    "o": [
+      "Marcos",
+      "Lucas",
+      "Tito",
+      "Timóteo"
+    ],
+    "a": 1,
+    "level": "Médio",
+    "ref": "Colossenses 4:14",
+    "explain": "Paulo chama Lucas de o médico amado.",
+    "art": "luke"
+  }
+]
