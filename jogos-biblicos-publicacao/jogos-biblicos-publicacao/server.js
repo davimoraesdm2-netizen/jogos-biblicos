@@ -111,6 +111,7 @@ function startQuestion(room) {
     for (const p of room.players.values()) {
       if (p.choice === null) {
         p.choice = -2;
+        p.whoTimedOut = true;
         send(p.ws, { t: "whoTimeExpired" });
       }
     }
@@ -139,7 +140,7 @@ function reveal(room) {
   for (const p of room.players.values()) {
     const me = rank.find(r => r.name === p.name);
     send(p.ws, {
-      t: "result", correct: q.clues ? null : q.a, answer: q.clues ? q.name : q.o[q.a], choice: p.choice, right: q.clues ? !!p.right : p.choice === q.a, unanswered: p.choice === -2 && !q.clues, failed: q.clues && p.choice === -2,
+      t: "result", correct: q.clues ? null : q.a, answer: q.clues ? q.name : q.o[q.a], choice: p.choice, right: q.clues ? !!p.right : p.choice === q.a, unanswered: p.choice === -2 && (!q.clues || p.whoTimedOut), failed: q.clues && p.choice === -2 && !p.whoTimedOut, timedOut: q.clues && !!p.whoTimedOut,
       delta: p.delta, score: p.score, rank: me ? me.rank : null, total: rank.length, ref: q.ref || null, explain: q.explain || null,
     });
   }
