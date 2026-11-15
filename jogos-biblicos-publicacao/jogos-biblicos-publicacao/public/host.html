@@ -198,8 +198,8 @@ ws.onmessage = (ev) => {
   if (m.t === "question") {
     show("question");
     $("qbarwrap").style.display = m.time ? "block" : "none";
-    $("skip").disabled = mode === "quiz";
-    $("skip").textContent = mode === "quiz" ? "Aguardando respostas…" : "Encerrar pergunta";
+    $("skip").disabled = true;
+    $("skip").textContent = "Aguardando respostas…";
     $("qnum").textContent = `${m.clues ? "DESAFIO DE PISTAS" : (m.level || "QUIZ")} · ${m.i} de ${m.total}`;
     $("qtext").textContent = m.q;
     $("clues").textContent = "";
